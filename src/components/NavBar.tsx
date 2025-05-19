@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 
 const NavBar = () => {
-  const defaultClassName = "h5-regular cursor-pointer";
+  const defaultClassName = "h5-bold cursor-pointer";
   return (
     <nav className="flex justify-center items-center h-[70px] border-b border-[0.5px] border-solid border-[#D9D9D9]">
       <div className="flex justify-between items-center w-[calc(100%-640px)]">
@@ -11,7 +11,7 @@ const NavBar = () => {
           <NavLink
             to="/about"
             className={({ isActive }) => {
-              return clsx(isActive && "text-[#06AEEF]", defaultClassName);
+              return clsx(isActive && "text-main", defaultClassName);
             }}
           >
             About
@@ -19,7 +19,7 @@ const NavBar = () => {
           <NavLink
             to="/program"
             className={({ isActive }) => {
-              return clsx(isActive && "text-[#06AEEF]", defaultClassName);
+              return clsx(isActive && "text-main", defaultClassName);
             }}
           >
             Program
@@ -27,7 +27,7 @@ const NavBar = () => {
           <NavLink
             to="/portfolio"
             className={({ isActive }) => {
-              return clsx(isActive && "text-[#06AEEF]", defaultClassName);
+              return clsx(isActive && "text-main", defaultClassName);
             }}
           >
             Portfolio
@@ -35,7 +35,7 @@ const NavBar = () => {
           <NavLink
             to="/news"
             className={({ isActive }) => {
-              return clsx(isActive && "text-[#06AEEF]", defaultClassName);
+              return clsx(isActive && "text-main", defaultClassName);
             }}
           >
             News
@@ -43,7 +43,7 @@ const NavBar = () => {
           <NavLink
             to="/contact"
             className={({ isActive }) => {
-              return clsx(isActive && "text-[#06AEEF]", defaultClassName);
+              return clsx(isActive && "text-main", defaultClassName);
             }}
           >
             Contact
