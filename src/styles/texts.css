@@ -39,6 +39,14 @@
   line-height: 36px; /* 128.571% */
 }
 
+.h3-medium {
+  /* H3/Medium */
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px; /* 128.571% */
+}
+
 .h3-bold {
   /* H3/Bold */
   font-size: 28px;
@@ -76,6 +84,14 @@
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
+  line-height: 28px; /* 140% */
+}
+
+.h5-medium {
+  /* H5/Medium */
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
   line-height: 28px; /* 140% */
 }
 
