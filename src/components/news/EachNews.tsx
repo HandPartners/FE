@@ -1,6 +1,6 @@
 const EachNews = () => {
   return (
-    <button className="flex gap-[36px] w-full h-[186px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer">
+    <button className="flex gap-[36px] py-[24px] w-full h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer">
       <div className="w-[238px] h-[162px] border-[1px] border-[#E2E2E2]"></div>
 
       <div className="flex flex-col justify-between flex-1">

@@ -1,10 +1,11 @@
+import clsx from "clsx";
 import { useState } from "react";
 
 import BGTop from "../components/BGTop";
-
-import ic_search from "../assets/images/ic_search.svg";
-import clsx from "clsx";
 import EachNews from "../components/news/EachNews";
+
+import ic_down_arrow from "../assets/images/ic_down_arrow.svg";
+import ic_search from "../assets/images/ic_search.svg";
 
 const tabs = [
   "ALL",
@@ -20,7 +21,7 @@ const News = () => {
   const [activeTab, setActiveTab] = useState("ALL");
 
   return (
-    <main className="w-full h-full flex flex-col items-center">
+    <main className="w-full h-full flex flex-col items-center ">
       <BGTop>
         <section className="flex flex-col gap-[371px] mx-auto w-2/3 h-full translate-y-[70px]">
           <div className="flex flex-col gap-[36px] pt-[calc(211px-70px)] w-full">
@@ -30,7 +31,7 @@ const News = () => {
             <h3 className="h3-medium">한줄 소개</h3>
           </div>
 
-          <section className="w-full">
+          <section className="w-full pb-[200px]">
             <section className="flex gap-[20px] w-full">
               <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
                 {tabs.map((tab) => (
@@ -60,9 +61,18 @@ const News = () => {
               </div>
             </section>
 
-            <section className="px-[3.203125%] mt-[50px]">
+            <section className="px-[3.203125%] mt-[50px] mb-[70px]">
+              <EachNews />
               <EachNews />
             </section>
+            <div className="flex justify-center items-center w-full">
+              <div className="flex justify-center items-center gap-[10px] w-[300px] h-[50px] rounded-[30px] bg-[#00AEEF] animate-bounce">
+                <p className="text-[24px] font-bold leading-[50px] tracking-[-0.48px]">
+                  LOAD MORE
+                </p>
+                <img src={ic_down_arrow} alt="ic_down_arrow" />
+              </div>
+            </div>
           </section>
         </section>
       </BGTop>
