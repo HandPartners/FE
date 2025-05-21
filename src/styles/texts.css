@@ -248,7 +248,6 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
-  line-height: 18%; /* 2.16px */
 }
 .text-main {
   color: var(--Main, #2e3093);
