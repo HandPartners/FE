@@ -16,3 +16,9 @@ const BGTop: React.FC<PropsWithChildren> = () => {
 };
 
 export default BGTop;
+// <div
+//   className="absolute top-[70px] left-0 w-full h-[544px] bg-cover bg-top bg-no-repeat -z-10 border"
+//   style={{ backgroundImage: `url(${bg_top})` }}
+// >
+//   {children}
+// </div>
