@@ -4,7 +4,7 @@ import clsx from "clsx";
 const NavBar = () => {
   const defaultClassName = "h5-bold cursor-pointer";
   return (
-    <nav className="flex justify-center items-center h-[70px]">
+    <nav className="flex justify-center items-center relative h-[70px] z-10">
       <div className="flex justify-between items-center w-[calc(100%-640px)]">
         <div>logo</div>
         <div className="flex gap-[64px]">
