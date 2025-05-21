@@ -50,7 +50,7 @@ const News = () => {
               </div>
               <div className="flex flex-1 relative h-[60px] border border-[#E2E2E2] rounded-[30px]">
                 <input
-                  className="flex-1 pl-[25px] pr-[5px] z-20"
+                  className="flex-1 pl-[25px] pr-[5px] z-20 focus:outline-none"
                   type="text"
                   placeholder="검색어를 입력하세요."
                 />
