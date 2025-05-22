@@ -1,6 +1,18 @@
-const EachNews = () => {
+import { useNavigate } from "react-router-dom";
+
+interface EachNewsProps {
+  id: string;
+}
+
+const EachNews: React.FC<EachNewsProps> = ({ id }) => {
+  const navigate = useNavigate();
   return (
-    <button className="flex gap-[36px] py-[24px] w-full h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer">
+    <button
+      className="flex gap-[36px] py-[24px] w-full h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer"
+      onClick={() => {
+        navigate(`/news/${id}`);
+      }}
+    >
       <div className="w-[238px] h-[162px] border-[1px] border-[#E2E2E2]"></div>
 
       <div className="flex flex-col justify-between flex-1">

@@ -62,8 +62,8 @@ const News = () => {
             </section>
 
             <section className="px-[3.203125%] mt-[50px] mb-[70px]">
-              <EachNews />
-              <EachNews />
+              <EachNews id="1" />
+              <EachNews id="2" />
             </section>
             <div className="flex justify-center items-center w-full">
               <div className="flex justify-center items-center gap-[10px] w-[300px] h-[50px] rounded-[30px] bg-[#00AEEF] animate-bounce">

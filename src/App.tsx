@@ -3,6 +3,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import About from "./pages/About";
 import Program from "./pages/Program";
 import News from "./pages/News";
+import NewsDetail from "./pages/news/NewsDetail";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/news",
     element: <DefaultLayout />,
-    children: [{ index: true, element: <News /> }],
+    children: [
+      { index: true, element: <News /> },
+      { path: ":id", element: <NewsDetail /> },
+    ],
   },
 ]);
 
