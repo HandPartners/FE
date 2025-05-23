@@ -10,7 +10,7 @@ const EachNews: React.FC<EachNewsProps> = ({ id }) => {
     <button
       className="flex gap-[36px] py-[24px] w-full h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer"
       onClick={() => {
-        navigate(`/news/${id}`);
+        navigate(`${id}`, { relative: "path" });
       }}
     >
       <div className="w-[238px] h-[162px] border-[1px] border-[#E2E2E2]"></div>

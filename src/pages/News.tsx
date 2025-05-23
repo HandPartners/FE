@@ -58,6 +58,9 @@ const News = () => {
                 <button className="absolute right-[25px] top-1/2 -translate-y-1/2">
                   <img src={ic_search} alt="ic_search" />
                 </button>
+                <button className="absolute right-0 top-[-50px] translate-y-[-100%] w-[197px] h-[60px] rounded-[30px] bg-[#06AEEF] h5-bold cursor-pointer">
+                  글 작성
+                </button>
               </div>
             </section>
 

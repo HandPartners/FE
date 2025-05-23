@@ -1,15 +1,19 @@
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const defaultClassName = "h5-bold cursor-pointer";
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith("/admin");
+
   return (
     <nav className="flex justify-center items-center relative h-[70px] z-10">
       <div className="flex justify-between items-center w-[calc(100%-640px)]">
         <div>logo</div>
         <div className="flex gap-[64px]">
           <NavLink
-            to="/about"
+            to={isAdmin ? "/admin/about" : "/about"}
             className={({ isActive }) => {
               return clsx(isActive && "text-main", defaultClassName);
             }}
@@ -17,7 +21,7 @@ const NavBar = () => {
             About
           </NavLink>
           <NavLink
-            to="/program"
+            to={isAdmin ? "/admin/program" : "/program"}
             className={({ isActive }) => {
               return clsx(isActive && "text-main", defaultClassName);
             }}
@@ -25,7 +29,7 @@ const NavBar = () => {
             Program
           </NavLink>
           <NavLink
-            to="/portfolio"
+            to={isAdmin ? "/admin/portfolio" : "/portfolio"}
             className={({ isActive }) => {
               return clsx(isActive && "text-main", defaultClassName);
             }}
@@ -33,7 +37,7 @@ const NavBar = () => {
             Portfolio
           </NavLink>
           <NavLink
-            to="/news"
+            to={isAdmin ? "/admin/news" : "/news"}
             className={({ isActive }) => {
               return clsx(isActive && "text-main", defaultClassName);
             }}
@@ -41,7 +45,7 @@ const NavBar = () => {
             News
           </NavLink>
           <NavLink
-            to="/contact"
+            to={isAdmin ? "/admin/contact" : "/contact"}
             className={({ isActive }) => {
               return clsx(isActive && "text-main", defaultClassName);
             }}

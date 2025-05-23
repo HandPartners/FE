@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import ic_back from "../../assets/images/ic_back.svg";
 
@@ -8,18 +8,32 @@ const NewsDetail = () => {
 
   const navigate = useNavigate();
 
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith("/admin");
+
   return (
     <main className="w-full h-full flex flex-col items-center py-[70px] ">
       <section className="flex flex-col mx-auto w-[41.66666666666667%] h-full">
-        <button
-          onClick={() => {
-            navigate("/news");
-          }}
-          className="h5-medium flex items-center gap-[10px] cursor-pointer"
-        >
-          <img src={ic_back} alt="ic_back" />
-        </button>
-
+        <div className="flex justify-between w-full">
+          <button
+            onClick={() => {
+              navigate("news", { relative: "path" });
+            }}
+            className="h5-medium flex items-center gap-[10px] cursor-pointer"
+          >
+            <img src={ic_back} alt="ic_back" />
+          </button>
+          {isAdmin && (
+            <div className="flex gap-[24px]">
+              <button className="h4-bold flex items-center cursor-pointer">
+                수정
+              </button>
+              <button className="h4-bold flex items-center cursor-pointer">
+                삭제
+              </button>
+            </div>
+          )}
+        </div>
         <hr className="mt-[20px] mb-[25px] h-[1px] border-[#2E3092]" />
 
         <div>
