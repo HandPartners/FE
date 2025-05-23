@@ -5,29 +5,29 @@ import Program from "./pages/Program";
 import News from "./pages/News";
 import NewsDetail from "./pages/news/NewsDetail";
 
-const router = createBrowserRouter([
+const commonRoutes = [
+  { index: true, element: <div></div> },
+  { path: "about", element: <About /> },
+  { path: "program", element: <Program /> },
   {
-    path: "/",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <p className="text-red-500">Hello</p> }],
-  },
-  {
-    path: "/about",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <About /> }],
-  },
-  {
-    path: "/program",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <Program /> }],
-  },
-  {
-    path: "/news",
-    element: <DefaultLayout />,
+    path: "news",
     children: [
       { index: true, element: <News /> },
       { path: ":id", element: <NewsDetail /> },
     ],
+  },
+];
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <DefaultLayout />,
+    children: commonRoutes,
+  },
+  {
+    path: "/admin",
+    element: <DefaultLayout />,
+    children: commonRoutes,
   },
 ]);
 
