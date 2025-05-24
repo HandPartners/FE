@@ -1,3 +1,12 @@
 :root {
   --sub: #06aeef;
+
+  --grey3: #e2e2e2;
+  --grey4: #bababa;
+  --grey6: #777;
+  --grey50: #f4f7f8;
+  --main: #2e3093;
+
+  --white: #fff;
+  --black: #000;
 }

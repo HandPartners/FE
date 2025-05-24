@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
-import About from "./pages/About";
-import Program from "./pages/Program";
-import News from "./pages/News";
-
+import About from "./pages/user/About";
+import Program from "./pages/user/Program";
+import News from "./pages/user/News";
+import Portfolio from "./pages/user/Portfolio";
+import AdminPortfolio from "./pages/admin/AdminPortfolio";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,16 @@ const router = createBrowserRouter([
     path: "/news",
     element: <DefaultLayout />,
     children: [{ index: true, element: <News /> }],
+  },
+  {
+    path: "/portfolio",
+    element: <DefaultLayout />,
+    children: [{ index: true, element: <Portfolio /> }],
+  },
+  {
+    path: "/admin/portfolio",
+    element: <DefaultLayout />,
+    children: [{ index: true, element: <AdminPortfolio /> }],
   },
 ]);
 
