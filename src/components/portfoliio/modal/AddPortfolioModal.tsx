@@ -22,7 +22,7 @@ const ProtfolioAddModal: React.FC<ProtfolioAddModalProps> = ({
   console.log("logo instanceof File:", formData.logo instanceof File); // true 여야 함
 
   return (
-    <PortfolioModalLayout>
+    <PortfolioModalLayout marginTop="mt-[110px]">
       <h2 className="text-center h2-bold">포트폴리오</h2>
       <PortfolioModalForm
         formData={formData}
