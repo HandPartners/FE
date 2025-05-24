@@ -1,15 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import logo from "../assets/logo.svg";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
     <nav
       className="flex justify-center items-center relative h-[70px] w-screen z-10 "
       style={{ boxShadow: "0px 2px 3.5px 0px var(--Main, #2E3092)" }}
     >
       <div className="flex justify-between items-center w-[64%] min-w-[1228px] ">
-        <img src={logo} alt="회사 로고"></img>
+        <img
+          src={logo}
+          alt="회사 로고"
+          onClick={() => navigate("/")}
+          className="cursor-pointer"
+        ></img>
         <div className="flex gap-[64px]">
           <NavLink to="/about">
             {({ isActive }) => (
