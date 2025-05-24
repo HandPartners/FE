@@ -1,8 +1,35 @@
+import { useEffect, useState } from "react";
 import BGTop from "../../components/BGTop";
 import TitleLine from "../../components/TitleLine";
 import { useNavigate } from "react-router-dom";
 import ProgramImg from "../../../public/programMain.png";
+import { getMain } from "../../api/MainApi";
+import type { portfolioList, newsItem } from "../../api/MainApi";
+
 const Main = () => {
+  const [portfolioList, setPortfolioList] = useState<portfolioList[]>([]);
+  const [newsList, setNewsList] = useState<newsItem[]>([]);
+
+  const items = portfolioList.slice(0, 15);
+  const totalSlots = 15;
+  const emptySlots = totalSlots - items.length;
+
+  useEffect(() => {
+    const fetchMainData = async () => {
+      try {
+        const { portfolioList, newsList } = await getMain();
+        setPortfolioList(portfolioList);
+        setNewsList(newsList);
+        console.log(portfolioList);
+        console.log(newsList);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchMainData();
+  }, []);
+
   const navigate = useNavigate();
   return (
     <main className=" flex flex-col items-center w-[1280px] h-full mx-auto relative">
@@ -95,9 +122,27 @@ const Main = () => {
         </section>
 
         {/* 포트폴리오 */}
-        <section className="flex flex-col w-full border gap-[50px]">
+        <section className="flex flex-col w-full gap-[50px]">
           <TitleLine>PORTFOLIO</TitleLine>
-          <div className="border h-[408px]"></div>
+          <div className=" grid h-[408px] grid-cols-5 grid-rows-3 gap-x-[24px] gap-y-[30px] px-[40px]">
+            {items.map((item) => (
+              <div key={item.id} className="border border-[var(--grey3)]">
+                <img
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`}
+                  alt={`portfolio-${item.id}`}
+                  className="object-contain h-[120px] p-[20px]"
+                />
+              </div>
+            ))}
+
+            {/* 빈 칸 채우기 */}
+            {Array.from({ length: emptySlots }).map((_, index) => (
+              <div
+                key={`empty-${index}`}
+                className="border border-[var(--grey3)]"
+              ></div>
+            ))}
+          </div>
           <span
             className="flex justify-end cursor-pointer p-large-bold"
             onClick={() => navigate("/portfolio")}
