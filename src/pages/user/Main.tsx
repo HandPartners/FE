@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import BGTop from "../../components/BGTop";
+
+import MainBanner from "../../components/main/MainBanner";
 import TitleLine from "../../components/TitleLine";
 import { useNavigate } from "react-router-dom";
 import ProgramImg from "../../../public/programMain.png";
 import { getMain } from "../../api/MainApi";
 import type { portfolioList, newsItem } from "../../api/MainApi";
-import bannerImg from "../../assets/images/banner/aboutBanner.png";
 import { useRef } from "react"; // 추가
 
 declare global {
@@ -43,7 +43,6 @@ const Main = () => {
   // CONTACT로 스크롤 이동하는 함수
 
   useEffect(() => {
-    
     // 전역 함수로 등록
     window.scrollToContact = () => {
       contactRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -68,7 +67,7 @@ const Main = () => {
           </h1>
           <h3 className="h3-medium">Have A Nice Day</h3>
         </div>
-        <BGTop testBenner={bannerImg} />
+        <MainBanner />
 
         {/* 슬로건 */}
         <div
