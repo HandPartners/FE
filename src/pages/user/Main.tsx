@@ -43,17 +43,21 @@ const Main = () => {
       <BGTop />
 
       {/* 슬로건 */}
-      <section
-        className="flex flex-col items-center w-screen h-[250px]"
+      <div
+        className="flex flex-col items-center w-screen  py-[54px] gap-[30px] mt-[30px]"
         style={{ boxShadow: "8px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
       >
-        <section>
-          <h2>회사 슬로건 슬로건 슬로건</h2>
-          <p>회사 슬로건 슬로건 슬로건</p>
+        <section className="flex flex-col items-center ">
+          <h2 className="text-[#2E3093] slogan-h ">
+            회사 슬로건 슬로건 슬로건
+          </h2>
+          <p className="text-[var(--grey5)] slogan-p ">
+            회사 슬로건 슬로건 슬로건
+          </p>
         </section>
 
-        <span>About →</span>
-      </section>
+        <span className="cursor-pointer p-large-bold">About →</span>
+      </div>
 
       <div className="flex flex-col gap-[200px] w-full mt-[50px]">
         {/* 프로그램 */}
