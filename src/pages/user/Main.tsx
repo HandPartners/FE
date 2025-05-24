@@ -85,7 +85,9 @@ const Main = () => {
               </p>
             </section>
 
-            <span className="cursor-pointer p-large-bold">About →</span>
+            <span className="cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]">
+              About →
+            </span>
           </div>
         </FadeInItem>
         <div className="flex flex-col gap-[200px] w-full mt-[50px]">
