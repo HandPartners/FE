@@ -127,7 +127,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
           />
         </div>
       </div>
-      <div className="grid grid-cols-5 h-[310px] gap-[3.9%]">
+      <div className="grid grid-cols-5 h-[310px] gap-[50px]">
         {(portfolioList?.portfolioList || [])
           .filter(
             (item) =>
@@ -137,7 +137,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
           .map((item, index) => (
             <div
               key={index}
-              className="flex flex-col border border-[var(--grey3)]"
+              className="cursor-pointer h-[310px] flex flex-col border border-[var(--grey3)]"
               onClick={() => {
                 if (setPortfolioId) setPortfolioId(item.id); // 포트폴리오 id 넘김
                 if (setIsEditModalOpen) setIsEditModalOpen(true); // 모달 열기
@@ -160,7 +160,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
               </div>
               <img
                 src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`}
-                className="p-[20px]"
+                className="p-[20px] h-[120px] object-contain"
               ></img>
             </div>
           ))}
