@@ -20,9 +20,8 @@ const NavBar = () => {
           <NavLink to="/about">
             {({ isActive }) => (
               <span
-                className={` cursor-pointer inline-block w-[57px] text-center ${clsx(
-                  isActive ? "h5-bold text-main" : "h5-medium"
-                )}`}
+                className={` cursor-pointer inline-block w-[57px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1]
+                  ${clsx(isActive ? "h5-bold text-main" : "h5-medium")}`}
               >
                 About
               </span>
@@ -31,7 +30,7 @@ const NavBar = () => {
           <NavLink to="/program">
             {({ isActive }) => (
               <span
-                className={` cursor-pointer inline-block w-[75px] text-center ${clsx(
+                className={` cursor-pointer inline-block w-[75px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
                   isActive ? "h5-bold text-main" : "h5-medium"
                 )}`}
               >
@@ -42,7 +41,7 @@ const NavBar = () => {
           <NavLink to="/portfolio">
             {({ isActive }) => (
               <span
-                className={` cursor-pointer inline-block w-[74px] text-center ${clsx(
+                className={` cursor-pointer inline-block w-[74px] text-center  transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
                   isActive ? "h5-bold text-main" : "h5-medium"
                 )}`}
               >
@@ -53,7 +52,7 @@ const NavBar = () => {
           <NavLink to="/news">
             {({ isActive }) => (
               <span
-                className={` cursor-pointer inline-block w-[51px] text-center ${clsx(
+                className={` cursor-pointer inline-block w-[51px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
                   isActive ? "h5-bold text-main" : "h5-medium"
                 )}`}
               >
@@ -62,7 +61,7 @@ const NavBar = () => {
             )}
           </NavLink>
           <span
-            className="cursor-pointer inline-block w-[71px] text-center h5-medium"
+            className="cursor-pointer inline-block w-[71px] text-center h5-medium transition-colors duration-250 ease-in-out hover:text-[#b8cce1] "
             onClick={() => {
               if (window.location.pathname !== "/") {
                 sessionStorage.setItem("scrollToContact", "true");
