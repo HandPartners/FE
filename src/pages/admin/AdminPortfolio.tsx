@@ -9,11 +9,11 @@ import {
   editPortfolio,
   getPortfolio,
   deletePortfolio,
-} from "../../api/PortfolioApi.tsx";
+} from "../../api/PortfolioApi";
 import type {
   AddPortfolioBody,
   ResponsePortfolioList,
-} from "../../api/PortfolioApi.tsx";
+} from "../../api/PortfolioApi";
 
 const AdminPortfolio = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);

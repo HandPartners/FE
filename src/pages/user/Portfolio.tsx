@@ -1,8 +1,8 @@
 import BGTop from "../../components/BGTop";
 import PortfolioSection from "../../components/portfolio/PortfolioSection";
 import { useCallback, useState, useEffect } from "react";
-import { getPortfolio } from "../../api/PortfolioApi.tsx";
-import type { ResponsePortfolioList } from "../../api/PortfolioApi.tsx";
+import { getPortfolio } from "../../api/PortfolioApi";
+import type { ResponsePortfolioList } from "../../api/PortfolioApi";
 const Portfolio = () => {
   const [category, setCategory] = useState("ICT");
   const [name, setName] = useState("");
