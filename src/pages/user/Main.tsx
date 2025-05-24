@@ -71,22 +71,23 @@ const Main = () => {
         <MainBanner />
 
         {/* 슬로건 */}
-        <div
-          className="flex flex-col items-center w-screen  py-[54px] gap-[30px] mt-[30px]"
-          style={{ boxShadow: "8px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
-        >
-          <section className="flex flex-col items-center ">
-            <h2 className="text-[#2E3093] slogan-h ">
-              회사 슬로건 슬로건 슬로건
-            </h2>
-            <p className="text-[var(--grey5)] slogan-p ">
-              회사 슬로건 슬로건 슬로건
-            </p>
-          </section>
+        <FadeInItem>
+          <div
+            className="flex flex-col items-center w-screen  py-[54px] gap-[30px] mt-[30px]"
+            style={{ boxShadow: "8px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
+          >
+            <section className="flex flex-col items-center ">
+              <h2 className="text-[#2E3093] slogan-h ">
+                회사 슬로건 슬로건 슬로건
+              </h2>
+              <p className="text-[var(--grey5)] slogan-p ">
+                회사 슬로건 슬로건 슬로건
+              </p>
+            </section>
 
-          <span className="cursor-pointer p-large-bold">About →</span>
-        </div>
-
+            <span className="cursor-pointer p-large-bold">About →</span>
+          </div>
+        </FadeInItem>
         <div className="flex flex-col gap-[200px] w-full mt-[50px]">
           {/* 프로그램 */}
           <section className="flex flex-col w-full gap-[50px]">
@@ -146,7 +147,6 @@ const Main = () => {
                   </div>
                 </div>
               </div>
-
             </FadeInItem>
             <span
               className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
@@ -154,7 +154,6 @@ const Main = () => {
             >
               프로그램 전체보기 →
             </span>
-
           </section>
 
           {/* 포트폴리오 */}
