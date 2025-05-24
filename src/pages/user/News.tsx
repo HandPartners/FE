@@ -6,6 +6,7 @@ import EachNews from "../../components/news/EachNews";
 
 import ic_down_arrow from "../../assets/images/ic_down_arrow.svg";
 import ic_search from "../../assets/images/ic_search.svg";
+import bannerImg from "../../assets/images/banner/NewsBanner.png";
 
 const tabs = [
   "ALL",
@@ -28,7 +29,7 @@ const News = () => {
         </h1>
         <h3 className="h3-medium">한줄 소개</h3>
       </div>
-      <BGTop />
+      <BGTop testBenner={bannerImg} />
       <section className="flex flex-col gap-[371px] mx-auto w-full h-full translate-y-[70px]">
         <section className="w-full pb-[200px]">
           <section className="flex gap-[20px] w-full">

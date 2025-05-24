@@ -2,6 +2,7 @@ import BGTop from "../../components/BGTop";
 import testImg from "../../../public/testImg.png";
 import ProgramSection from "../../components/program/ProgramSection";
 import { useNavigate } from "react-router-dom";
+import bannerImg from "../../assets/images/banner/ProgramBanner.png";
 
 const Program = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Program = () => {
         </h1>
         <h3 className="h3-medium">한줄 소개</h3>
       </div>
-      <BGTop />
+      <BGTop testBenner={bannerImg} />
       <section className="flex flex-col gap-[371px] mx-auto w-full h-full mt-[100px] ">
         <section className="flex flex-col gap-[200px] w-full pb-[346px] ">
           <ProgramSection

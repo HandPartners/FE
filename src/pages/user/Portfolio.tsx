@@ -3,6 +3,7 @@ import PortfolioSection from "../../components/portfolio/PortfolioSection";
 import { useCallback, useState, useEffect } from "react";
 import { getPortfolio } from "../../api/PortfolioApi";
 import type { ResponsePortfolioList } from "../../api/PortfolioApi";
+import bannerImg from "../../assets/images/banner/portfolioBanner.png";
 const Portfolio = () => {
   const [category, setCategory] = useState("ICT");
   const [name, setName] = useState("");
@@ -33,7 +34,7 @@ const Portfolio = () => {
         </h1>
         <h3 className="h3-medium">한줄 소개</h3>
       </div>
-      <BGTop />
+      <BGTop testBenner={bannerImg} />
       <section className="flex flex-col mt-[100px] gap-[371px] mx-auto w-full h-full  ">
         <PortfolioSection
           portfolioList={portfolioList}

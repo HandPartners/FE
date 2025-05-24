@@ -5,11 +5,12 @@ import Program from "./pages/user/Program";
 import News from "./pages/user/News";
 import Portfolio from "./pages/user/Portfolio";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
+import Main from "./pages/user/Main";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
-    children: [{ index: true, element: <p className="text-red-500">Hello</p> }],
+    children: [{ index: true, element: <Main /> }],
   },
   {
     path: "/about",

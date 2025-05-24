@@ -83,10 +83,12 @@
 
 .h4-bold {
   /* H4/Bold */
+  font-family: Pretendard;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 32px; /* 133.333% */
+  letter-spacing: -0.48px;
 }
 
 .h5-regular {
@@ -97,29 +99,24 @@
   line-height: 28px; /* 140% */
 }
 
-.h5-medium {
-  /* H5/Medium */
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 28px; /* 140% */
-}
-
 .h5-bold {
   /* H5/Bold */
+  font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 28px; /* 140% */
+  letter-spacing: -0.4px;
 }
 
 .h5-medium {
   /* H5/Medium */
-  font-family: "Noto Sans KR";
+  font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 28px; /* 140% */
+  letter-spacing: -0.4px;
 }
 
 .p-xs-regular {
@@ -183,10 +180,11 @@
 
 .p-small-bold {
   /* Paragraph/Small/Bold */
-  font-size: 0.875rem;
+  font-family: Pretendard;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
-  line-height: 1.25rem; /* 142.857% */
+  line-height: 20px; /* 142.857% */
 }
 
 .p-medium-regular {
@@ -231,10 +229,11 @@
 
 .p-large-bold {
   /* Paragraph/Large/Bold */
-  font-size: 1.125rem;
+  font-family: Pretendard;
+  font-size: 18px;
   font-style: normal;
   font-weight: 700;
-  line-height: 1.75rem; /* 155.556% */
+  line-height: 28px; /* 155.556% */
 }
 
 .p-12-400 {
@@ -264,4 +263,20 @@
 }
 .text-gray7 {
   color: var(--grey7, #3c3c3c);
+}
+
+.slogan-h {
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%; /* 33.6px */
+}
+.slogan-p {
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px; /* 208.333% */
+  letter-spacing: -0.48px;
 }
