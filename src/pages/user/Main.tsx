@@ -8,7 +8,7 @@ import { getMain } from "../../api/MainApi";
 import type { portfolioList, newsItem } from "../../api/MainApi";
 import { useRef } from "react"; // 추가
 import FadeInItem from "../../components/main/FadeInItem";
-
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 declare global {
   interface Window {
     scrollToContact?: () => void;
@@ -263,6 +263,7 @@ const Main = () => {
             </div>
           </section>
         </div>
+        <ScrollToTopButton />
       </main>
     </>
   );

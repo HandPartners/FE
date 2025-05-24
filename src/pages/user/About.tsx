@@ -3,7 +3,7 @@ import BGTop from "../../components/BGTop";
 import TitleLine from "../../components/TitleLine";
 import bannerImg from "../../assets/images/banner/aboutBanner.png";
 import FadeInItem from "../../components/main/FadeInItem";
-
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 const About = () => {
   return (
     <main className=" flex flex-col items-center w-[1280px] mx-auto relative pb-[947px]">
@@ -49,6 +49,7 @@ const About = () => {
           </FadeInItem>
         </section>
       </section>
+      <ScrollToTopButton />
     </main>
   );
 };

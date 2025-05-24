@@ -5,6 +5,7 @@ import PortfolioSection from "../../components/portfolio/PortfolioSection";
 import PortfolioAddModal from "../../components/portfolio/modal/AddPortfolioModal";
 import EditProtfolioModal from "../../components/portfolio/modal/EditPortfolioModal";
 import DeleteModal from "../../components/portfolio/modal/DeleteModal";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 import {
   addPortfolio,
   editPortfolio,
@@ -215,6 +216,7 @@ const AdminPortfolio = () => {
           }}
         ></DeleteModal>
       )}
+      <ScrollToTopButton />
     </main>
   );
 };

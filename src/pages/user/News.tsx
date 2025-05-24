@@ -7,7 +7,7 @@ import EachNews from "../../components/news/EachNews";
 import ic_down_arrow from "../../assets/images/ic_down_arrow.svg";
 import ic_search from "../../assets/images/ic_search.svg";
 import bannerImg from "../../assets/images/banner/NewsBanner.png";
-
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 const tabs = [
   "ALL",
   "Consulting",
@@ -75,6 +75,8 @@ const News = () => {
           </div>
         </section>
       </section>
+
+      <ScrollToTopButton />
     </main>
   );
 };

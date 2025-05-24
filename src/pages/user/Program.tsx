@@ -3,7 +3,7 @@ import testImg from "../../../public/testImg.png";
 import ProgramSection from "../../components/program/ProgramSection";
 import { useNavigate } from "react-router-dom";
 import bannerImg from "../../assets/images/banner/ProgramBanner.png";
-
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 const Program = () => {
   const navigate = useNavigate();
 
@@ -56,6 +56,7 @@ const Program = () => {
           />
         </section>
       </section>
+      <ScrollToTopButton />
     </main>
   );
 };

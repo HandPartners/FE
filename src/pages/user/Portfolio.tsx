@@ -4,6 +4,7 @@ import { useCallback, useState, useEffect } from "react";
 import { getPortfolio } from "../../api/PortfolioApi";
 import type { ResponsePortfolioList } from "../../api/PortfolioApi";
 import bannerImg from "../../assets/images/banner/portfolioBanner.png";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 const Portfolio = () => {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
@@ -44,6 +45,7 @@ const Portfolio = () => {
           isAdmin={false}
         />
       </section>
+      <ScrollToTopButton />
     </main>
   );
 };
