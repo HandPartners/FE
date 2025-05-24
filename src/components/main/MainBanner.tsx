@@ -9,10 +9,12 @@ const MainBanner = () => {
   const [currentIndex, setCurrentIndex] = useState(0); // 진짜 배너
 
   return (
-    <div className="relative flex flex-row w-[100vw] mt-[40px]">
+
+    <div className="relative flex flex-row w-screen  mt-[40px]">
       {/* 배너 이미지 */}
       <div
-        className="flex transition-transform duration-500 ease-in-out "
+        className="flex w-screen transition-transform duration-500 ease-in-out "
+
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {bannerImages.map((img, idx) => (
@@ -20,7 +22,9 @@ const MainBanner = () => {
             key={idx}
             src={img}
             alt={`배너 ${idx + 1}`}
-            className="min-w-[100vw] h-[500px] flex-shrink-0 object-cover"
+
+            className=" min-w-[1280px] h-[500px] flex-shrink-0 object-cover"
+
           />
         ))}
       </div>
