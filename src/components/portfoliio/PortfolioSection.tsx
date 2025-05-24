@@ -14,6 +14,7 @@ interface PortfolioSection {
   setName?: React.Dispatch<React.SetStateAction<string>>;
   searchInput?: string;
   setSearchInput?: React.Dispatch<React.SetStateAction<string>>;
+  isAdmin: boolean;
 }
 
 const PortfolioSection: React.FC<PortfolioSection> = ({
@@ -26,6 +27,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
   setName,
   searchInput,
   setSearchInput,
+  isAdmin,
 }) => {
   return (
     <section className="flex flex-col gap-[50px] w-full pb-[346px]">
@@ -137,7 +139,9 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
           .map((item, index) => (
             <div
               key={index}
-              className="cursor-pointer h-[310px] flex flex-col border border-[var(--grey3)]"
+              className={`${
+                !isAdmin ? "" : "cursor-pointer"
+              } h-[310px] flex flex-col border border-[var(--grey3)]`}
               onClick={() => {
                 if (setPortfolioId) setPortfolioId(item.id); // 포트폴리오 id 넘김
                 if (setIsEditModalOpen) setIsEditModalOpen(true); // 모달 열기
