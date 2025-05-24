@@ -152,9 +152,37 @@ const Main = () => {
         </section>
 
         {/* 뉴스 */}
-        <section className="flex flex-col gap-[44px] border">
+        <section className="flex flex-col gap-[44px]">
           <TitleLine>NEWS</TitleLine>
-          <div className="border h-[582px]"></div>
+          <div>
+            {newsList.map((item) => (
+              <div
+                key={item.id}
+                className="border-b h-[210px] py-[24px] px-[41px] border-[var(--grey3)] flex flex-row gap-[36px] cursor-pointer "
+                onClick={() => navigate(`/news/${item.id}`)}
+              >
+                <img
+                  src={item.thumbnail}
+                  className="w-[238px] h-full  object-cover"
+                ></img>
+                <section className="flex flex-col gap-[12px] h-full w-full ">
+                  <section className="flex flex-col gap-[7px]">
+                    <span className="text-[#2E3093] h5-bold">
+                      {item.category}
+                    </span>
+                    <h2 className="w-full truncate h4-bold">{item.title}</h2>
+                    <p className="p-large-bold w-full h-[56px] text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2">
+                      {item.content}
+                    </p>
+                  </section>
+                  <p className="p-small-bold text-[var(--grey5)] truncate">
+                    {item.createdAt}
+                  </p>
+                </section>
+              </div>
+            ))}
+          </div>
+
           <span
             className="flex justify-end cursor-pointer p-large-bold"
             onClick={() => navigate("/news")}
