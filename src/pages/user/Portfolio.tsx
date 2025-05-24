@@ -27,8 +27,8 @@ const Portfolio = () => {
   }, [fetchPortfolioList]);
 
   return (
-    <main className=" flex flex-col items-center w-[1280px] h-full mx-auto relative">
-      <div className="absolute top-[99px] left-[85px] z-10 flex flex-col  gap-[36px] w-fit">
+    <main className=" flex flex-col items-center w-[1280px] mx-auto h-[100vw] relative  ">
+      <div className="absolute top-[99px] left-[85px] z-10 flex flex-col  gap-[36px] w-fit ">
         <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
           Portfolio
         </h1>
