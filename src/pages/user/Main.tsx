@@ -1,7 +1,7 @@
 import BGTop from "../../components/BGTop";
 import TitleLine from "../../components/TitleLine";
 import { useNavigate } from "react-router-dom";
-
+import ProgramImg from "../../../public/programMain.png";
 const Main = () => {
   const navigate = useNavigate();
   return (
@@ -30,13 +30,60 @@ const Main = () => {
 
       <div className="flex flex-col gap-[200px] w-full mt-[50px]">
         {/* 프로그램 */}
-        <section className="flex flex-col w-full border gap-[50px]">
+        <section className="flex flex-col w-full gap-[50px]">
           <TitleLine>PROGRAM</TitleLine>
-          <div className="border h-[400px]">
-            <img></img>
-            <div>
-              <p></p>
-              <p></p>
+          <div className="flex flex-row gap-[20px]">
+            <div className="border w-full h-[400px] border-[var(--grey3)]">
+              <img
+                className="h-[290px] w-full object-cover"
+                src={ProgramImg}
+              ></img>
+              <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                <h3 className="p-large-bold">Phase 1. Consulting</h3>
+                <p className="p-medium-medium">
+                  창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                  진행
+                </p>
+              </div>
+            </div>
+            <div className="border  w-full h-[400px] border-[var(--grey3)]">
+              <img
+                className=" h-[290px] w-full object-cover"
+                src={ProgramImg}
+              ></img>
+              <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                <h3 className="p-large-bold">Phase 2. Investment</h3>
+                <p className="p-medium-medium">
+                  창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                  진행
+                </p>
+              </div>
+            </div>
+            <div className="border w-full  h-[400px] border-[var(--grey3)]">
+              <img
+                className=" h-[290px] w-full object-cover"
+                src={ProgramImg}
+              ></img>
+              <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                <h3 className="p-large-bold">Phase 3. Education</h3>
+                <p className="p-medium-medium">
+                  창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                  진행
+                </p>
+              </div>
+            </div>
+            <div className="border w-full h-[400px] border-[var(--grey3)]">
+              <img
+                className=" h-[290px] w-full object-cover"
+                src={ProgramImg}
+              ></img>
+              <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                <h3 className="p-large-bold">Phase 4. Networking</h3>
+                <p className="p-medium-medium">
+                  창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                  진행
+                </p>
+              </div>
             </div>
           </div>
           <span
