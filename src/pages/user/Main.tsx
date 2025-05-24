@@ -146,13 +146,13 @@ const Main = () => {
                   </div>
                 </div>
               </div>
-              <span
-                className="flex justify-end cursor-pointer p-large-bold"
-                onClick={() => navigate("/program")}
-              >
-                프로그램 전체보기 →
-              </span>
             </FadeInItem>
+            <span
+              className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
+              onClick={() => navigate("/program")}
+            >
+              프로그램 전체보기 →
+            </span>
           </section>
 
           {/* 포트폴리오 */}
@@ -183,7 +183,7 @@ const Main = () => {
               ))}
             </div>
             <span
-              className="flex justify-end cursor-pointer p-large-bold"
+              className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
               onClick={() => navigate("/portfolio")}
             >
               포트폴리오 전체보기 →
@@ -226,7 +226,7 @@ const Main = () => {
             </div>
 
             <span
-              className="flex justify-end cursor-pointer p-large-bold"
+              className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
               onClick={() => navigate("/news")}
             >
               소식 전체보기 →
