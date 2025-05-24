@@ -146,6 +146,7 @@ const Main = () => {
                   </div>
                 </div>
               </div>
+
             </FadeInItem>
             <span
               className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
@@ -153,6 +154,7 @@ const Main = () => {
             >
               프로그램 전체보기 →
             </span>
+
           </section>
 
           {/* 포트폴리오 */}
