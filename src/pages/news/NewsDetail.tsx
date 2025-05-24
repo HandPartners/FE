@@ -25,7 +25,12 @@ const NewsDetail = () => {
           </button>
           {isAdmin && (
             <div className="flex gap-[24px]">
-              <button className="h4-bold flex items-center cursor-pointer">
+              <button
+                onClick={() => {
+                  navigate(isAdmin && `/admin/news/edit/${id}`);
+                }}
+                className="h4-bold flex items-center cursor-pointer"
+              >
                 수정
               </button>
               <button className="h4-bold flex items-center cursor-pointer">

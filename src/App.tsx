@@ -4,6 +4,7 @@ import About from "./pages/About";
 import Program from "./pages/Program";
 import News from "./pages/News";
 import NewsDetail from "./pages/news/NewsDetail";
+import NewsEdit from "./pages/news/NewsEdit";
 
 const commonRoutes = [
   { index: true, element: <div></div> },
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <DefaultLayout />,
-    children: commonRoutes,
+    children: [
+      ...commonRoutes,
+      { path: "news/edit/:id", element: <NewsEdit /> },
+    ],
   },
 ]);
 
