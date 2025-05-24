@@ -1,6 +1,3 @@
-import type { PropsWithChildren } from "react";
-import testBenner from "../assets/images/testBenner.png";
-
 interface BGTopProps {
   testBenner: string;
 }

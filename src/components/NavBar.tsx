@@ -61,17 +61,19 @@ const NavBar = () => {
               </span>
             )}
           </NavLink>
-          <NavLink to="/contact">
-            {({ isActive }) => (
-              <span
-                className={` cursor-pointer inline-block w-[71px] text-center ${clsx(
-                  isActive ? "h5-bold text-main" : "h5-medium"
-                )}`}
-              >
-                Contact
-              </span>
-            )}
-          </NavLink>
+          <span
+            className="cursor-pointer inline-block w-[71px] text-center h5-medium"
+            onClick={() => {
+              if (window.location.pathname !== "/") {
+                sessionStorage.setItem("scrollToContact", "true");
+                window.location.href = "/";
+              } else {
+                window.scrollToContact?.();
+              }
+            }}
+          >
+            Contact
+          </span>
         </div>
       </div>
     </nav>
