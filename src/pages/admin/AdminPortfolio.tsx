@@ -1,5 +1,6 @@
 import { useCallback, useState, useEffect } from "react";
 import BGTop from "../../components/BGTop";
+import bannerImg from "../../assets/images/banner/portfolioBanner.png";
 import PortfolioSection from "../../components/portfolio/PortfolioSection";
 import PortfolioAddModal from "../../components/portfolio/modal/AddPortfolioModal";
 import EditProtfolioModal from "../../components/portfolio/modal/EditPortfolioModal";
@@ -142,7 +143,7 @@ const AdminPortfolio = () => {
         </h1>
         <h3 className="h3-medium">한줄 소개</h3>
       </div>
-      <BGTop />
+      <BGTop testBenner={bannerImg} />
 
       {/* 포트폴리오 추가 버튼 */}
       <div className="flex justify-end w-full">

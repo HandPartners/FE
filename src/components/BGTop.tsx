@@ -1,9 +1,11 @@
 import type { PropsWithChildren } from "react";
 import testBenner from "../assets/images/testBenner.png";
 
-// import bg_top from "../assets/images/background_top.png";
+interface BGTopProps {
+  testBenner: string;
+}
 
-const BGTop: React.FC<PropsWithChildren> = () => {
+const BGTop = ({ testBenner }: BGTopProps) => {
   return (
     <div className="relative w-screen mt-[40px]">
       <img
@@ -16,9 +18,3 @@ const BGTop: React.FC<PropsWithChildren> = () => {
 };
 
 export default BGTop;
-// <div
-//   className="absolute top-[70px] left-0 w-full h-[544px] bg-cover bg-top bg-no-repeat -z-10 border"
-//   style={{ backgroundImage: `url(${bg_top})` }}
-// >
-//   {children}
-// </div>

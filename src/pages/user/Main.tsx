@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ProgramImg from "../../../public/programMain.png";
 import { getMain } from "../../api/MainApi";
 import type { portfolioList, newsItem } from "../../api/MainApi";
+import bannerImg from "../../assets/images/banner/aboutBanner.png";
 
 const Main = () => {
   const [portfolioList, setPortfolioList] = useState<portfolioList[]>([]);
@@ -40,7 +41,7 @@ const Main = () => {
         </h1>
         <h3 className="h3-medium">Have A Nice Day</h3>
       </div>
-      <BGTop />
+      <BGTop testBenner={bannerImg} />
 
       {/* 슬로건 */}
       <div

@@ -1,6 +1,7 @@
 import EachTeam from "../../components/about/EachTeam";
 import BGTop from "../../components/BGTop";
 import TitleLine from "../../components/TitleLine";
+import bannerImg from "../../assets/images/banner/aboutBanner.png";
 
 const About = () => {
   return (
@@ -11,7 +12,7 @@ const About = () => {
         </h1>
         <h3 className="h3-medium">한줄 소개</h3>
       </div>
-      <BGTop />
+      <BGTop testBenner={bannerImg} />
 
       <section className="flex flex-col gap-[371px]  mt-[100px] mx-auto w-full h-full">
         <section className="flex flex-col gap-[100px] w-full">
