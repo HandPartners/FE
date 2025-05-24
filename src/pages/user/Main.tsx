@@ -7,6 +7,7 @@ import ProgramImg from "../../../public/programMain.png";
 import { getMain } from "../../api/MainApi";
 import type { portfolioList, newsItem } from "../../api/MainApi";
 import { useRef } from "react"; // 추가
+import FadeInItem from "../../components/main/FadeInItem";
 
 declare global {
   interface Window {
@@ -90,88 +91,95 @@ const Main = () => {
           {/* 프로그램 */}
           <section className="flex flex-col w-full gap-[50px]">
             <TitleLine>PROGRAM</TitleLine>
-            <div className="flex flex-row gap-[20px]">
-              <div className="border w-full h-[400px] border-[var(--grey3)]">
-                <img
-                  className="h-[290px] w-full object-cover"
-                  src={ProgramImg}
-                ></img>
-                <div className=" h-[110px] flex flex-col text-center px-[49px]">
-                  <h3 className="p-large-bold">Phase 1. Consulting</h3>
-                  <p className="p-medium-medium">
-                    창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                    진행
-                  </p>
+            <FadeInItem>
+              <div className="flex flex-row gap-[20px]">
+                <div className="border w-full h-[400px] border-[var(--grey3)]">
+                  <img
+                    className="h-[290px] w-full object-cover"
+                    src={ProgramImg}
+                  ></img>
+                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                    <h3 className="p-large-bold">Phase 1. Consulting</h3>
+                    <p className="p-medium-medium">
+                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                      진행
+                    </p>
+                  </div>
+                </div>
+                <div className="border  w-full h-[400px] border-[var(--grey3)]">
+                  <img
+                    className=" h-[290px] w-full object-cover"
+                    src={ProgramImg}
+                  ></img>
+                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                    <h3 className="p-large-bold">Phase 2. Investment</h3>
+                    <p className="p-medium-medium">
+                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                      진행
+                    </p>
+                  </div>
+                </div>
+                <div className="border w-full  h-[400px] border-[var(--grey3)]">
+                  <img
+                    className=" h-[290px] w-full object-cover"
+                    src={ProgramImg}
+                  ></img>
+                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                    <h3 className="p-large-bold">Phase 3. Education</h3>
+                    <p className="p-medium-medium">
+                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                      진행
+                    </p>
+                  </div>
+                </div>
+                <div className="border w-full h-[400px] border-[var(--grey3)]">
+                  <img
+                    className=" h-[290px] w-full object-cover"
+                    src={ProgramImg}
+                  ></img>
+                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                    <h3 className="p-large-bold">Phase 4. Networking</h3>
+                    <p className="p-medium-medium">
+                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
+                      진행
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="border  w-full h-[400px] border-[var(--grey3)]">
-                <img
-                  className=" h-[290px] w-full object-cover"
-                  src={ProgramImg}
-                ></img>
-                <div className=" h-[110px] flex flex-col text-center px-[49px]">
-                  <h3 className="p-large-bold">Phase 2. Investment</h3>
-                  <p className="p-medium-medium">
-                    창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                    진행
-                  </p>
-                </div>
-              </div>
-              <div className="border w-full  h-[400px] border-[var(--grey3)]">
-                <img
-                  className=" h-[290px] w-full object-cover"
-                  src={ProgramImg}
-                ></img>
-                <div className=" h-[110px] flex flex-col text-center px-[49px]">
-                  <h3 className="p-large-bold">Phase 3. Education</h3>
-                  <p className="p-medium-medium">
-                    창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                    진행
-                  </p>
-                </div>
-              </div>
-              <div className="border w-full h-[400px] border-[var(--grey3)]">
-                <img
-                  className=" h-[290px] w-full object-cover"
-                  src={ProgramImg}
-                ></img>
-                <div className=" h-[110px] flex flex-col text-center px-[49px]">
-                  <h3 className="p-large-bold">Phase 4. Networking</h3>
-                  <p className="p-medium-medium">
-                    창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                    진행
-                  </p>
-                </div>
-              </div>
-            </div>
-            <span
-              className="flex justify-end cursor-pointer p-large-bold"
-              onClick={() => navigate("/program")}
-            >
-              프로그램 전체보기 →
-            </span>
+              <span
+                className="flex justify-end cursor-pointer p-large-bold"
+                onClick={() => navigate("/program")}
+              >
+                프로그램 전체보기 →
+              </span>
+            </FadeInItem>
           </section>
 
           {/* 포트폴리오 */}
           <section className="flex flex-col w-full gap-[50px]">
             <TitleLine>PORTFOLIO</TitleLine>
             <div className=" grid h-[408px] grid-cols-5 grid-rows-3 gap-x-[24px] gap-y-[30px] px-[40px]">
-              {items.map((item) => (
-                <div key={item.id} className="border border-[var(--grey3)]">
-                  <img
-                    src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`}
-                    alt={`portfolio-${item.id}`}
-                    className="object-contain h-[120px] p-[20px]"
-                  />
-                </div>
-              ))}
+              {items.map((item) => {
+                return (
+                  <FadeInItem key={item.id}>
+                    <div className="border border-[var(--grey3)]">
+                      <img
+                        src={`${import.meta.env.VITE_API_URL}/uploads/${
+                          item.logo
+                        }`}
+                        alt={`portfolio-${item.id}`}
+                        className="object-contain h-[120px] p-[20px]"
+                      />
+                    </div>
+                  </FadeInItem>
+                );
+              })}
 
               {/* 빈 칸 채우기 */}
               {Array.from({ length: emptySlots }).map((_, index) => (
-                <div
-                  key={`empty-${index}`}
-                  className="border border-[var(--grey3)]"
-                ></div>
+                <FadeInItem key={`empty-${index}`}>
+                  <div className="border border-[var(--grey3)] h-[120px]"></div>
+                </FadeInItem>
               ))}
             </div>
             <span
@@ -187,30 +195,33 @@ const Main = () => {
             <TitleLine>NEWS</TitleLine>
             <div>
               {newsList.map((item) => (
-                <div
-                  key={item.id}
-                  className="border-b h-[210px] py-[24px] px-[41px] border-[var(--grey3)] flex flex-row gap-[36px] cursor-pointer "
-                  onClick={() => navigate(`/news/${item.id}`)}
-                >
-                  <img
-                    src={item.thumbnail}
-                    className="w-[238px] h-full  object-cover"
-                  ></img>
-                  <section className="flex flex-col gap-[12px] h-full w-full ">
-                    <section className="flex flex-col gap-[7px]">
-                      <span className="text-[#2E3093] h5-bold">
-                        {item.category}
-                      </span>
-                      <h2 className="w-full truncate h4-bold">{item.title}</h2>
-                      <p className="p-large-bold w-full h-[56px] text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2">
-                        {item.content}
+                <FadeInItem key={item.id}>
+                  <div
+                    className="border-b h-[210px] py-[24px] px-[41px] border-[var(--grey3)] flex flex-row gap-[36px] cursor-pointer "
+                    onClick={() => navigate(`/news/${item.id}`)}
+                  >
+                    <img
+                      src={item.thumbnail}
+                      className="w-[238px] h-full  object-cover"
+                    ></img>
+                    <section className="flex flex-col gap-[12px] h-full w-full ">
+                      <section className="flex flex-col gap-[7px]">
+                        <span className="text-[#2E3093] h5-bold">
+                          {item.category}
+                        </span>
+                        <h2 className="w-full truncate h4-bold">
+                          {item.title}
+                        </h2>
+                        <p className="p-large-bold w-full h-[56px] text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2">
+                          {item.content}
+                        </p>
+                      </section>
+                      <p className="p-small-bold text-[var(--grey5)] truncate">
+                        {item.createdAt}
                       </p>
                     </section>
-                    <p className="p-small-bold text-[var(--grey5)] truncate">
-                      {item.createdAt}
-                    </p>
-                  </section>
-                </div>
+                  </div>
+                </FadeInItem>
               ))}
             </div>
 
