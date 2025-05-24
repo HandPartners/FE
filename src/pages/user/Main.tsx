@@ -61,7 +61,7 @@ const Main = () => {
     <>
       <main className=" flex flex-col items-center w-[1280px] h-full mx-auto relative">
         {/* 배너 */}
-        <div className="absolute top-[99px] left-[85px] z-10 flex flex-col  gap-[36px] w-fit">
+        <div className="absolute top-[99px] left-[85px] z-100 flex flex-col  gap-[36px] w-fit">
           <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
             HAND PARTNERS
           </h1>
