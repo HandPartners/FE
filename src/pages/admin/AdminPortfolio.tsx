@@ -148,7 +148,7 @@ const AdminPortfolio = () => {
       {/* 포트폴리오 추가 버튼 */}
       <div className="flex justify-end w-full">
         <button
-          className="h5-bold cursor-pointer hover:text-[#FFF] flex bg-[var(--sub)] rounded-[30px] px-[40px] py-[16px] my-[50px] items-end"
+          className="h5-bold cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#FFF] flex bg-[var(--sub)] rounded-[30px] px-[40px] py-[16px] my-[50px] items-end"
           onClick={() => setAddModalOpen(true)}
         >
           포트폴리오 추가

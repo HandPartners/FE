@@ -5,7 +5,7 @@ import { getPortfolio } from "../../api/PortfolioApi";
 import type { ResponsePortfolioList } from "../../api/PortfolioApi";
 import bannerImg from "../../assets/images/banner/portfolioBanner.png";
 const Portfolio = () => {
-  const [category, setCategory] = useState("ICT");
+  const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [portfolioList, setPortfolioList] = useState<ResponsePortfolioList>();
 
