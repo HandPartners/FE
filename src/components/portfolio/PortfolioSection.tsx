@@ -3,6 +3,7 @@ import type {
   ResponsePortfolioList,
   AddPortfolioBody,
 } from "../../api/PortfolioApi";
+import FadeInItem from "../../components/main/FadeInItem";
 
 interface PortfolioSection {
   portfolioList?: ResponsePortfolioList;
@@ -34,7 +35,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
       <div className="flex flex-row gap-[20px]">
         <ul className="h5-bold flex flex-row border border-[var(--grey3)] gap-[20px] rounded-[30px] w-fit p-[10px]">
           <li
-            className={`cursor-pointer hover:bg-[var(--sub)] hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
+            className={`cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
               category === "" ? `bg-[var(--sub)] text-[#FFF]` : ``
             }`}
             onClick={() => {
@@ -47,7 +48,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             ALL
           </li>
           <li
-            className={`cursor-pointer hover:bg-[var(--sub)]  hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
+            className={`cursor-pointer hover:bg-[var(--sub)]  transition-colors duration-250 ease-in-out hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
               category === "ICT" ? `bg-[var(--sub)]  text-[#FFF]` : ``
             }`}
             onClick={() => {
@@ -60,7 +61,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             ICT
           </li>
           <li
-            className={`cursor-pointer hover:bg-[var(--sub)]  hover:text-[#FFF]  py-[6px] px-[20px] rounded-[30px] ${
+            className={`cursor-pointer hover:bg-[var(--sub)]  transition-colors duration-250 ease-in-out hover:text-[#FFF]  py-[6px] px-[20px] rounded-[30px] ${
               category === "Culture" ? `bg-[var(--sub)]  text-[#FFF]` : ``
             }`}
             onClick={() => {
@@ -72,7 +73,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             Culture
           </li>
           <li
-            className={`cursor-pointer hover:bg-[var(--sub)]  hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
+            className={`cursor-pointer hover:bg-[var(--sub)]  transition-colors duration-250 ease-in-out hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
               category === "Energy" ? `bg-[var(--sub)]  text-[#FFF]` : ``
             }`}
             onClick={() => {
@@ -84,7 +85,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             Energy
           </li>
           <li
-            className={`cursor-pointer hover:bg-[var(--sub)]  hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
+            className={`cursor-pointer hover:bg-[var(--sub)]  transition-colors duration-250 ease-in-out hover:text-[#FFF] py-[6px] px-[20px] rounded-[30px] ${
               category === "Others" ? `bg-[var(--sub)]  text-[#FFF]` : ``
             }`}
             onClick={() => {
@@ -137,36 +138,38 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
               item.name.toLowerCase().includes(item.name.toLowerCase())
           )
           .map((item, index) => (
-            <div
-              key={index}
-              className={`${
-                !isAdmin ? "" : "cursor-pointer"
-              } h-[310px] flex flex-col border border-[var(--grey3)]`}
-              onClick={() => {
-                if (setPortfolioId) setPortfolioId(item.id); // 포트폴리오 id 넘김
-                if (setIsEditModalOpen) setIsEditModalOpen(true); // 모달 열기
-                if (setFormData) {
-                  setFormData({
-                    category: item.category,
-                    name: item.name,
-                    content: item.content,
-                    logo: item.logo,
-                  });
-                }
-              }}
-            >
-              <div className="flex flex-col p-[28px] border-b border-b-[var(--grey3)] gap-[8px] h-[190px]">
-                <span className="p-12-bold border border-[var(--main)] w-fit px-[20px] py-[4px] rounded-[30px] text-[var(--main)] justify-center items-center">
-                  {item.category}
-                </span>
-                <span className="p-large-bold">{item.name}</span>
-                <p className="p-small-regular">{item.content}</p>
+            <FadeInItem key={index}>
+              <div
+                key={index}
+                className={`${
+                  !isAdmin ? "" : "cursor-pointer"
+                } h-[310px] flex flex-col border border-[var(--grey3)]`}
+                onClick={() => {
+                  if (setPortfolioId) setPortfolioId(item.id); // 포트폴리오 id 넘김
+                  if (setIsEditModalOpen) setIsEditModalOpen(true); // 모달 열기
+                  if (setFormData) {
+                    setFormData({
+                      category: item.category,
+                      name: item.name,
+                      content: item.content,
+                      logo: item.logo,
+                    });
+                  }
+                }}
+              >
+                <div className="flex flex-col p-[28px] border-b border-b-[var(--grey3)] gap-[8px] h-[190px]">
+                  <span className="p-12-bold border border-[var(--main)] w-fit px-[20px] py-[4px] rounded-[30px] text-[var(--main)] justify-center items-center">
+                    {item.category}
+                  </span>
+                  <span className="p-large-bold">{item.name}</span>
+                  <p className="p-small-regular">{item.content}</p>
+                </div>
+                <img
+                  src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`}
+                  className="p-[20px] h-[120px] object-contain"
+                ></img>
               </div>
-              <img
-                src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`}
-                className="p-[20px] h-[120px] object-contain"
-              ></img>
-            </div>
+            </FadeInItem>
           ))}
       </div>
     </section>

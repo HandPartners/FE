@@ -29,7 +29,8 @@ interface NewsResponse {
 }
 
 type NewsInfiniteResponse = InfiniteData<NewsResponse>;
-
+import bannerImg from "../../assets/images/banner/NewsBanner.png";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 const tabs = [
   "ALL",
   "Consulting",
@@ -99,7 +100,7 @@ const News: React.FC = () => {
 
   return (
     <main className="w-full h-full flex flex-col items-center">
-      <BGTop />
+      <BGTop testBenner={bannerImg} />
       <section className="flex flex-col gap-[371px] absolute mx-auto w-2/3 h-full translate-y-[70px]">
         <div className="flex flex-col gap-[36px] pt-[calc(211px-70px)] w-full">
           <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
@@ -165,6 +166,8 @@ const News: React.FC = () => {
           <div ref={loadMoreRef} className="h-[1px]" />
         </section>
       </section>
+
+      <ScrollToTopButton />
     </main>
   );
 };

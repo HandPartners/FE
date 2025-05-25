@@ -7,9 +7,10 @@ import NewsDetail from "./pages/news/NewsDetail";
 import NewsEdit from "./pages/news/NewsEdit";
 import Portfolio from "./pages/user/Portfolio";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
+import Main from "./pages/user/Main";
 
 const commonRoutes = [
-  { index: true, element: <div></div> },
+  { index: true, element: <Main /> },
   { path: "about", element: <About /> },
   { path: "program", element: <Program /> },
   {
