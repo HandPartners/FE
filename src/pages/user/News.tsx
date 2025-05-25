@@ -101,8 +101,8 @@ const News: React.FC = () => {
   return (
     <main className="w-full h-full flex flex-col items-center">
       <BGTop testBenner={bannerImg} />
-      <section className="flex flex-col gap-[371px] absolute mx-auto w-2/3 h-full translate-y-[70px]">
-        <div className="flex flex-col gap-[36px] pt-[calc(211px-70px)] w-full">
+      <section className="flex flex-col gap-[428px] absolute mx-auto w-2/3 h-full">
+        <div className="flex flex-col gap-[36px] pt-[100px] pl-[85px] w-full">
           <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
             News
           </h1>
