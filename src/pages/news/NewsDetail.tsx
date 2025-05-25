@@ -5,6 +5,7 @@ import api from "../../api/api";
 
 import ic_back from "../../assets/images/ic_back.svg";
 import { parseDate } from "../../utils/parseDate";
+import DeleteModal from "../../components/portfolio/modal/DeleteModal";
 
 interface NewsItem {
   id: number;
@@ -32,6 +33,8 @@ const NewsDetail = () => {
   const { pathname } = useLocation();
   const isAdmin = pathname.startsWith("/admin");
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const [data, setData] = useState<NewsItem | null>(null);
 
   useEffect(() => {
@@ -46,6 +49,15 @@ const NewsDetail = () => {
       alert(error);
     }
   }, [id]);
+
+  const onDeleteNews = async () => {
+    try {
+      await api.delete(`/news/${id}`);
+      navigate("/admin/news");
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <main className="w-full h-full flex flex-col items-center py-[70px] ">
@@ -71,9 +83,20 @@ const NewsDetail = () => {
               >
                 수정
               </button>
-              <button className="h4-bold flex items-center cursor-pointer">
+              <button
+                onClick={() => {
+                  setShowDeleteModal(true);
+                }}
+                className="h4-bold flex items-center cursor-pointer"
+              >
                 삭제
               </button>
+              {showDeleteModal && (
+                <DeleteModal
+                  onClose={() => setShowDeleteModal(false)}
+                  onDelete={onDeleteNews}
+                />
+              )}
             </div>
           )}
         </div>
