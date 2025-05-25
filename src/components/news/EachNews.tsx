@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 import type { NewsItem } from "../../pages/News";
 
+import { parseDate } from "../../utils/parseDate";
+
 interface EachNewsProps {
   id: number;
   item: NewsItem;
@@ -32,7 +34,7 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
           </p>
         </div>
         <span className="mb-[24px] p-small-bold text-[#9E9E9E]">
-          {item.createdAt}
+          {parseDate(item.createdAt)}
         </span>
       </div>
     </button>

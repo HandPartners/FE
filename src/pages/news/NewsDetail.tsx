@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import api from "../../api/api";
 
 import ic_back from "../../assets/images/ic_back.svg";
+import { parseDate } from "../../utils/parseDate";
 
 interface NewsItem {
   id: number;
@@ -79,7 +80,9 @@ const NewsDetail = () => {
         <div>
           <h4 className="h4-medium text-[#2E3093]">{data?.category}</h4>
           <h1 className="mt-[10px] mb-[7px] h1-bold">{data?.title}</h1>
-          <p className="p-large-bold text-[#9E9E9E]">{data?.createdAt}</p>
+          <p className="p-large-bold text-[#9E9E9E]">
+            {parseDate(data?.createdAt)}
+          </p>
         </div>
 
         <article className="mt-[60px]">
