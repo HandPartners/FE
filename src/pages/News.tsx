@@ -140,7 +140,7 @@ const News: React.FC = () => {
                 />
                 <button
                   onClick={handleSearch}
-                  className="absolute right-[20px] top-1/2 -translate-y-1/2"
+                  className="absolute right-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
                 >
                   <img src={ic_search} alt="검색" />
                 </button>
