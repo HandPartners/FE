@@ -1,11 +1,34 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  useInfiniteQuery,
+  type InfiniteData,
+  type QueryFunctionContext,
+} from "@tanstack/react-query";
+import { useInView } from "react-intersection-observer";
 
 import BGTop from "../components/BGTop";
 import EachNews from "../components/news/EachNews";
 
-import ic_down_arrow from "../assets/images/ic_down_arrow.svg";
+import api from "../api/api";
+
 import ic_search from "../assets/images/ic_search.svg";
+import { useNavigate } from "react-router-dom";
+
+export interface NewsItem {
+  id: number;
+  category: string;
+  thumbnail: string;
+  title: string;
+  content: string;
+  createdAt: string;
+}
+interface NewsResponse {
+  success: boolean;
+  newsList: NewsItem[];
+}
+
+type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
 const tabs = [
   "ALL",
@@ -17,11 +40,65 @@ const tabs = [
   "Press",
 ];
 
-const News = () => {
+const News: React.FC = () => {
   const [activeTab, setActiveTab] = useState("ALL");
+  const [inputValue, setInputValue] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const { ref: loadMoreRef, inView } = useInView({
+    threshold: 0.5,
+  });
+
+  const navigate = useNavigate();
+  const isAdmin = window.location.pathname.includes("admin");
+
+  const fetchNews = async ({
+    pageParam = 1,
+    queryKey,
+  }: QueryFunctionContext<[string, string, string], number>) => {
+    const [, activeTab, searchTerm] = queryKey;
+    const { data } = await api.get<NewsResponse>("/news", {
+      params: {
+        pageNum: pageParam,
+        ...(activeTab !== "ALL" ? { category: activeTab } : {}),
+        ...(searchTerm ? { title: searchTerm } : {}),
+      },
+    });
+    if (!data.success) {
+      throw new Error("뉴스 조회에 실패했습니다.");
+    }
+    return data;
+  };
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery<
+      NewsResponse,
+      Error,
+      NewsInfiniteResponse,
+      [string, string, string],
+      number
+    >({
+      queryKey: ["news", activeTab, searchTerm],
+      queryFn: fetchNews,
+      getNextPageParam: (lastPage, allPages) =>
+        lastPage.newsList.length > 0 ? allPages.length + 1 : undefined,
+      initialPageParam: 1,
+    });
+
+  const newsList = data?.pages.flatMap((p) => p.newsList) ?? [];
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const handleSearch = () => {
+    setSearchTerm(inputValue);
+  };
 
   return (
-    <main className="w-full h-full flex flex-col items-center ">
+    <main className="w-full h-full flex flex-col items-center">
       <BGTop>
         <section className="flex flex-col gap-[371px] mx-auto w-2/3 h-full translate-y-[70px]">
           <div className="flex flex-col gap-[36px] pt-[calc(211px-70px)] w-full">
@@ -32,7 +109,7 @@ const News = () => {
           </div>
 
           <section className="w-full pb-[200px]">
-            <section className="flex gap-[20px] w-full">
+            <div className="flex gap-[20px] relative w-full mb-[50px]">
               <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
                 {tabs.map((tab) => (
                   <button
@@ -41,7 +118,7 @@ const News = () => {
                       setActiveTab(tab);
                     }}
                     className={clsx(
-                      "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold transition-colors duration-200",
+                      "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold transition-colors duration-200 cursor-pointer",
                       activeTab === tab && "bg-[#00AEEF] text-white"
                     )}
                   >
@@ -51,31 +128,41 @@ const News = () => {
               </div>
               <div className="flex flex-1 relative h-[60px] border border-[#E2E2E2] rounded-[30px]">
                 <input
-                  className="flex-1 pl-[25px] pr-[5px] z-20 focus:outline-none"
-                  type="text"
+                  className="flex-1 pl-[25px] pr-[5px] focus:outline-none"
                   placeholder="검색어를 입력하세요."
+                  value={inputValue}
+                  onChange={(event) => {
+                    setInputValue(event.target.value);
+                  }}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter") handleSearch();
+                  }}
                 />
-                <button className="absolute right-[25px] top-1/2 -translate-y-1/2">
-                  <img src={ic_search} alt="ic_search" />
+                <button
+                  onClick={handleSearch}
+                  className="absolute right-[20px] top-1/2 -translate-y-1/2"
+                >
+                  <img src={ic_search} alt="검색" />
                 </button>
-                <button className="absolute right-0 top-[-50px] translate-y-[-100%] w-[197px] h-[60px] rounded-[30px] bg-[#06AEEF] h5-bold cursor-pointer">
+              </div>
+
+              {isAdmin && (
+                <button
+                  onClick={() => navigate("/admin/news/new")}
+                  className="absolute right-0 top-[-50px] translate-y-[-100%] w-[197px] h-[60px] h5-bold bg-[#00AEEF] rounded-[30px] cursor-pointer"
+                >
                   글 작성
                 </button>
-              </div>
+              )}
+            </div>
+
+            <section className="px-[3.203125%]">
+              {newsList.map((item) => (
+                <EachNews key={item.id} id={item.id} item={item} />
+              ))}
             </section>
 
-            <section className="px-[3.203125%] mt-[50px] mb-[70px]">
-              <EachNews id="1" />
-              <EachNews id="2" />
-            </section>
-            <div className="flex justify-center items-center w-full">
-              <div className="flex justify-center items-center gap-[10px] w-[300px] h-[50px] rounded-[30px] bg-[#00AEEF] animate-bounce">
-                <p className="text-[24px] font-bold leading-[50px] tracking-[-0.48px]">
-                  LOAD MORE
-                </p>
-                <img src={ic_down_arrow} alt="ic_down_arrow" />
-              </div>
-            </div>
+            <div ref={loadMoreRef} className="h-[1px]" />
           </section>
         </section>
       </BGTop>

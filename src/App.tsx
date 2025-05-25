@@ -31,6 +31,7 @@ const router = createBrowserRouter([
     children: [
       ...commonRoutes,
       { path: "news/edit/:id", element: <NewsEdit /> },
+      { path: "news/new", element: <NewsEdit /> },
     ],
   },
 ]);

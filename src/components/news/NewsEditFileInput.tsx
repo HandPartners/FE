@@ -3,11 +3,12 @@ import type React from "react";
 
 type NewsEditFileInputProps = {
   multiple?: boolean;
+  onChange?: (files: File[]) => void;
 };
 
 const NewsEditFileInput: React.FC<
   PropsWithChildren<NewsEditFileInputProps>
-> = ({ children, multiple = false }) => {
+> = ({ children, multiple = false, onChange }) => {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -21,8 +22,10 @@ const NewsEditFileInput: React.FC<
 
     if (multiple) {
       setFiles((prev) => [...prev, ...selected]);
+      onChange?.(selected);
     } else {
       setFiles(selected.length > 0 ? [selected[0]] : []);
+      onChange?.(selected);
     }
     event.target.value = "";
   };
