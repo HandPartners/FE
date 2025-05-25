@@ -24,7 +24,10 @@ const ProgramSection: React.FC<ProgramSectionProps> = ({
             <h3 className="h2-bold">{subTitle}</h3>
             <h5 className="h5-medium ">{contents}</h5>
           </div>
-          <span className="h4-bold text-[var(--sub)]" onClick={onClick}>
+          <span
+            className="cursor-pointer h4-bold text-[var(--sub)]"
+            onClick={onClick}
+          >
             진행 사례 보기 →
           </span>
         </div>

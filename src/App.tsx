@@ -1,10 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
-import About from "./pages/About";
-import Program from "./pages/Program";
-import News from "./pages/News";
+import About from "./pages/user/About";
+import Program from "./pages/user/Program";
+import News from "./pages/user/News";
 import NewsDetail from "./pages/news/NewsDetail";
 import NewsEdit from "./pages/news/NewsEdit";
+import Portfolio from "./pages/user/Portfolio";
+import AdminPortfolio from "./pages/admin/AdminPortfolio";
 
 const commonRoutes = [
   { index: true, element: <div></div> },
@@ -19,11 +21,16 @@ const commonRoutes = [
   },
 ];
 
+const portfolioRoutes = [
+  { path: "portfolio", element: <Portfolio /> },
+  { path: "admin/portfolio", element: <AdminPortfolio /> },
+];
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
-    children: commonRoutes,
+    children: [...commonRoutes, ...portfolioRoutes],
   },
   {
     path: "/admin",

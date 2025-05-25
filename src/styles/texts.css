@@ -243,7 +243,12 @@
   font-weight: 400;
   line-height: 18px; /* 150% */
 }
-
+.p-12-bold {
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+}
 .text-main {
   color: var(--Main, #2e3093);
 }
