@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 
 import NewsEditDropdownBtn from "../../components/news/NewsEditDropdownBtn";
@@ -12,6 +12,7 @@ import { getCurrentDate } from "../../utils/getCurrentDate";
 
 import api from "../../api/api";
 
+import ic_check_colored from "../../assets/images/news/ic_check_colored.svg";
 import ic_check_mono from "../../assets/images/news/ic_check_mono.svg";
 import ic_up from "../../assets/images/news/ic_up.svg";
 
@@ -19,10 +20,10 @@ type FormValues = {
   category: string;
   title: string;
   content: string;
-  thumbnail: FileList;
-  image: FileList;
-  shortcut: string;
-  link: string;
+  thumbnail?: File[];
+  image?: File[];
+  shortcut?: string;
+  link?: string;
   visible: boolean;
 };
 
@@ -38,8 +39,8 @@ const NewsEdit = () => {
 
   const navigate = useNavigate();
 
-  const isNew = window.location.pathname.includes("new");
-  console.log(isNew);
+  const isAdmin = window.location.pathname.startsWith("/admin");
+  const isEditing = window.location.pathname.includes("edit");
 
   const categories = [
     "Consulting",
@@ -49,6 +50,35 @@ const NewsEdit = () => {
     "Notice",
     "Press",
   ];
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (isEditing && id) {
+      (async () => {
+        try {
+          const { data } = await api.get(`/news/update/${id}`);
+
+          const newsData = data.news;
+
+          setValue("category", newsData.category);
+          const index = categories.indexOf(newsData.category);
+          if (index >= 0) {
+            setSelectedCategoryIndex(index);
+            setSelectedCategory(categories[index]);
+          }
+
+          setValue("title", newsData.title);
+          setValue("content", newsData.content);
+          setValue("shortcut", newsData.shortcut);
+          setValue("link", newsData.link);
+          setValue("visible", newsData.visible);
+        } catch (error) {
+          console.error("뉴스 불러오기 실패", error);
+        }
+      })();
+    }
+  }, [id, isEditing]);
 
   const {
     register,
@@ -84,17 +114,35 @@ const NewsEdit = () => {
     formData.append("category", data.category);
     formData.append("title", data.title);
     formData.append("content", data.content);
-    formData.append("thumbnail", data.thumbnail[0]);
-    Array.from(data.image).forEach((file) => formData.append("image", file));
-    formData.append("shortcut", data.shortcut);
-    formData.append("link", data.link);
+    if (data.thumbnail) {
+      formData.append("thumbnail", data.thumbnail[0]);
+    }
+    if (data.image) {
+      Array.from(data.image).forEach((file) => formData.append("image", file));
+    }
+    if (data.shortcut) {
+      formData.append("shortcut", data.shortcut);
+    }
+    if (data.link) {
+      formData.append("link", data.link);
+    }
     formData.append("visible", String(data.visible));
 
     try {
-      await api.post("/news/new", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      navigate("/news");
+      if (isEditing && id) {
+        await api.patch(`/news/${id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      } else {
+        await api.post("/news/new", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      }
+      if (isAdmin) {
+        navigate("/admin/news");
+      } else {
+        navigate("/news");
+      }
     } catch {
       console.error("Error submitting form");
     }
@@ -173,41 +221,33 @@ const NewsEdit = () => {
           <Controller
             name="thumbnail"
             control={control}
-            rules={{ required: true }}
             render={({ field }) => (
               <NewsEditFileInput
                 {...field}
                 onChange={(files: File[]) => {
-                  field.onChange(files);
+                  setValue("thumbnail", files);
                 }}
               >
                 표지 이미지
               </NewsEditFileInput>
             )}
           />
-          {errors.thumbnail && (
-            <p className="text-red-500">표지 이미지를 업로드 해주세요.</p>
-          )}
 
           <Controller
             name="image"
             control={control}
-            rules={{ required: true }}
             render={({ field }) => (
               <NewsEditFileInput
                 multiple
                 {...field}
                 onChange={(files: File[]) => {
-                  field.onChange(files);
+                  setValue("image", files);
                 }}
               >
                 본문 이미지
               </NewsEditFileInput>
             )}
           />
-          {errors.image && (
-            <p className="text-red-500">본문 이미지를 업로드 해주세요.</p>
-          )}
         </div>
 
         <hr className="my-[24px] border-1 border-solid border-[#D9D9D9]" />
@@ -216,7 +256,6 @@ const NewsEdit = () => {
           <Controller
             name="shortcut"
             control={control}
-            rules={{ required: true }}
             render={({ field }) => (
               <NewsEditLinkBtnInput
                 {...field}
@@ -226,14 +265,10 @@ const NewsEdit = () => {
               </NewsEditLinkBtnInput>
             )}
           />
-          {errors.shortcut && (
-            <p className="text-red-500">버튼 이름을 입력해주세요.</p>
-          )}
 
           <Controller
             name="link"
             control={control}
-            rules={{ required: true }}
             render={({ field }) => (
               <NewsEditLinkBtnInput
                 {...field}
@@ -243,7 +278,6 @@ const NewsEdit = () => {
               </NewsEditLinkBtnInput>
             )}
           />
-          {errors.link && <p className="text-red-500">링크를 입력해주세요.</p>}
         </section>
 
         <button
@@ -251,7 +285,7 @@ const NewsEdit = () => {
           className="flex items-center gap-[10px] mt-[18px] mb-[100px] p-small-medium cursor-pointer"
           onClick={() => setValue("visible", !visible)}
         >
-          <img src={ic_check_mono} alt="" />
+          <img src={visible ? ic_check_colored : ic_check_mono} alt="" />
           버튼을 화면에 보여주기
         </button>
 

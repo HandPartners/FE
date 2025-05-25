@@ -63,7 +63,9 @@ const NewsDetail = () => {
             <div className="flex gap-[24px]">
               <button
                 onClick={() => {
-                  navigate(isAdmin && `/admin/news/edit/${id}`);
+                  if (isAdmin && id) {
+                    navigate(`/admin/news/edit/${id}`);
+                  }
                 }}
                 className="h4-bold flex items-center cursor-pointer"
               >
@@ -97,9 +99,16 @@ const NewsDetail = () => {
         </section>
 
         <section className="flex justify-center pb-[70px] w-full">
-          <button className="h4-bold w-[196px] h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer">
-            신청하기
-          </button>
+          {data?.visible && (
+            <button
+              onClick={() => {
+                window.open(data?.link, "_blank");
+              }}
+              className="h4-bold w-[196px] h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
+            >
+              {data?.shortcut}
+            </button>
+          )}
         </section>
       </section>
     </main>
