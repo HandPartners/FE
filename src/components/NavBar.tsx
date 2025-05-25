@@ -1,9 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import clsx from "clsx";
+import { useLocation } from "react-router-dom";
 import logo from "../assets/logo.svg";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith("/admin");
+
   return (
     <nav
       className="flex justify-center items-center relative h-[70px] w-screen z-10 "
@@ -17,7 +21,7 @@ const NavBar = () => {
           className="cursor-pointer"
         ></img>
         <div className="flex gap-[64px]">
-          <NavLink to="/about">
+          <NavLink to={isAdmin ? "/admin/about" : "/about"}>
             {({ isActive }) => (
               <span
                 className={` cursor-pointer inline-block w-[57px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1]
@@ -27,7 +31,7 @@ const NavBar = () => {
               </span>
             )}
           </NavLink>
-          <NavLink to="/program">
+          <NavLink to={isAdmin ? "/admin/program" : "/program"}>
             {({ isActive }) => (
               <span
                 className={` cursor-pointer inline-block w-[75px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
@@ -38,7 +42,7 @@ const NavBar = () => {
               </span>
             )}
           </NavLink>
-          <NavLink to="/portfolio">
+          <NavLink to={isAdmin ? "/admin/portfolio" : "/portfolio"}>
             {({ isActive }) => (
               <span
                 className={` cursor-pointer inline-block w-[74px] text-center  transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
@@ -49,7 +53,7 @@ const NavBar = () => {
               </span>
             )}
           </NavLink>
-          <NavLink to="/news">
+          <NavLink to={isAdmin ? "/admin/news" : "/news"}>
             {({ isActive }) => (
               <span
                 className={` cursor-pointer inline-block w-[51px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(

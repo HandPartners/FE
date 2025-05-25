@@ -14,9 +14,14 @@ import "@fontsource/pretendard/600.css";
 import "@fontsource/pretendard/700.css";
 import "@fontsource/pretendard/800.css";
 import "@fontsource/pretendard/900.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   </StrictMode>
 );

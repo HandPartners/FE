@@ -3,39 +3,44 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import About from "./pages/user/About";
 import Program from "./pages/user/Program";
 import News from "./pages/user/News";
+import NewsDetail from "./pages/news/NewsDetail";
+import NewsEdit from "./pages/news/NewsEdit";
 import Portfolio from "./pages/user/Portfolio";
 import AdminPortfolio from "./pages/admin/AdminPortfolio";
 import Main from "./pages/user/Main";
+
+const commonRoutes = [
+  { index: true, element: <Main /> },
+  { path: "about", element: <About /> },
+  { path: "program", element: <Program /> },
+  {
+    path: "news",
+    children: [
+      { index: true, element: <News /> },
+      { path: ":id", element: <NewsDetail /> },
+    ],
+  },
+];
+
+const portfolioRoutes = [
+  { path: "portfolio", element: <Portfolio /> },
+  { path: "admin/portfolio", element: <AdminPortfolio /> },
+];
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <DefaultLayout />,
-    children: [{ index: true, element: <Main /> }],
+    children: [...commonRoutes, ...portfolioRoutes],
   },
   {
-    path: "/about",
+    path: "/admin",
     element: <DefaultLayout />,
-    children: [{ index: true, element: <About /> }],
-  },
-  {
-    path: "/program",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <Program /> }],
-  },
-  {
-    path: "/news",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <News /> }],
-  },
-  {
-    path: "/portfolio",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <Portfolio /> }],
-  },
-  {
-    path: "/admin/portfolio",
-    element: <DefaultLayout />,
-    children: [{ index: true, element: <AdminPortfolio /> }],
+    children: [
+      ...commonRoutes,
+      { path: "news/edit/:id", element: <NewsEdit /> },
+      { path: "news/new", element: <NewsEdit /> },
+    ],
   },
 ]);
 
