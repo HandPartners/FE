@@ -155,7 +155,7 @@ const NewsEdit = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full h-[200%] flex flex-col items-center py-[70px] "
     >
-      <section className="flex flex-col relative mx-auto w-[41.66666666666667%] h-full">
+      <section className="flex flex-col relative mx-auto w-[800px] h-full">
         <button
           type="button"
           onClick={() => {
@@ -208,7 +208,7 @@ const NewsEdit = () => {
 
         <textarea
           {...register("content", { required: true })}
-          className="p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] p-large-bold rounded-[5.957px] resize-none box-border"
+          className="p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] p-large-bold rounded-[5.957px] box-border"
           placeholder="내용을 작성하세요."
         />
         {errors.content && <p className="text-red-500">내용을 입력해주세요.</p>}
