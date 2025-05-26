@@ -1,38 +1,9 @@
 // 포트폴리오 모달의 입력 폼
 import type { AddPortfolioBody } from "../../../api/PortfolioApi";
-import selectDownArrow from "../../../assets/icons/ic_down_arrow.svg";
-import selectUpArrow from "../../../assets/icons/ic_up_arrow.svg";
 import { useRef } from "react";
-import Select, { components } from "react-select";
-import type { DropdownIndicatorProps } from "react-select";
-
-type CategoryOption = {
-  value: string;
-  label: string;
-};
-
-const categoryOptions = [
-  { value: "ICT", label: "ICT" },
-  { value: "Culture", label: "Culture" },
-  { value: "Energy", label: "Energy" },
-  { value: "Others", label: "Others" },
-];
-
-const DropdownIndicator = (
-  props: DropdownIndicatorProps<CategoryOption, false>
-) => {
-  const isOpen = props.selectProps.menuIsOpen;
-
-  return (
-    <components.DropdownIndicator {...props}>
-      <img
-        src={isOpen ? selectUpArrow : selectDownArrow}
-        alt="드롭다운 화살표"
-        className="w-[16px] h-[16px] object-contain"
-      />
-    </components.DropdownIndicator>
-  );
-};
+import Select from "react-select";
+import DropdownIndicator from "./select/DropdownIndicator";
+import { categoryOptions } from "../../../constants/categoryOptions";
 
 interface PortfolioModalFormProps {
   formData: AddPortfolioBody;
