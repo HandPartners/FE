@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Select from "react-select";
 import DropdownIndicator from "./select/DropdownIndicator";
 import { categoryOptions } from "../../../constants/categoryOptions";
+import { selectStyles } from "../../../constants/selectStyles";
 
 interface PortfolioModalFormProps {
   formData: AddPortfolioBody;
@@ -43,43 +44,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
           onChange={(selected) => {
             if (selected) onChange?.("category", selected.value);
           }}
-          styles={{
-            control: (base) => ({
-              ...base,
-              height: 60,
-              borderRadius: "5.967px",
-              backgroundColor: "var(--grey50)",
-              paddingLeft: "20px",
-              paddingRight: "20px",
-              cursor: "pointer",
-              border: "none",
-              // 포커스 상태일 때 border 및 boxShadow 제거
-              borderColor: "transparent",
-              boxShadow: "none",
-              "&:hover": {
-                borderColor: "transparent",
-              },
-            }),
-            option: (base) => ({
-              ...base,
-              backgroundColor: "white",
-              color: "var(--grey6)",
-
-              fontSize: "16px",
-              fontWeight: 500,
-              borderBottom: "1px solid #e5e7eb",
-              cursor: "pointer",
-              "&:last-child": {
-                borderBottom: "none",
-              },
-            }),
-            menu: (base) => ({
-              ...base,
-              zIndex: 9999,
-              padding: "0 18px",
-              borderRadius: "5px",
-            }),
-          }}
+          styles={selectStyles}
           components={{
             IndicatorSeparator: () => null,
             DropdownIndicator: DropdownIndicator,
