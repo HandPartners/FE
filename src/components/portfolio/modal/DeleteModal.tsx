@@ -11,7 +11,7 @@ const DeleteModal: React.FC<ProtfolioAddModalProps> = ({
   onClose,
 }) => {
   return (
-    <PortfolioModalLayout marginTop="mt-[340px]">
+    <PortfolioModalLayout marginTop="mt-[340px]" onClickBG={ onClose}>
       <section className="flex flex-col gap-[8px]">
         <h2 className="text-center h2-bold">삭제하시겠습니까?</h2>
         <p className="p-medium-regular text-[var(--grey6)] text-center">
