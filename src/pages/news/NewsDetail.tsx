@@ -61,7 +61,7 @@ const NewsDetail = () => {
 
   return (
     <main className="w-full h-full flex flex-col items-center py-[70px] ">
-      <section className="flex flex-col mx-auto w-[41.66666666666667%] h-full">
+      <section className="flex flex-col mx-auto w-[800px] h-full">
         <div className="flex justify-between w-full">
           <button
             onClick={() => {
