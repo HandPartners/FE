@@ -90,7 +90,7 @@ const Main = () => {
             </span>
           </div>
         </FadeInItem>
-        <div className="flex flex-col gap-[200px]  mt-[50px]">
+        <div className="flex flex-col gap-[200px] mt-[50px]">
           {/* 프로그램 */}
           <section className="flex flex-col w-[1280px] mx-auto gap-[50px]">
             <TitleLine>PROGRAM</TitleLine>
