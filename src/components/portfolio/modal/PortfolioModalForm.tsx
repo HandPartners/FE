@@ -17,13 +17,17 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
   onFileChange,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-
   const selectedValue = formData.category;
 
   // 선택된 항목을 제외한 옵션 목록
   const filteredOptions = categoryOptions.filter(
     (option) => option.value !== selectedValue
   );
+
+  const getLogoText = (logo: File | string) => {
+    if (logo instanceof File) return logo.name || "파일을 선택해주세요.";
+    return logo.split("/").pop() || "파일을 선택해주세요.";
+  };
 
   return (
     <div className="flex flex-col gap-[28px]">
@@ -45,11 +49,9 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
               paddingRight: "20px",
               cursor: "pointer",
               border: "none",
-              // ✅ 포커스 상태일 때 border 및 boxShadow 제거
+              // 포커스 상태일 때 border 및 boxShadow 제거
               borderColor: "transparent",
               boxShadow: "none",
-
-              // ✅ 포커스 상태일 때도 동일하게 적용되도록 보장
               "&:hover": {
                 borderColor: "transparent",
               },
@@ -61,7 +63,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
 
               fontSize: "16px",
               fontWeight: 500,
-              borderBottom: "1px solid #e5e7eb", // Tailwind gray-200
+              borderBottom: "1px solid #e5e7eb",
               cursor: "pointer",
               "&:last-child": {
                 borderBottom: "none",
@@ -117,12 +119,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
           />
           <div className="w-[full] h-[60px] bg-[var(--grey50)] rounded-[5.967px] gap-[10px] px-[10px] flex items-center justify-between  whitespace-nowrap">
             <span
-              className={`w-full ml-[10px]  truncate overflow-hidden ${
-                (formData.logo instanceof File && formData.logo.name) ||
-                (typeof formData.logo === "string" && formData.logo)
-                  ? "text-[var(--black)]"
-                  : "text-[var(--grey6)]"
-              }`}
+              className={`w-full ml-[10px]  truncate overflow-hidden ${getLogoText}`}
             >
               {formData.logo instanceof File
                 ? formData.logo.name || "파일을 선택해주세요."
