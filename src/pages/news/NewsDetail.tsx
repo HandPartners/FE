@@ -125,7 +125,14 @@ const NewsDetail = () => {
           {data?.visible && (
             <button
               onClick={() => {
-                window.open(data?.link, "_blank");
+                // 외부 링크 이동
+                window.open(
+                  data?.link?.startsWith("http")
+                    ? data.link
+                    : `https://${data.link}`,
+                  "_blank",
+                  "noopener,noreferrer"
+                );
               }}
               className="h4-bold w-[196px] h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
             >
