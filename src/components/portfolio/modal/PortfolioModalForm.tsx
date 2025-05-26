@@ -29,13 +29,17 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
     return logo.split("/").pop() || "파일을 선택해주세요.";
   };
 
+  const selectedOption = categoryOptions.find(
+    (opt) => opt.value === formData.category
+  );
+
   return (
     <div className="flex flex-col gap-[28px]">
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">카테고리</p>
         <Select
           options={filteredOptions}
-          value={categoryOptions.find((opt) => opt.value === formData.category)}
+          value={selectedOption}
           onChange={(selected) => {
             if (selected) onChange?.("category", selected.value);
           }}
