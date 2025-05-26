@@ -109,7 +109,7 @@ const AdminPortfolio = () => {
       const result = await editPortfolio({ id: portfolioId, formData: data });
 
       if (result.success) {
-        alert("수정되었습니댜.");
+        alert("수정되었습니다.");
         setEditModalOpen(false);
         setFormData(initialFormData);
         fetchPortfolioList();

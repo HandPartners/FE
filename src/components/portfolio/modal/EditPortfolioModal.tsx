@@ -22,7 +22,7 @@ const EditPortfolioModal: React.FC<ProtfolioAddModalProps> = ({
   onModify,
 }) => {
   return (
-    <PortfolioModalLayout marginTop="mt-[110px]">
+    <PortfolioModalLayout marginTop="mt-[110px]" onClickBG={onClose}>
       <h2 className="text-center h2-bold">포트폴리오</h2>
       <PortfolioModalForm
         formData={formData}

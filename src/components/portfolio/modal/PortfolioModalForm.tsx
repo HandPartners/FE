@@ -1,7 +1,11 @@
 // 포트폴리오 모달의 입력 폼
-
 import type { AddPortfolioBody } from "../../../api/PortfolioApi";
 import { useRef } from "react";
+import Select from "react-select";
+import DropdownIndicator from "./select/DropdownIndicator";
+import { categoryOptions } from "../../../constants/categoryOptions";
+import { selectStyles } from "../../../constants/selectStyles";
+
 interface PortfolioModalFormProps {
   formData: AddPortfolioBody;
   onChange?: (field: string, value: string) => void;
@@ -13,21 +17,39 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
   onChange,
   onFileChange,
 }) => {
-  const fileInputRef = useRef<HTMLInputElement>(null); // ✅ ref 선언
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const selectedValue = formData.category;
+
+  // 선택된 항목을 제외한 옵션 목록
+  const filteredOptions = categoryOptions.filter(
+    (option) => option.value !== selectedValue
+  );
+
+  const getLogoText = (logo: File | string) => {
+    if (logo instanceof File) return logo.name || "파일을 선택해주세요.";
+    return logo.split("/").pop() || "파일을 선택해주세요.";
+  };
+
+  const selectedOption = categoryOptions.find(
+    (opt) => opt.value === formData.category
+  );
+
   return (
     <div className="flex flex-col gap-[28px]">
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">카테고리</p>
-        <select
-          className="w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px] pl-[20px]  cursor-pointer"
-          value={formData.category}
-          onChange={(e) => onChange?.("category", e.target.value)}
-        >
-          <option value="ICT">ICT</option>
-          <option value="Culture">Culture</option>
-          <option value="Energy">Energy</option>
-          <option value="Others">Others</option>
-        </select>
+        <Select
+          options={filteredOptions}
+          value={selectedOption}
+          onChange={(selected) => {
+            if (selected) onChange?.("category", selected.value);
+          }}
+          styles={selectStyles}
+          components={{
+            IndicatorSeparator: () => null,
+            DropdownIndicator: DropdownIndicator,
+          }}
+        />
       </div>
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">회사명</p>
@@ -40,13 +62,18 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
       </div>
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">회사 소개</p>
-        <input
-          className="w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px] px-[20px]  cursor-pointer"
-          placeholder="회사 소개를 입력해주세요."
-          maxLength={40}
-          value={formData.content}
-          onChange={(e) => onChange?.("content", e.target.value)}
-        />
+        <div className="relative">
+          <input
+            className="relative w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px] px-[20px]  cursor-pointer"
+            placeholder="회사 소개를 입력해주세요."
+            maxLength={40}
+            value={formData.content}
+            onChange={(e) => onChange?.("content", e.target.value)}
+          />
+          <div className="absolute p-medium-regular top-[18px] right-[15px] text-[var(--grey4)]">
+            {formData.content.length}/40
+          </div>
+        </div>
       </div>
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">회사 로고</p>
@@ -61,12 +88,9 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
           />
           <div className="w-[full] h-[60px] bg-[var(--grey50)] rounded-[5.967px] gap-[10px] px-[10px] flex items-center justify-between  whitespace-nowrap">
             <span
-              className={`w-full ml-[10px]  truncate overflow-hidden ${
-                (formData.logo instanceof File && formData.logo.name) ||
-                (typeof formData.logo === "string" && formData.logo)
-                  ? "text-[var(--black)]"
-                  : "text-[var(--grey6)]"
-              }`}
+              className={`w-full ml-[10px]  truncate overflow-hidden ${getLogoText(
+                formData.logo
+              )}`}
             >
               {formData.logo instanceof File
                 ? formData.logo.name || "파일을 선택해주세요."
