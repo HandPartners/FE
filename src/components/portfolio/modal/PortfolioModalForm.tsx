@@ -1,7 +1,39 @@
 // 포트폴리오 모달의 입력 폼
-
 import type { AddPortfolioBody } from "../../../api/PortfolioApi";
+import selectDownArrow from "../../../assets/icons/ic_down_arrow.svg";
+import selectUpArrow from "../../../assets/icons/ic_up_arrow.svg";
 import { useRef } from "react";
+import Select, { components } from "react-select";
+import type { DropdownIndicatorProps } from "react-select";
+
+type CategoryOption = {
+  value: string;
+  label: string;
+};
+
+const categoryOptions = [
+  { value: "ICT", label: "ICT" },
+  { value: "Culture", label: "Culture" },
+  { value: "Energy", label: "Energy" },
+  { value: "Others", label: "Others" },
+];
+
+const DropdownIndicator = (
+  props: DropdownIndicatorProps<CategoryOption, false>
+) => {
+  const isOpen = props.selectProps.menuIsOpen;
+
+  return (
+    <components.DropdownIndicator {...props}>
+      <img
+        src={isOpen ? selectUpArrow : selectDownArrow}
+        alt="드롭다운 화살표"
+        className="w-[16px] h-[16px] object-contain"
+      />
+    </components.DropdownIndicator>
+  );
+};
+
 interface PortfolioModalFormProps {
   formData: AddPortfolioBody;
   onChange?: (field: string, value: string) => void;
@@ -13,21 +45,69 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
   onChange,
   onFileChange,
 }) => {
-  const fileInputRef = useRef<HTMLInputElement>(null); // ✅ ref 선언
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const selectedValue = formData.category;
+
+  // 선택된 항목을 제외한 옵션 목록
+  const filteredOptions = categoryOptions.filter(
+    (option) => option.value !== selectedValue
+  );
+
   return (
     <div className="flex flex-col gap-[28px]">
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">카테고리</p>
-        <select
-          className="w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px] pl-[20px]  cursor-pointer"
-          value={formData.category}
-          onChange={(e) => onChange?.("category", e.target.value)}
-        >
-          <option value="ICT">ICT</option>
-          <option value="Culture">Culture</option>
-          <option value="Energy">Energy</option>
-          <option value="Others">Others</option>
-        </select>
+        <Select
+          options={filteredOptions}
+          value={categoryOptions.find((opt) => opt.value === formData.category)}
+          onChange={(selected) => {
+            if (selected) onChange?.("category", selected.value);
+          }}
+          styles={{
+            control: (base) => ({
+              ...base,
+              height: 60,
+              borderRadius: "5.967px",
+              backgroundColor: "var(--grey50)",
+              paddingLeft: "20px",
+              paddingRight: "20px",
+              cursor: "pointer",
+              border: "none",
+              // ✅ 포커스 상태일 때 border 및 boxShadow 제거
+              borderColor: "transparent",
+              boxShadow: "none",
+
+              // ✅ 포커스 상태일 때도 동일하게 적용되도록 보장
+              "&:hover": {
+                borderColor: "transparent",
+              },
+            }),
+            option: (base) => ({
+              ...base,
+              backgroundColor: "white",
+              color: "var(--grey6)",
+
+              fontSize: "16px",
+              fontWeight: 500,
+              borderBottom: "1px solid #e5e7eb", // Tailwind gray-200
+              cursor: "pointer",
+              "&:last-child": {
+                borderBottom: "none",
+              },
+            }),
+            menu: (base) => ({
+              ...base,
+              zIndex: 9999,
+              padding: "0 18px",
+              borderRadius: "5px",
+            }),
+          }}
+          components={{
+            IndicatorSeparator: () => null,
+            DropdownIndicator: DropdownIndicator,
+          }}
+        />
       </div>
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">회사명</p>
