@@ -31,7 +31,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
   isAdmin,
 }) => {
   return (
-    <section className="flex flex-col gap-[50px] w-full pb-[346px]">
+    <section className="flex flex-col gap-[50px] w-[1280px] pb-[346px]">
       <div className="flex flex-row gap-[20px]">
         <ul className="h5-bold flex flex-row border border-[var(--grey3)] gap-[20px] rounded-[30px] w-fit p-[10px]">
           <li
