@@ -85,7 +85,10 @@ const Main = () => {
               </p>
             </section>
 
-            <span className="cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]">
+            <span
+              className="cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
+              onClick={() => navigate("/about")}
+            >
               About →
             </span>
           </div>
