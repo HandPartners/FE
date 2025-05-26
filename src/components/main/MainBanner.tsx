@@ -24,7 +24,7 @@ const MainBanner = () => {
       </div>
 
       {/* 버튼 */}
-      <div className="absolute z-10 left-[5.2%] top-[40%] ">
+      <div className="absolute z-10 left-[5.2%] top-[40%] cursor-pointer">
         <button
           onClick={() =>
             setCurrentIndex((prev) =>

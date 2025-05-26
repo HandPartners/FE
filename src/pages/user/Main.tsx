@@ -60,7 +60,7 @@ const Main = () => {
 
   return (
     <>
-      <main className=" flex flex-col items-center w-[1280px] h-full mx-auto relative">
+      <main className=" flex flex-col items-center w-[1280px] max-w-full h-full mx-auto relative ">
         {/* 배너 */}
         <div className="absolute top-[99px] left-[85px] z-100 flex flex-col  gap-[36px] w-fit">
           <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
@@ -90,9 +90,9 @@ const Main = () => {
             </span>
           </div>
         </FadeInItem>
-        <div className="flex flex-col gap-[200px] w-full mt-[50px]">
+        <div className="flex flex-col gap-[200px]  mt-[50px]">
           {/* 프로그램 */}
-          <section className="flex flex-col w-full gap-[50px]">
+          <section className="flex flex-col w-[1280px] mx-auto gap-[50px]">
             <TitleLine>PROGRAM</TitleLine>
             <FadeInItem>
               <div className="flex flex-row gap-[20px]">
