@@ -1,5 +1,5 @@
 import React from "react";
-import useFadeIn from "../../hook/useFadeIn";
+import useFadeIn from "../../hooks/useFadeIn";
 interface FadeInItemProps {
   children: React.ReactNode;
 }

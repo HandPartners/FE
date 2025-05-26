@@ -24,7 +24,8 @@ const Program = () => {
             contents="이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다."
             imgUrl={testImg}
             onClick={() => {
-              navigate("/news?category=consulting");
+              sessionStorage.setItem("newsTab", "Consulting");
+              navigate("/news");
             }}
           />
           <ProgramSection
@@ -33,7 +34,8 @@ const Program = () => {
             contents="이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다."
             imgUrl={testImg}
             onClick={() => {
-              navigate("/news?category=investment");
+              sessionStorage.setItem("newsTab", "Investment");
+              navigate("/news");
             }}
           />
           <ProgramSection
@@ -42,7 +44,8 @@ const Program = () => {
             contents="이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다."
             imgUrl={testImg}
             onClick={() => {
-              navigate("/news?category=education");
+              sessionStorage.setItem("newsTab", "Education");
+              navigate("/news");
             }}
           />
           <ProgramSection
@@ -51,7 +54,8 @@ const Program = () => {
             contents="이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다.이런수업을 진행합니다."
             imgUrl={testImg}
             onClick={() => {
-              navigate("/news?category=networking");
+              sessionStorage.setItem("newsTab", "Networking");
+              navigate("/news");
             }}
           />
         </section>
