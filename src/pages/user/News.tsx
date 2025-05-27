@@ -106,72 +106,75 @@ const News: React.FC = () => {
   };
 
   return (
-    <main className="flex flex-col items-center w-full h-full">
+    <main className="flex flex-col items-center gap-[50px] w-[1280px] max-w-full mx-auto relative">
+      <div className="absolute top-[99px] left-[85px] z-10 flex flex-col gap-[36px] w-fit">
+        <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
+          News
+        </h1>
+        <h3 className="h3-medium">한줄 소개</h3>
+      </div>
+
       <BGTop testBenner={bannerImg} />
-      <section className="flex flex-col gap-[428px] absolute mx-auto w-[1280px] h-full">
-        <div className="flex flex-col gap-[36px] pt-[100px] pl-[85px] w-full">
-          <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
-            News
-          </h1>
-          <h3 className="h3-medium">한줄 소개</h3>
+
+      <div className="flex justify-end w-full h-[60px]">
+        {isAdmin ? (
+          <button
+            onClick={() => navigate("/admin/news/new")}
+            className="w-[197px] h-[60px] h5-bold bg-[#00AEEF] rounded-[30px] cursor-pointer"
+          >
+            글 작성
+          </button>
+        ) : (
+          <div className="h-[60px]"></div>
+        )}
+      </div>
+
+      <section className="w-full pb-[200px]">
+        <div className="flex gap-[20px] relative w-full mb-[50px]">
+          <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => {
+                  setActiveTab(tab);
+                }}
+                className={clsx(
+                  "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold transition-colors duration-200 cursor-pointer",
+                  activeTab === tab && "bg-[#00AEEF] text-white"
+                )}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="flex flex-1 relative h-[60px] border border-[#E2E2E2] rounded-[30px]">
+            <input
+              className="flex-1 pl-[25px] pr-[5px] focus:outline-none"
+              placeholder="검색어를 입력하세요."
+              value={inputValue}
+              onChange={(event) => {
+                setInputValue(event.target.value);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") handleSearch();
+              }}
+            />
+            <button
+              onClick={handleSearch}
+              className="absolute right-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
+            >
+              <img src={ic_search} alt="검색" />
+            </button>
+          </div>
         </div>
 
-        <section className="w-full pb-[200px]">
-          <div className="flex gap-[20px] relative w-full mb-[50px]">
-            <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => {
-                    setActiveTab(tab);
-                  }}
-                  className={clsx(
-                    "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold transition-colors duration-200 cursor-pointer",
-                    activeTab === tab && "bg-[#00AEEF] text-white"
-                  )}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-            <div className="flex flex-1 relative h-[60px] border border-[#E2E2E2] rounded-[30px]">
-              <input
-                className="flex-1 pl-[25px] pr-[5px] focus:outline-none"
-                placeholder="검색어를 입력하세요."
-                value={inputValue}
-                onChange={(event) => {
-                  setInputValue(event.target.value);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") handleSearch();
-                }}
-              />
-              <button
-                onClick={handleSearch}
-                className="absolute right-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
-              >
-                <img src={ic_search} alt="검색" />
-              </button>
-            </div>
-
-            {isAdmin && (
-              <button
-                onClick={() => navigate("/admin/news/new")}
-                className="absolute right-0 top-[-50px] translate-y-[-100%] w-[197px] h-[60px] h5-bold bg-[#00AEEF] rounded-[30px] cursor-pointer"
-              >
-                글 작성
-              </button>
-            )}
-          </div>
-
-          <section className="px-[3.203125%]">
-            {newsList.map((item) => (
-              <EachNews key={item.id} id={item.id} item={item} />
-            ))}
-          </section>
-
-          <div ref={loadMoreRef} className="h-[1px]" />
+        <section className="px-[3.203125%]">
+          {newsList.map((item) => (
+            <EachNews key={item.id} id={item.id} item={item} />
+          ))}
         </section>
+
+        <div ref={loadMoreRef} className="h-[1px]" />
       </section>
 
       <ScrollToTopButton />
