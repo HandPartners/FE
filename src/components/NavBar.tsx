@@ -17,7 +17,7 @@ const NavBar = () => {
         <img
           src={logo}
           alt="회사 로고"
-          onClick={() => navigate("/")}
+          onClick={() => navigate(isAdmin ? "/admin" : "/")}
           className="cursor-pointer"
         ></img>
         <div className="flex gap-[64px]">
