@@ -7,6 +7,8 @@ import ScrollToTopButton from "../../components/ScrollToTopButton";
 const Program = () => {
   const navigate = useNavigate();
 
+  const isAdmin = window.location.pathname.includes("admin");
+
   return (
     <main className=" flex flex-col items-center w-[1280px] max-w-full h-full mx-auto relative">
       <div className="absolute top-[99px] left-[85px] z-10 flex flex-col  gap-[36px] w-fit">
@@ -25,7 +27,7 @@ const Program = () => {
             imgUrl={testImg}
             onClick={() => {
               sessionStorage.setItem("newsTab", "Consulting");
-              navigate("/news");
+              navigate(isAdmin ? "/admin/news" : "/news");
             }}
           />
           <ProgramSection
@@ -35,7 +37,7 @@ const Program = () => {
             imgUrl={testImg}
             onClick={() => {
               sessionStorage.setItem("newsTab", "Investment");
-              navigate("/news");
+              navigate(isAdmin ? "/admin/news" : "/news");
             }}
           />
           <ProgramSection
@@ -45,7 +47,7 @@ const Program = () => {
             imgUrl={testImg}
             onClick={() => {
               sessionStorage.setItem("newsTab", "Education");
-              navigate("/news");
+              navigate(isAdmin ? "/admin/news" : "/news");
             }}
           />
           <ProgramSection
@@ -55,7 +57,7 @@ const Program = () => {
             imgUrl={testImg}
             onClick={() => {
               sessionStorage.setItem("newsTab", "Networking");
-              navigate("/news");
+              navigate(isAdmin ? "/admin/news" : "/news");
             }}
           />
         </section>
