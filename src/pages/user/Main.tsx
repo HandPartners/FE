@@ -87,7 +87,7 @@ const Main = () => {
 
             <span
               className="cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
-              onClick={() => navigate("/about")}
+              onClick={() => navigate("about", { relative: "path" })}
             >
               About →
             </span>
@@ -155,7 +155,7 @@ const Main = () => {
             </FadeInItem>
             <span
               className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
-              onClick={() => navigate("/program")}
+              onClick={() => navigate("program", { relative: "path" })}
             >
               프로그램 전체보기 →
             </span>
@@ -190,7 +190,7 @@ const Main = () => {
             </div>
             <span
               className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
-              onClick={() => navigate("/portfolio")}
+              onClick={() => navigate("portfolio", { relative: "path" })}
             >
               포트폴리오 전체보기 →
             </span>
@@ -204,7 +204,9 @@ const Main = () => {
                 <FadeInItem key={item.id}>
                   <div
                     className="border-b h-[210px] py-[24px] px-[41px] border-[var(--grey3)] flex flex-row gap-[36px] cursor-pointer "
-                    onClick={() => navigate(`/news/${item.id}`)}
+                    onClick={() =>
+                      navigate(`news/${item.id}`, { relative: "path" })
+                    }
                   >
                     <img
                       src={item.thumbnail}
@@ -233,7 +235,7 @@ const Main = () => {
 
             <span
               className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
-              onClick={() => navigate("/news")}
+              onClick={() => navigate("news", { relative: "path" })}
             >
               소식 전체보기 →
             </span>
