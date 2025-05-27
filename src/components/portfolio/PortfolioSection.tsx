@@ -100,7 +100,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
         <div className="relative w-full">
           <input
             className="w-full h-full border border-[var(--grey3)] rounded-[30px] pl-[20px] "
-            placeholder="회사명을 입력하세요"
+            placeholder="회사명을 입력하세요."
             value={searchInput}
             onChange={(e) => {
               setSearchInput?.(e.target.value);
