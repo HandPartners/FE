@@ -103,18 +103,12 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             placeholder="회사명을 입력하세요"
             value={searchInput}
             onChange={(e) => {
-              const value = e.target.value;
               setSearchInput?.(e.target.value);
-
-              // 입력이 완전히 지워졌을 때 검색 리셋
-              if (value === "") {
-                setName?.(""); // 검색어 초기화
-              }
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                if (setName && searchInput) {
-                  setName(searchInput);
+                if (setName) {
+                  setName(searchInput ?? "");
                 }
               }
             }}

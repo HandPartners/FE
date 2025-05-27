@@ -9,6 +9,7 @@ const Portfolio = () => {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [portfolioList, setPortfolioList] = useState<ResponsePortfolioList>();
+  const [searchInput, setSearchInput] = useState("");
 
   const fetchPortfolioList = useCallback(async () => {
     try {
@@ -42,6 +43,8 @@ const Portfolio = () => {
           category={category}
           setCategory={setCategory}
           setName={setName}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
           isAdmin={false}
         />
       </section>
