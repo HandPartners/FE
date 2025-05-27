@@ -88,13 +88,13 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
           />
           <div className="w-[full] h-[60px] bg-[var(--grey50)] rounded-[5.967px] gap-[10px] px-[10px] flex items-center justify-between  whitespace-nowrap">
             <span
-              className={`w-full ml-[10px]  truncate overflow-hidden ${getLogoText(
-                formData.logo
-              )}`}
+              className={`w-full ml-[10px]  truncate overflow-hidden ${
+                getLogoText(formData.logo) === "파일을 선택해주세요."
+                  ? "text-[var(--grey5)]"
+                  : "text-[var(--grey1)]"
+              }`}
             >
-              {formData.logo instanceof File
-                ? formData.logo.name || "파일을 선택해주세요."
-                : formData.logo.split("/").pop()}
+              {getLogoText(formData.logo)}
             </span>
 
             <button
