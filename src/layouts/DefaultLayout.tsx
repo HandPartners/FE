@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 
 const DefaultLayout = () => {
   return (
-    <main className="w-screen max-w-[1920px] min-h-screen mx-auto">
+    <main className="w-screen min-h-screen mx-auto">
       <NavBar />
       <Outlet />
     </main>

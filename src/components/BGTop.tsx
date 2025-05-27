@@ -8,7 +8,7 @@ const BGTop = ({ testBenner }: BGTopProps) => {
       <img
         src={testBenner}
         alt="배너"
-        className=" h-[500px] object-cover  bg-top bg-no-repeat "
+        className=" h-[500px] object-cover w-full  bg-top bg-no-repeat "
       />
     </div>
   );
