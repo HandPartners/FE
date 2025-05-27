@@ -22,7 +22,7 @@ const AdminPortfolio = () => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [portfolioId, setPortfolioId] = useState<number>(1);
-  const [category, setCategory] = useState("ICT");
+  const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [portfolioList, setPortfolioList] = useState<ResponsePortfolioList>();
