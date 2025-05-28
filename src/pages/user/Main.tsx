@@ -98,13 +98,13 @@ const Main = () => {
           <section className="flex flex-col w-[1280px] mx-auto gap-[50px]">
             <TitleLine>PROGRAM</TitleLine>
             <FadeInItem>
-              <div className="flex flex-row gap-[20px]">
-                <div className="border w-full h-[400px] border-[var(--grey3)]">
+              <div className="flex flex-row gap-[20px]  ">
+                <div className=" w-full h-[400px] border-[var(--grey3)]">
                   <img
                     className="h-[290px] w-full object-cover"
                     src={ProgramImg}
                   ></img>
-                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                  <div className=" h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
                     <h3 className="p-large-bold">Phase 1. Consulting</h3>
                     <p className="p-medium-medium">
                       창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
@@ -112,12 +112,12 @@ const Main = () => {
                     </p>
                   </div>
                 </div>
-                <div className="border  w-full h-[400px] border-[var(--grey3)]">
+                <div className="  w-full h-[400px] ">
                   <img
                     className=" h-[290px] w-full object-cover"
                     src={ProgramImg}
                   ></img>
-                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                  <div className="border-[var(--grey3)] border h-[110px] flex flex-col text-center px-[48px] py-[17px] bg-[var(--grey1)]">
                     <h3 className="p-large-bold">Phase 2. Investment</h3>
                     <p className="p-medium-medium">
                       창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
@@ -125,12 +125,12 @@ const Main = () => {
                     </p>
                   </div>
                 </div>
-                <div className="border w-full  h-[400px] border-[var(--grey3)]">
+                <div className=" w-full  h-[400px] ">
                   <img
                     className=" h-[290px] w-full object-cover"
                     src={ProgramImg}
                   ></img>
-                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                  <div className=" border-[var(--grey3)] border h-[110px] flex flex-col text-center px-[48px] py-[17px] bg-[var(--grey1)]">
                     <h3 className="p-large-bold">Phase 3. Education</h3>
                     <p className="p-medium-medium">
                       창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
@@ -138,12 +138,12 @@ const Main = () => {
                     </p>
                   </div>
                 </div>
-                <div className="border w-full h-[400px] border-[var(--grey3)]">
+                <div className=" w-full h-[400px] ">
                   <img
                     className=" h-[290px] w-full object-cover"
                     src={ProgramImg}
                   ></img>
-                  <div className=" h-[110px] flex flex-col text-center px-[49px]">
+                  <div className=" h-[110px] border-[var(--grey3)] border flex flex-col text-center px-[48px] py-[17px] bg-[var(--grey1)]">
                     <h3 className="p-large-bold">Phase 4. Networking</h3>
                     <p className="p-medium-medium">
                       창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
