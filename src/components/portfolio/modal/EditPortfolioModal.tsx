@@ -21,6 +21,12 @@ const EditPortfolioModal: React.FC<ProtfolioAddModalProps> = ({
   setFormData,
   onModify,
 }) => {
+  const isFormInvalid =
+    !formData.name.trim() ||
+    !formData.content.trim() ||
+    !formData.logo ||
+    (formData.logo instanceof File && formData.logo.size === 0);
+
   return (
     <PortfolioModalLayout marginTop="mt-[110px]" onClickBG={onClose}>
       <h2 className="text-center h2-bold">포트폴리오</h2>
@@ -52,6 +58,8 @@ const EditPortfolioModal: React.FC<ProtfolioAddModalProps> = ({
             font="p-medium-bold"
             textColor="text-[var(--white)]"
             onClick={onModify}
+            disabled={isFormInvalid}
+            disabledColor="bg-[#B2E6FA]"
           />
         </div>
         <ModalButton
