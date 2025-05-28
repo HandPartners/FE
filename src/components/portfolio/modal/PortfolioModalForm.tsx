@@ -18,12 +18,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
   onFileChange,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const selectedValue = formData.category;
-
-  // 선택된 항목을 제외한 옵션 목록
-  const filteredOptions = categoryOptions.filter(
-    (option) => option.value !== selectedValue
-  );
+  const filteredOptions = categoryOptions.filter((option) => option.value);
 
   const getLogoText = (logo: File | string) => {
     if (logo instanceof File) return logo.name || "파일을 선택해주세요.";
