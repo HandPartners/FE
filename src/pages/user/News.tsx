@@ -103,6 +103,7 @@ const News: React.FC = () => {
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const handleSearch = () => {
+    setActiveTab("ALL");
     setSearchTerm(inputValue);
   };
 
