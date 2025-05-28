@@ -252,6 +252,7 @@ const NewsEdit = () => {
 
         <hr className="my-[24px] border-1 border-solid border-[#D9D9D9]" />
 
+        <h4 className="mb-[24px] h4-bold">바로가기 버튼</h4>
         <section className="flex flex-col gap-[24px]">
           <Controller
             name="shortcut"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import bannerImg1 from "../../assets/images/banner/aboutBanner.png";
 import bannerImg2 from "../../assets/images/banner/ProgramBanner.png";
@@ -7,6 +7,28 @@ import bannerImg3 from "../../assets/images/banner/portfolioBanner.png";
 const MainBanner = () => {
   const bannerImages = [bannerImg1, bannerImg2, bannerImg3];
   const [currentIndex, setCurrentIndex] = useState(0); // 진짜 배너
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCurrentIndex((prev) =>
+        prev === bannerImages.length - 1 ? 0 : prev + 1
+      );
+    }, 3000);
+
+    return () => clearTimeout(timeout); // 배너 index 바뀔 때마다 타이머 초기화
+  }, [currentIndex]); // currentIndex가 바뀔 때마다 useEffect 재실행됨
+
+  const goToNext = () => {
+    setCurrentIndex((prev) =>
+      prev === bannerImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? bannerImages.length - 1 : prev - 1
+    );
+  };
 
   return (
     <div className="relative  w-screen min-w-[1280px] mt-[40px] ">
@@ -26,11 +48,9 @@ const MainBanner = () => {
       {/* 버튼 */}
       <div className="absolute z-10 left-[5.2%] top-[40%] cursor-pointer">
         <button
-          onClick={() =>
-            setCurrentIndex((prev) =>
-              prev === 0 ? bannerImages.length - 1 : prev - 1
-            )
-          }
+          onClick={() => {
+            goToPrev();
+          }}
           className="cursor-pointer group"
         >
           <svg
@@ -49,11 +69,9 @@ const MainBanner = () => {
       </div>
       <div className="absolute z-10 right-[5.2%] top-[40%] cursor-pointer">
         <button
-          onClick={() =>
-            setCurrentIndex((prev) =>
-              prev === bannerImages.length - 1 ? 0 : prev + 1
-            )
-          }
+          onClick={() => {
+            goToNext();
+          }}
           className="cursor-pointer group"
         >
           <svg

@@ -19,7 +19,11 @@ const ProtfolioAddModal: React.FC<ProtfolioAddModalProps> = ({
   formData,
   setFormData,
 }) => {
-  console.log("logo instanceof File:", formData.logo instanceof File); // true 여야 함
+  const isFormInvalid =
+    !formData.name.trim() ||
+    !formData.content.trim() ||
+    !formData.logo ||
+    (formData.logo instanceof File && formData.logo.size === 0);
 
   return (
     <PortfolioModalLayout marginTop="mt-[110px]" onClickBG={onClose}>
@@ -50,6 +54,8 @@ const ProtfolioAddModal: React.FC<ProtfolioAddModalProps> = ({
           font="p-medium-bold"
           textColor="text-[var(--white)]"
           onClick={onSubmit}
+          disabled={isFormInvalid}
+          disabledColor="bg-[#B2E6FA]"
         />
       </div>
     </PortfolioModalLayout>

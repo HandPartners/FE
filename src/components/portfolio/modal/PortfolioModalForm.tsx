@@ -18,12 +18,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
   onFileChange,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const selectedValue = formData.category;
-
-  // 선택된 항목을 제외한 옵션 목록
-  const filteredOptions = categoryOptions.filter(
-    (option) => option.value !== selectedValue
-  );
+  const filteredOptions = categoryOptions.filter((option) => option.value);
 
   const getLogoText = (logo: File | string) => {
     if (logo instanceof File) return logo.name || "파일을 선택해주세요.";
@@ -45,6 +40,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
             if (selected) onChange?.("category", selected.value);
           }}
           styles={selectStyles}
+          isSearchable={false}
           components={{
             IndicatorSeparator: () => null,
             DropdownIndicator: DropdownIndicator,
@@ -83,7 +79,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
             className="hidden "
             placeholder="파일을 선택해주세요."
             type="file"
-            accept="image/*"
+            accept="image/png, image/jpeg"
             onChange={(e) => onFileChange?.(e.target.files?.[0] || null)}
           />
           <div className="w-[full] h-[60px] bg-[var(--grey50)] rounded-[5.967px] gap-[10px] px-[10px] flex items-center justify-between  whitespace-nowrap">
@@ -91,7 +87,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
               className={`w-full ml-[10px]  truncate overflow-hidden ${
                 getLogoText(formData.logo) === "파일을 선택해주세요."
                   ? "text-[var(--grey5)]"
-                  : "text-[var(--grey1)]"
+                  : ""
               }`}
             >
               {getLogoText(formData.logo)}
