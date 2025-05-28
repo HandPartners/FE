@@ -40,6 +40,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
             if (selected) onChange?.("category", selected.value);
           }}
           styles={selectStyles}
+          isSearchable={false}
           components={{
             IndicatorSeparator: () => null,
             DropdownIndicator: DropdownIndicator,
