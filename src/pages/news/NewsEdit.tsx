@@ -9,6 +9,7 @@ import NewsEditLinkBtnInput from "../../components/news/NewsEditLinkBtnInput";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
 import { getCurrentDate } from "../../utils/getCurrentDate";
+import { toastAlert } from "../../utils/toastAlert";
 
 import api from "../../api/api";
 
@@ -102,7 +103,6 @@ const NewsEdit = () => {
     }
   }, [selectedCategoryIndex, setValue]);
 
-  // 바깥 클릭 시 드롭다운 닫기
   useEffect(() => {
     if (isOutside) {
       setIsCategoryOpen(false);
@@ -133,18 +133,21 @@ const NewsEdit = () => {
         await api.patch(`/news/${id}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
+        toastAlert("게시글이 수정되었습니다.", "success");
       } else {
         await api.post("/news/new", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
+        toastAlert("게시글이 추가되었습니다.", "success");
       }
+
       if (isAdmin) {
         navigate("/admin/news");
       } else {
         navigate("/news");
       }
-    } catch {
-      console.error("Error submitting form");
+    } catch (error) {
+      alert(error);
     }
   };
 
