@@ -97,7 +97,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
         </ul>
         <div className="relative w-full">
           <input
-            className="w-full h-full border border-[var(--grey3)] rounded-[30px] pl-[20px] "
+            className="w-full h-full border border-[var(--grey3)] rounded-[30px] pl-[20px] focus:outline-none cursor-pointer"
             placeholder="회사명을 입력하세요."
             value={searchInput}
             onChange={(e) => {
@@ -115,9 +115,9 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
           <img
             src={serchIcon}
             alt="검색 버튼"
-            className="absolute e right-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
+            className="absolute e right-[20px] top-1/2 -translate-y-1/2 cursor-pointer "
             onClick={() => {
-              if (setName ) {
+              if (setName) {
                 setCategory?.("");
                 setName(searchInput ?? "");
               }
