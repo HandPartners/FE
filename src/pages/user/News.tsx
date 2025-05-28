@@ -139,7 +139,7 @@ const News: React.FC = () => {
                   setActiveTab(tab);
                 }}
                 className={clsx(
-                  "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold transition-colors duration-200 cursor-pointer",
+                  "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-[#FFF]",
                   activeTab === tab && "bg-[#00AEEF] text-white"
                 )}
               >
