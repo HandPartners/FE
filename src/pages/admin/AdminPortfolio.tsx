@@ -6,6 +6,7 @@ import PortfolioAddModal from "../../components/portfolio/modal/AddPortfolioModa
 import EditProtfolioModal from "../../components/portfolio/modal/EditPortfolioModal";
 import DeleteModal from "../../components/portfolio/modal/DeleteModal";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
+import AdminAddButton from "../../components/adminAddButton";
 import {
   addPortfolio,
   editPortfolio,
@@ -148,12 +149,10 @@ const AdminPortfolio = () => {
 
       {/* 포트폴리오 추가 버튼 */}
       <div className="flex justify-end w-full">
-        <button
-          className="h5-bold cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#FFF] flex bg-[var(--sub)] rounded-[30px] px-[40px] py-[16px] my-[50px] items-end"
-          onClick={() => setAddModalOpen(true)}
-        >
-          포트폴리오 추가
-        </button>
+        <AdminAddButton
+          handleClick={() => setAddModalOpen(true)}
+          title={"포트폴리오 추가"}
+        />
       </div>
 
       {/* 포트폴리오 리스트 */}
