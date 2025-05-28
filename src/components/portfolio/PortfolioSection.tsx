@@ -39,7 +39,6 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
               category === "" ? `bg-[var(--sub)] text-[#FFF]` : ``
             }`}
             onClick={() => {
-              console.log("ALL 클릭됨");
               if (setCategory) {
                 setCategory("");
               }
@@ -52,7 +51,6 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
               category === "ICT" ? `bg-[var(--sub)]  text-[#FFF]` : ``
             }`}
             onClick={() => {
-              console.log("ICT 클릭됨");
               if (setCategory) {
                 setCategory("ICT");
               }
@@ -108,6 +106,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 if (setName) {
+                  setCategory?.("");
                   setName(searchInput ?? "");
                 }
               }
@@ -118,8 +117,9 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             alt="검색 버튼"
             className="absolute e right-[20px] top-1/2 -translate-y-1/2 cursor-pointer"
             onClick={() => {
-              if (setName && searchInput) {
-                setName(searchInput);
+              if (setName ) {
+                setCategory?.("");
+                setName(searchInput ?? "");
               }
             }}
           />
@@ -140,8 +140,8 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
                   !isAdmin ? "" : "cursor-pointer"
                 } h-[310px] flex flex-col border border-[var(--grey3)]`}
                 onClick={() => {
-                  if (setPortfolioId) setPortfolioId(item.id); // 포트폴리오 id 넘김
-                  if (setIsEditModalOpen) setIsEditModalOpen(true); // 모달 열기
+                  if (setPortfolioId) setPortfolioId(item.id);
+                  if (setIsEditModalOpen) setIsEditModalOpen(true);
                   if (setFormData) {
                     setFormData({
                       category: item.category,
