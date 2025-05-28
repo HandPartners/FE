@@ -30,6 +30,7 @@ interface NewsResponse {
 type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 import bannerImg from "../../assets/images/banner/NewsBanner.png";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
+import FadeInItem from "../../components/main/FadeInItem";
 const tabs = [
   "ALL",
   "Consulting",
@@ -168,7 +169,9 @@ const News: React.FC = () => {
 
         <section className="px-[3.203125%]">
           {newsList.map((item) => (
-            <EachNews key={item.id} id={item.id} item={item} />
+            <FadeInItem>
+              <EachNews key={item.id} id={item.id} item={item} />
+            </FadeInItem>
           ))}
         </section>
 
