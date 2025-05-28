@@ -11,12 +11,17 @@ const TitleLine: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="flex items-center gap-[20px] w-full">
       <h1 className="h1-bold whitespace-nowrap">{children}</h1>
-      <div className="flex items-center w-full">
-        <img src={ic_line_circle} alt="ic_line_circle" />
-        <hr className="w-full h-[2px] bg-[#2E3093]" />
+      <div className="relative flex items-center w-full overflow-hidden">
+        <img
+          src={ic_line_circle}
+          alt="ic_line_circle"
+          className="relative z-10 "
+        />
+        <hr className="absolute left-1  w-full h-[2px] bg-[#2E3093]" />
       </div>
     </div>
   );
 };
 
 export default TitleLine;
+
