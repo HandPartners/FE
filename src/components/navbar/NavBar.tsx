@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import logo from "../assets/logo.svg";
-import hamburgerBtn from "../assets/images/hamburgerBtn.svg";
+import logo from "../../assets/logo.svg";
+import hamburgerBtn from "../../assets/images/hamburgerBtn.svg";
 import { useState } from "react";
-import NavBarBtn from "./navbar/NavBarBtn";
-import SideMenuDialog from "./navbar/SideMenuDialog";
+import NavBarBtn from "./NavBarBtn";
+import SideMenuDialog from "./SideMenuDialog";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const NavBar = () => {
         />
       )}
       <nav
-        className="flex justify-start px-[5.59796437659033%] 2xl:pxx-0 2xl:justify-center items-center relative h-[70px] w-screen z-10 "
+        className="flex justify-start px-[5.59796437659033%] 2xl:px-0 2xl:justify-center items-center relative h-[70px] w-screen z-10 "
         style={{ boxShadow: "0px 2px 3.5px 0px var(--Main, #2E3092)" }}
       >
         <div className="flex justify-between items-center w-full 2xl:w-[64%] 2xl:min-w-[1228px] ">
@@ -32,10 +32,12 @@ const NavBar = () => {
             src={logo}
             alt="회사 로고"
             onClick={() => navigate(isAdmin ? "/admin" : "/")}
-            className="cursor-pointer"
+            className="cursor-pointer w-[129.299px] md:w-[197px]"
           ></img>
+
+          {/* 햄버거 버튼 (768px 미만) */}
           <button
-            className="block 2xl:hidden cursor-pointer"
+            className="block w-[20px] h-[16px] md:hidden cursor-pointer"
             onClick={() => {
               setOpenDialog(true);
             }}
@@ -43,7 +45,8 @@ const NavBar = () => {
             <img src={hamburgerBtn} alt="≡" />
           </button>
 
-          <div className="hidden 2xl:flex gap-[64px]">
+          {/* 네비게이션 버튼 (768px 이상) */}
+          <div className="hidden md:flex gap-[64px]">
             <NavBarBtn isAdmin={isAdmin} path="about">
               About
             </NavBarBtn>

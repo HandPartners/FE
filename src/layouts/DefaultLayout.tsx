@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import NavBar from "../components/NavBar";
+import NavBar from "../components/navbar/NavBar";
 import ScrollToTop from "../components/ScrollToTop";
 
 const DefaultLayout = () => {

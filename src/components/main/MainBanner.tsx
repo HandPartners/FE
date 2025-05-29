@@ -31,14 +31,14 @@ const MainBanner = () => {
   };
 
   return (
-    <div className="relative  w-screen min-w-[1280px] mt-[40px] ">
-      <div className="relative h-[500px] w-full">
+    <div className="relative h-[200px] md:h-[500px]  w-screen  mt-[20px] md:mt-[40px]  ">
+      <div className="relative w-full ">
         {bannerImages.map((img, idx) => (
           <img
             key={idx}
             src={img}
             alt={`배너 ${idx + 1}`}
-            className={`absolute top-0 left-0  w-full  h-[500px] flex-shrink-0 object-cover  transition-opacity duration-1000 ${
+            className={`absolute top-0 left-0  w-full  h-[200px] md:h-[500px] flex-shrink-0 object-cover  transition-opacity duration-1000 ${
               idx === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           />
@@ -55,8 +55,7 @@ const MainBanner = () => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="74"
+            className="md:w-[50px] md:h-[74px] w-[20.27px] h-[30px]"
             viewBox="0 0 50 74"
             fill="none"
           >
@@ -76,8 +75,7 @@ const MainBanner = () => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="74"
+            className="md:w-[50px] md:h-[74px] w-[20.27px] h-[30px]"
             viewBox="0 0 50 74"
             fill="none"
           >
@@ -90,11 +88,11 @@ const MainBanner = () => {
       </div>
 
       {/* 인디케이터 */}
-      <div className="absolute mt-[40px] flex gap-[20px] transform -translate-x-1/2 z-100 top-100 left-[50%]">
+      <div className="absolute  flex gap-[20px] transform -translate-x-1/2 z-100 md:bottom-[40px] bottom-[20px] left-[50%]">
         {bannerImages.map((_, idx) => (
           <span
             key={idx}
-            className={`text-[12px] transition-all duration-300 text-[var(--grey4)]`}
+            className={` text-[7px] md:text-[12px] transition-all duration-300 text-[var(--grey4)]`}
           >
             {currentIndex === idx ? "○" : "●"}
           </span>
