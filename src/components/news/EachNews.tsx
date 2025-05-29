@@ -4,6 +4,8 @@ import type { NewsItem } from "../../pages/user/News";
 
 import { parseDate } from "../../utils/parseDate";
 
+import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
+
 interface EachNewsProps {
   id: number;
   item: NewsItem;
@@ -21,9 +23,9 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
       <div
         className="w-[238px] h-[162px] border-[1px] border-[#E2E2E2] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${import.meta.env.VITE_API_URL}/uploads/${
-            item.thumbnail
-          })`,
+          backgroundImage: item.thumbnail
+            ? `url(${import.meta.env.VITE_API_URL}/uploads/${item.thumbnail})`
+            : `url(${default_thumbnail})`,
         }}
       ></div>
 
