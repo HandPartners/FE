@@ -69,7 +69,11 @@ const NewsDetail = () => {
         <div className="flex justify-between w-full">
           <button
             onClick={() => {
-              navigate(-1);
+              if (isAdmin) {
+                navigate("/admin/news");
+              } else {
+                navigate("/news");
+              }
             }}
             className="h5-medium flex items-center gap-[10px] cursor-pointer"
           >
@@ -83,7 +87,7 @@ const NewsDetail = () => {
                     navigate(`/admin/news/edit/${id}`);
                   }
                 }}
-                className="h4-bold flex items-center cursor-pointer"
+                className="flex items-center cursor-pointer h4-bold"
               >
                 수정
               </button>
@@ -91,7 +95,7 @@ const NewsDetail = () => {
                 onClick={() => {
                   setShowDeleteModal(true);
                 }}
-                className="h4-bold flex items-center cursor-pointer"
+                className="flex items-center cursor-pointer h4-bold"
               >
                 삭제
               </button>
