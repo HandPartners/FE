@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 import MainBanner from "../../components/main/MainBanner";
 import TitleLine from "../../components/TitleLine";
@@ -26,6 +27,9 @@ const Main = () => {
 
   const contactRef = useRef<HTMLDivElement | null>(null); // CONTACT 섹션 참조
   const navigate = useNavigate();
+
+  const windowWidth = useWindowWidth();
+  const isMobile = !windowWidth.md;
 
   useEffect(() => {
     const fetchMainData = async () => {
@@ -63,11 +67,19 @@ const Main = () => {
     <>
       <main className=" flex flex-col items-center w-[1280px] max-w-full h-full mx-auto relative ">
         {/* 배너 */}
-        <div className="absolute top-[99px] left-[85px] z-100 flex flex-col  gap-[36px] w-fit">
-          <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
+        <div className="absolute  top-[54px] md:top-[100px] left-[85px] z-100 flex flex-col  md:gap-[3px] w-fit">
+          <h1
+            className={` ${
+              isMobile
+                ? "h4-bold"
+                : "text-[48px] font-bold leading-[60px] tracking-[-0.96px]"
+            } whitespace-nowrap `}
+          >
             HAND PARTNERS
           </h1>
-          <h3 className="h3-medium">Have A Nice Day</h3>
+          <h3 className={`${isMobile ? "p-small-medium" : "h3 - medium"}`}>
+            Have A Nice Day
+          </h3>
         </div>
         <MainBanner />
 
