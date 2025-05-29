@@ -330,7 +330,12 @@ const NewsEdit = () => {
           </button>
           <button
             type="submit"
-            className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer"
+            className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer transition-colors hover:bg-[#059DD7] active:bg-[#058BBF] disabled:bg-[#B2E6FA] disabled:cursor-default"
+            disabled={
+              watch("category") === "" ||
+              watch("title") === "" ||
+              watch("content") === ""
+            }
           >
             등록
           </button>

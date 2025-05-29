@@ -23,7 +23,7 @@ const ModalButton: React.FC<ModalButtonProps> = ({
       disabled={disabled}
       className={` ${font} ${textColor} py-[14px] rounded-[5px] w-full h-[52px]   ${
         disabled
-          ? `${disabledColor} cursor-not-allowed`
+          ? `${disabledColor} cursor-default`
           : `${backGroundColor} cursor-pointer`
       }
 `}
