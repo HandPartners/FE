@@ -35,7 +35,7 @@ const NavBar = () => {
             className="cursor-pointer"
           ></img>
           <button
-            className="block 2xl:hidden"
+            className="block 2xl:hidden cursor-pointer"
             onClick={() => {
               setOpenDialog(true);
             }}
