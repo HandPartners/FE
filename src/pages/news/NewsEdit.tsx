@@ -16,16 +16,18 @@ import api from "../../api/api";
 import ic_check_colored from "../../assets/images/news/ic_check_colored.svg";
 import ic_check_mono from "../../assets/images/news/ic_check_mono.svg";
 import ic_up from "../../assets/images/news/ic_up.svg";
+import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
 
 type FormValues = {
   category: string;
   title: string;
   content: string;
-  thumbnail?: File[];
+  thumbnail?: File[] | string;
   image?: File[];
   shortcut?: string;
   link?: string;
   visible: boolean;
+  keepImages: string[];
 };
 
 const NewsEdit = () => {
@@ -42,6 +44,9 @@ const NewsEdit = () => {
 
   const isAdmin = window.location.pathname.startsWith("/admin");
   const isEditing = window.location.pathname.includes("edit");
+
+  const [existingImages, setExistingImages] = useState<string[]>([]);
+  const [data, setData] = useState<FormValues | null>(null);
 
   const categories = [
     "Consulting",
@@ -60,6 +65,7 @@ const NewsEdit = () => {
         try {
           const { data } = await api.get(`/news/update/${id}`);
 
+          data.news.image = parseImgArrayJson(data.news.image);
           const newsData = data.news;
 
           setValue("category", newsData.category);
@@ -74,6 +80,11 @@ const NewsEdit = () => {
           setValue("shortcut", newsData.shortcut);
           setValue("link", newsData.link);
           setValue("visible", newsData.visible);
+          if (newsData.thumbnail) {
+            setValue("thumbnail", newsData.thumbnail);
+          }
+          setData(newsData);
+          setExistingImages(newsData.image);
         } catch (error) {
           console.error("뉴스 불러오기 실패", error);
         }
@@ -109,6 +120,10 @@ const NewsEdit = () => {
     }
   }, [isOutside]);
 
+  useEffect(() => {
+    setValue("keepImages", existingImages);
+  }, [existingImages, setValue]);
+
   const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
     formData.append("category", data.category);
@@ -127,6 +142,9 @@ const NewsEdit = () => {
       formData.append("link", data.link);
     }
     formData.append("visible", String(data.visible));
+    if (data.keepImages) {
+      formData.append("keepImages", JSON.stringify(data.keepImages));
+    }
 
     try {
       if (isEditing && id) {
@@ -230,6 +248,7 @@ const NewsEdit = () => {
                 onChange={(files: File[]) => {
                   setValue("thumbnail", files);
                 }}
+                existFileName={data?.thumbnail}
               >
                 표지 이미지
               </NewsEditFileInput>
@@ -246,6 +265,12 @@ const NewsEdit = () => {
                 onChange={(files: File[]) => {
                   setValue("image", files);
                 }}
+                existFileName={existingImages}
+                onRemoveExisting={(index) =>
+                  setExistingImages((imgs) =>
+                    imgs.filter((_, i) => i !== index)
+                  )
+                }
               >
                 본문 이미지
               </NewsEditFileInput>
@@ -305,7 +330,12 @@ const NewsEdit = () => {
           </button>
           <button
             type="submit"
-            className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer"
+            className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer transition-colors hover:bg-[#059DD7] active:bg-[#058BBF] disabled:bg-[#B2E6FA] disabled:cursor-default"
+            disabled={
+              watch("category") === "" ||
+              watch("title") === "" ||
+              watch("content") === ""
+            }
           >
             등록
           </button>

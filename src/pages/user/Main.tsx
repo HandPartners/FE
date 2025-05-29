@@ -9,6 +9,7 @@ import type { portfolioList, newsItem } from "../../api/MainApi";
 import { useRef } from "react"; // 추가
 import FadeInItem from "../../components/main/FadeInItem";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
+import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
 declare global {
   interface Window {
     scrollToContact?: () => void;
@@ -209,7 +210,13 @@ const Main = () => {
                     }
                   >
                     <img
-                      src={item.thumbnail}
+                      src={
+                        item.thumbnail
+                          ? `${import.meta.env.VITE_API_URL}/uploads/${
+                              item.thumbnail
+                            }`
+                          : default_thumbnail
+                      }
                       className="w-[238px] h-full  object-cover"
                     ></img>
                     <section className="flex flex-col gap-[12px] h-full w-full ">
