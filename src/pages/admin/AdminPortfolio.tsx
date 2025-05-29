@@ -17,6 +17,7 @@ import type {
   AddPortfolioBody,
   ResponsePortfolioList,
 } from "../../api/PortfolioApi";
+import { toastAlert } from "../../utils/toastAlert";
 
 const AdminPortfolio = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -81,7 +82,7 @@ const AdminPortfolio = () => {
 
       const response = await addPortfolio(formData);
       if (response.success) {
-        alert("포트폴리오 추가되었습니다.");
+        toastAlert("포트폴리오가 추가되었습니다!", "success");
         setAddModalOpen(false); // 모달 닫기
         fetchPortfolioList(); // ✅ 리스트 갱신
       }
@@ -110,7 +111,7 @@ const AdminPortfolio = () => {
       const result = await editPortfolio({ id: portfolioId, formData: data });
 
       if (result.success) {
-        alert("포트폴리오가 수정되었습니다.");
+        toastAlert("포트폴리오가 수정되었습니다.", "success");
         setEditModalOpen(false);
         setFormData(initialFormData);
         fetchPortfolioList();
@@ -125,7 +126,7 @@ const AdminPortfolio = () => {
     try {
       const result = await deletePortfolio({ id: portfolioId });
       if (result.success) {
-        alert("포트폴리오가 삭제되었습니다.");
+        toastAlert("포트폴리오가 삭제되었습니다.", "success");
         setEditModalOpen(false);
         setDeleteModalOpen(false);
         fetchPortfolioList();

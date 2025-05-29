@@ -1,11 +1,14 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import DeleteModal from "../../components/portfolio/modal/DeleteModal";
+
+import { parseDate } from "../../utils/parseDate";
+import { toastAlert } from "../../utils/toastAlert";
+
 import api from "../../api/api";
 
 import ic_back from "../../assets/images/ic_back.svg";
-import { parseDate } from "../../utils/parseDate";
-import DeleteModal from "../../components/portfolio/modal/DeleteModal";
 
 interface NewsItem {
   id: number;
@@ -53,6 +56,7 @@ const NewsDetail = () => {
   const onDeleteNews = async () => {
     try {
       await api.delete(`/news/${id}`);
+      toastAlert("게시글이 삭제되었습니다.", "success");
       navigate("/admin/news");
     } catch (error) {
       alert(error);
