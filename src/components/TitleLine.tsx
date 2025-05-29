@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 
 import ic_line_circle from "../assets/images/ic_line_circle.svg";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 /**
  * 선과 함께 있는 제목 component
@@ -8,9 +9,13 @@ import ic_line_circle from "../assets/images/ic_line_circle.svg";
  * @returns
  */
 const TitleLine: React.FC<PropsWithChildren> = ({ children }) => {
+  const windowWidth = useWindowWidth();
+  const isMobile = !windowWidth.md;
   return (
     <div className="flex items-center gap-[20px] w-full">
-      <h1 className="h1-bold whitespace-nowrap">{children}</h1>
+      <h1 className={` whitespace-nowrap ${isMobile ? "h5-bold" : " h1-bold"}`}>
+        {children}
+      </h1>
       <div className="relative flex items-center w-full overflow-hidden">
         <img
           src={ic_line_circle}
@@ -24,4 +29,3 @@ const TitleLine: React.FC<PropsWithChildren> = ({ children }) => {
 };
 
 export default TitleLine;
-

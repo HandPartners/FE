@@ -77,7 +77,7 @@ const Main = () => {
           >
             HAND PARTNERS
           </h1>
-          <h3 className={`${isMobile ? "p-small-medium" : "h3 - medium"}`}>
+          <h3 className={`${isMobile ? "p-small-medium" : "h3-medium"}`}>
             Have A Nice Day
           </h3>
         </div>
@@ -86,29 +86,39 @@ const Main = () => {
         {/* 슬로건 */}
         <FadeInItem>
           <div
-            className="flex flex-col items-center w-screen  py-[54px] gap-[30px] mt-[30px]"
+            className={`flex flex-col items-center w-screen  py-[15px] gap-[7px] mt-[20px] md:mt-[30px]  md:py-[54px] md:gap-[30px]`}
             style={{ boxShadow: "8px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
           >
             <section className="flex flex-col items-center ">
-              <h2 className="text-[#2E3093] slogan-h ">
+              <h2
+                className={`text-[#2E3093] ${
+                  isMobile ? "p-medium-bold" : " slogan-h "
+                }`}
+              >
                 회사 슬로건 슬로건 슬로건
               </h2>
-              <p className="text-[var(--grey5)] slogan-p ">
+              <p
+                className={`text-[var(--grey5)]  ${
+                  isMobile ? "p-small-bold" : " slogan-p "
+                }`}
+              >
                 회사 슬로건 슬로건 슬로건
               </p>
             </section>
 
             <span
-              className="cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
+              className={`cursor-pointer  transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${
+                isMobile ? "p-small-bold" : " p-large-bold"
+              }`}
               onClick={() => navigate("about", { relative: "path" })}
             >
               About →
             </span>
           </div>
         </FadeInItem>
-        <div className="flex flex-col gap-[200px] mt-[50px]">
+        <div className="flex flex-col gap-[200px] mt-[50px] ">
           {/* 프로그램 */}
-          <section className="flex flex-col w-[1280px] mx-auto gap-[50px]">
+          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[50px]">
             <TitleLine>PROGRAM</TitleLine>
             <FadeInItem>
               <div className="flex flex-row gap-[20px]  ">
@@ -175,7 +185,7 @@ const Main = () => {
           </section>
 
           {/* 포트폴리오 */}
-          <section className="flex flex-col w-full gap-[50px]">
+          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[50px]">
             <TitleLine>PORTFOLIO</TitleLine>
             <div className=" grid h-[408px] grid-cols-5 grid-rows-3 gap-x-[24px] gap-y-[30px] px-[40px]">
               {items.map((item) => {
@@ -210,7 +220,7 @@ const Main = () => {
           </section>
 
           {/* 뉴스 */}
-          <section className="flex flex-col gap-[44px]">
+          <section className="flex flex-col gap-[44px] md:w-[1280px] w-[84.7svw] mx-auto ">
             <TitleLine>NEWS</TitleLine>
             <div>
               {newsList.map((item) => (
@@ -261,7 +271,7 @@ const Main = () => {
           </section>
           {/* 콘택트 */}
           <section
-            className=" flex flex-col gap-[44px] mb-[99px]"
+            className=" flex flex-col gap-[44px] mb-[99px] md:w-[1280px] w-[84.7svw] mx-auto "
             ref={contactRef}
           >
             <TitleLine>CONTACT</TitleLine>
