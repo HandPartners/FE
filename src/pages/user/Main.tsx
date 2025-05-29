@@ -254,7 +254,7 @@ const Main = () => {
               {newsList.map((item) => (
                 <FadeInItem key={item.id}>
                   <div
-                    className="border-b h-[210px] py-[24px] px-[41px] border-[var(--grey3)] flex flex-row gap-[36px] cursor-pointer "
+                    className="border-b h-[119px]  py-[20px] px-[10px] md:h-[210px] md:py-[24px] md:px-[41px] border-[var(--grey3)] flex flex-row gap-[20px] md:gap-[36px] cursor-pointer "
                     onClick={() =>
                       navigate(`news/${item.id}`, { relative: "path" })
                     }
@@ -267,21 +267,41 @@ const Main = () => {
                             }`
                           : default_thumbnail
                       }
-                      className="w-[238px] h-full  object-cover"
+                      className="w-[116px] md:w-[238px] h-full  object-coverm border border-[var(--grey3)]"
                     ></img>
-                    <section className="flex flex-col gap-[12px] h-full w-full ">
-                      <section className="flex flex-col gap-[7px]">
-                        <span className="text-[#2E3093] h5-bold">
+                    <section className="flex flex-col gap-[3px] md:gap-[12px] h-full w-full   ">
+                      <section className="flex flex-col md:gap-[7px] w-full  h-[62px] md:h-[130px]">
+                        <span
+                          className={`text-[#2E3093]  h-fit flex items-center ${
+                            isMobile ? "p-xs-bold" : "h5-bold"
+                          }`}
+                        >
                           {item.category}
                         </span>
-                        <h2 className="w-full truncate h4-bold">
+                        <h2
+                          className={`w-[100%]  h-[48px] md:h-fit  overflow-hidden  text-ellipsis line-clamp-2 md:ine-clamp-1 flex  ${
+                            isMobile ? "p-medium-bold" : "h4-bold"
+                          }`}
+                        >
                           {item.title}
                         </h2>
-                        <p className="p-large-bold w-full h-[56px] text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2">
-                          {item.content}
-                        </p>
+                        {isMobile ? (
+                          <></>
+                        ) : (
+                          <p
+                            className={`w-full h-fit text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2  
+                             p-large-bold
+                            `}
+                          >
+                            {item.content}
+                          </p>
+                        )}
                       </section>
-                      <p className="p-small-bold text-[var(--grey5)] truncate">
+                      <p
+                        className={`text-[var(--grey5)]  h-fit truncate ${
+                          isMobile ? "p-xs-bold " : "p-small-bold"
+                        }`}
+                      >
                         {item.createdAt}
                       </p>
                     </section>
