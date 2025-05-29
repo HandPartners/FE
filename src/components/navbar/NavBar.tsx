@@ -37,7 +37,7 @@ const NavBar = () => {
 
           {/* 햄버거 버튼 (768px 미만) */}
           <button
-            className="block w-[20px] h-[16px] md:hidden"
+            className="block w-[20px] h-[16px] md:hidden cursor-pointer"
             onClick={() => {
               setOpenDialog(true);
             }}
