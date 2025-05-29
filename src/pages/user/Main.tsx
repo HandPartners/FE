@@ -220,30 +220,39 @@ const Main = () => {
           {/* 포트폴리오 */}
           <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
             <TitleLine>PORTFOLIO</TitleLine>
-            <div className="grid grid-cols-2 grid-rows-5 gap-x-[17.4px]  gap-y-[31px]   md:h-[408px] md:grid-cols-5 md:grid-rows-3 md:gap-x-[24px] md:gap-y-[30px] md:px-[40px]">
-              {items.slice(0, maxPorfolio).map((item) => {
-                return (
-                  <FadeInItem key={item.id}>
-                    <div className="border border-[var(--grey3)] h-[100%] w-[100%]  max-w-[216px] max-h-[120px] mx-auto flex justify-center">
-                      <img
-                        src={`${import.meta.env.VITE_API_URL}/uploads/${
-                          item.logo
-                        }`}
-                        alt={`portfolio-${item.id}`}
-                        className="object-contain h-full p-[20px] "
-                      />
-                    </div>
-                  </FadeInItem>
-                );
-              })}
 
-              {/* 빈 칸 채우기 */}
-              {Array.from({ length: emptySlots }).map((_, index) => (
-                <FadeInItem key={`empty-${index}`}>
-                  <div className="border border-[var(--grey3)]   h-[100%] w-[100%] max-h-[120px]  max-w-[216px] mx-auto"></div>
-                </FadeInItem>
-              ))}
-            </div>
+            {items.length === 0 ? (
+              <p className="text-center text-[var(--grey5)] p-large-bold">
+                포트폴리오가 존재하지 않습니다.
+              </p>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 grid-rows-5 gap-x-[17.4px] min-w-[312.6px]  gap-y-[31px]  md:h-[408px] md:grid-cols-5 md:grid-rows-3 md:gap-x-[24px] md:gap-y-[30px] md:px-[40px]">
+                  {items.slice(0, maxPorfolio).map((item) => {
+                    return (
+                      <FadeInItem key={item.id}>
+                        <div className="border border-[var(--grey3)] h-[100%] min-h-[80px] min-w-[147.6px] w-[100%] max-w-[216px] max-h-[120px] mx-auto flex justify-center">
+                          <img
+                            src={`${import.meta.env.VITE_API_URL}/uploads/${
+                              item.logo
+                            }`}
+                            alt={`portfolio-${item.id}`}
+                            className="object-contain h-full p-[20px]  "
+                          />
+                        </div>
+                      </FadeInItem>
+                    );
+                  })}
+                  {/* 빈 칸 채우기 */}
+                  {Array.from({ length: emptySlots }).map((_, index) => (
+                    <FadeInItem key={`empty-${index}`}>
+                      <div className="border border-[var(--grey3)]   h-[100%] w-[100%] max-h-[120px]  max-w-[216px] mx-auto"></div>
+                    </FadeInItem>
+                  ))}
+                </div>
+              </>
+            )}
+
             <span
               className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
                 isMobile ? "p-medium-bold" : " p-large-bold"
@@ -257,66 +266,71 @@ const Main = () => {
           {/* 뉴스 */}
           <section className="flex flex-col  md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]">
             <TitleLine>NEWS</TitleLine>
-            <div>
-              {newsList.map((item) => (
-                <FadeInItem key={item.id}>
-                  <div
-                    className="border-b h-[119px]  py-[20px] px-[10px] md:h-[210px] md:py-[24px] md:px-[41px] border-[var(--grey3)] flex flex-row gap-[20px] md:gap-[36px] cursor-pointer "
-                    onClick={() =>
-                      navigate(`news/${item.id}`, { relative: "path" })
-                    }
-                  >
-                    <img
-                      src={
-                        item.thumbnail
-                          ? `${import.meta.env.VITE_API_URL}/uploads/${
-                              item.thumbnail
-                            }`
-                          : default_thumbnail
+            {items.length === 0 ? (
+              <p className="text-center text-[var(--grey5)] p-large-bold">
+                게시글이 존재하지 않습니다.
+              </p>
+            ) : (
+              <div>
+                {newsList.map((item) => (
+                  <FadeInItem key={item.id}>
+                    <div
+                      className="border-b h-[119px]  py-[20px] px-[10px] md:h-[210px] md:py-[24px] md:px-[41px] border-[var(--grey3)] flex flex-row gap-[20px] md:gap-[36px] cursor-pointer "
+                      onClick={() =>
+                        navigate(`news/${item.id}`, { relative: "path" })
                       }
-                      className="w-[116px] md:w-[238px] h-full  object-coverm border border-[var(--grey3)]"
-                    ></img>
-                    <section className="flex flex-col gap-[3px] md:gap-[12px] h-full w-full   ">
-                      <section className="flex flex-col md:gap-[7px] w-full  h-[62px] md:h-[130px]">
-                        <span
-                          className={`text-[#2E3093]  h-fit flex items-center ${
-                            isMobile ? "p-xs-bold" : "h5-bold"
-                          }`}
-                        >
-                          {item.category}
-                        </span>
-                        <h2
-                          className={`w-[100%]  h-[48px] md:h-fit  overflow-hidden  text-ellipsis line-clamp-2 md:ine-clamp-1 flex  ${
-                            isMobile ? "p-medium-bold" : "h4-bold"
-                          }`}
-                        >
-                          {item.title}
-                        </h2>
-                        {isMobile ? (
-                          <></>
-                        ) : (
-                          <p
-                            className={`w-full h-fit text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2  
+                    >
+                      <img
+                        src={
+                          item.thumbnail
+                            ? `${import.meta.env.VITE_API_URL}/uploads/${
+                                item.thumbnail
+                              }`
+                            : default_thumbnail
+                        }
+                        className="w-[116px] md:w-[238px] h-full  object-coverm border border-[var(--grey3)]"
+                      ></img>
+                      <section className="flex flex-col gap-[3px] md:gap-[12px] h-full w-full   ">
+                        <section className="flex flex-col md:gap-[7px] w-full  h-[62px] md:h-[130px]">
+                          <span
+                            className={`text-[#2E3093]  h-fit flex items-center ${
+                              isMobile ? "p-xs-bold" : "h5-bold"
+                            }`}
+                          >
+                            {item.category}
+                          </span>
+                          <h2
+                            className={`w-[100%]  h-[48px] md:h-fit  overflow-hidden  text-ellipsis line-clamp-2 md:ine-clamp-1 flex  ${
+                              isMobile ? "p-medium-bold" : "h4-bold"
+                            }`}
+                          >
+                            {item.title}
+                          </h2>
+                          {isMobile ? (
+                            <></>
+                          ) : (
+                            <p
+                              className={`w-full h-fit text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2  
                              p-large-bold
                             `}
-                          >
-                            {item.content}
-                          </p>
-                        )}
+                            >
+                              {item.content}
+                            </p>
+                          )}
+                        </section>
+                        <p
+                          className={`text-[var(--grey5)]  h-fit truncate ${
+                            isMobile ? "p-xs-bold " : "p-small-bold"
+                          }`}
+                        >
+                          {parseDate(item.createdAt)}
+                        </p>
                       </section>
-                      <p
-                        className={`text-[var(--grey5)]  h-fit truncate ${
-                          isMobile ? "p-xs-bold " : "p-small-bold"
-                        }`}
-                      >
-                        {parseDate(item.createdAt)}
-                      </p>
-                    </section>
-                  </div>
-                </FadeInItem>
-              ))}
-            </div>
-
+                    </div>
+                  </FadeInItem>
+                ))}
+              </div>
+            )}
             <span
               className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
                 isMobile ? "p-medium-bold" : " p-large-bold"
