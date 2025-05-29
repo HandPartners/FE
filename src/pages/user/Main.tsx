@@ -1,22 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+// @ts-expect-error: Swiper CSS에는 타입 선언 파일이 없음
+import "swiper/css";
+// @ts-expect-error: Swiper pagination CSS는 타입 정의가 존재하지 않음
+import "swiper/css/pagination";
+import "../../styles/swiper.css";
+
 import useWindowWidth from "../../hooks/useWindowWidth";
 
 import MainBanner from "../../components/main/MainBanner";
 import TitleLine from "../../components/TitleLine";
-import { useNavigate } from "react-router-dom";
-import ProgramImg from "../../../public/programMain.png";
-import { getMain } from "../../api/MainApi";
-import type { portfolioList, newsItem } from "../../api/MainApi";
-import { useRef } from "react"; // 추가
 import FadeInItem from "../../components/main/FadeInItem";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
+
+import ProgramImg from "../../../public/programMain.png";
 import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import "../../styles/swiper.css";
+import { getMain } from "../../api/MainApi";
+import type { portfolioList, newsItem } from "../../api/MainApi";
+
 import { parseDate } from "../../utils/parseDate";
 
 declare global {
