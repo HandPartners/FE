@@ -52,14 +52,14 @@ const Main = () => {
   const [newsList, setNewsList] = useState<newsItem[]>([]);
 
   const items = portfolioList.slice(0, 15);
-  const totalSlots = 15;
-  const emptySlots = totalSlots - items.length;
 
   const contactRef = useRef<HTMLDivElement | null>(null); // CONTACT 섹션 참조
   const navigate = useNavigate();
 
   const windowWidth = useWindowWidth();
   const isMobile = !windowWidth.md;
+  const maxPorfolio = isMobile ? 10 : 15;
+  const emptySlots = maxPorfolio - items.length;
 
   useEffect(() => {
     const fetchMainData = async () => {
@@ -116,10 +116,10 @@ const Main = () => {
         {/* 슬로건 */}
         <FadeInItem>
           <div
-            className={`flex flex-col items-center w-screen  py-[15px] gap-[7px] mt-[20px] md:mt-[30px]  md:py-[54px] md:gap-[30px]`}
+            className={`flex flex-col items-center w-screen py-[15px] gap-[7px] mt-[20px] md:mt-[30px] md:py-[54px]  md:gap-[30px]`}
             style={{ boxShadow: "8px 0px 4px 0px rgba(0, 0, 0, 0.25)" }}
           >
-            <section className="flex flex-col items-center ">
+            <section className="flex flex-col items-center">
               <h2
                 className={`text-[#2E3093] ${
                   isMobile ? "p-medium-bold" : " slogan-h "
@@ -146,6 +146,7 @@ const Main = () => {
             </span>
           </div>
         </FadeInItem>
+
         <div className="flex flex-col md:gap-[200px] gap-[100px] mt-[50px] ">
           {/* 프로그램 */}
           <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
@@ -212,17 +213,17 @@ const Main = () => {
           {/* 포트폴리오 */}
           <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
             <TitleLine>PORTFOLIO</TitleLine>
-            <div className=" grid h-[408px] grid-cols-5 grid-rows-3 gap-x-[24px] gap-y-[30px] px-[40px]">
-              {items.map((item) => {
+            <div className="grid grid-cols-2 grid-rows-5 gap-x-[17.4px]  gap-y-[31px]   md:h-[408px] md:grid-cols-5 md:grid-rows-3 md:gap-x-[24px] md:gap-y-[30px] md:px-[40px]">
+              {items.slice(0, maxPorfolio).map((item) => {
                 return (
                   <FadeInItem key={item.id}>
-                    <div className="border border-[var(--grey3)]">
+                    <div className="border border-[var(--grey3)] h-[100%] w-[100%]  max-w-[216px] max-h-[120px] mx-auto flex justify-center">
                       <img
                         src={`${import.meta.env.VITE_API_URL}/uploads/${
                           item.logo
                         }`}
                         alt={`portfolio-${item.id}`}
-                        className="object-contain h-[120px] p-[20px]"
+                        className="object-contain h-full p-[20px] "
                       />
                     </div>
                   </FadeInItem>
@@ -232,12 +233,14 @@ const Main = () => {
               {/* 빈 칸 채우기 */}
               {Array.from({ length: emptySlots }).map((_, index) => (
                 <FadeInItem key={`empty-${index}`}>
-                  <div className="border border-[var(--grey3)] h-[120px]"></div>
+                  <div className="border border-[var(--grey3)]   h-[100%] w-[100%] max-h-[120px]  max-w-[216px] mx-auto"></div>
                 </FadeInItem>
               ))}
             </div>
             <span
-              className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
+              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
+                isMobile ? "p-medium-bold" : " p-large-bold"
+              }`}
               onClick={() => navigate("portfolio", { relative: "path" })}
             >
               포트폴리오 전체보기 →
@@ -288,7 +291,9 @@ const Main = () => {
             </div>
 
             <span
-              className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
+              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
+                isMobile ? "p-medium-bold" : " p-large-bold"
+              }`}
               onClick={() => navigate("news", { relative: "path" })}
             >
               소식 전체보기 →
