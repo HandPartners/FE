@@ -29,26 +29,43 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
 
   return (
     <Dialog
-      className="side-menu-dialog"
       open={open}
       onClose={onClose}
       TransitionComponent={Transition}
       keepMounted
+      maxWidth={false}
+      scroll="body"
       slotProps={{
-        paper: {
-          style: {
-            margin: 0,
-            position: "absolute",
-            left: 0,
+        container: {
+          sx: {
+            position: "fixed",
             top: 0,
+            left: 0,
             width: "100vw",
-            height: "100%",
+            height: "100dvh",
+            margin: 0,
+            padding: 0,
+            display: "block",
+            overflow: "hidden",
+          },
+        },
+        paper: {
+          sx: {
+            backgroundColor: "white",
+            width: "100vw",
+            height: "100dvh",
             borderRadius: 0,
+            boxShadow: "none",
+            margin: 0,
+            maxWidth: "100vw",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
           },
         },
       }}
     >
-      <div>
+      <div className="h-full overflow-hidden">
         <div className="flex justify-between items-center w-full h-[70px]  pl-[22px] pr-[17px] shadow-[0px_2px_3.5px_0px_var(--Main,_#2E3092)]">
           <img
             src={logo}
@@ -57,12 +74,11 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
             className="cursor-pointer"
           ></img>
           <button>
-            {" "}
             <img
               src={ic_close}
               alt="X"
               onClick={onClose}
-              className="w-[32px] h-[32px]"
+              className="w-[32px] h-[32px] cursor-pointer"
             />
           </button>
         </div>
@@ -81,10 +97,11 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
             News
           </SideMenuBtn>
 
-          <div className="flex flex-col justify-between pl-[6px] h-[68px]">
+          <div className="flex flex-col justify-between pl-[6px] h-[68px] ">
             <span
               className="cursor-pointer flex items-center w-[71px] h-full text-center h5-medium transition-colors duration-250 ease-in-out hover:text-[#b8cce1] "
               onClick={() => {
+                onClose();
                 if (pathname !== (isAdmin ? "/admin" : "/")) {
                   sessionStorage.setItem("scrollToContact", "true");
                   window.location.href = isAdmin ? "/admin" : "/";
