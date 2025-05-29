@@ -1,85 +1,78 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import clsx from "clsx";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import hamburgerBtn from "../assets/images/hamburgerBtn.svg";
+import { useState } from "react";
+import NavBarBtn from "./navbar/NavBarBtn";
+import SideMenuDialog from "./navbar/SideMenuDialog";
 
 const NavBar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const isAdmin = pathname.startsWith("/admin");
 
+  const [openDialog, setOpenDialog] = useState(false);
+
   return (
-    <nav
-      className="flex justify-center items-center relative h-[70px] w-screen z-10 "
-      style={{ boxShadow: "0px 2px 3.5px 0px var(--Main, #2E3092)" }}
-    >
-      <div className="flex justify-between items-center w-[64%] min-w-[1228px] ">
-        <img
-          src={logo}
-          alt="회사 로고"
-          onClick={() => navigate(isAdmin ? "/admin" : "/")}
-          className="cursor-pointer"
-        ></img>
-        <div className="flex gap-[64px]">
-          <NavLink to={isAdmin ? "/admin/about" : "/about"}>
-            {({ isActive }) => (
-              <span
-                className={` cursor-pointer inline-block w-[57px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1]
-                  ${clsx(isActive ? "h5-bold text-main" : "h5-medium")}`}
-              >
-                About
-              </span>
-            )}
-          </NavLink>
-          <NavLink to={isAdmin ? "/admin/program" : "/program"}>
-            {({ isActive }) => (
-              <span
-                className={` cursor-pointer inline-block w-[75px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
-                  isActive ? "h5-bold text-main" : "h5-medium"
-                )}`}
-              >
-                Program
-              </span>
-            )}
-          </NavLink>
-          <NavLink to={isAdmin ? "/admin/portfolio" : "/portfolio"}>
-            {({ isActive }) => (
-              <span
-                className={` cursor-pointer inline-block w-[74px] text-center  transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
-                  isActive ? "h5-bold text-main" : "h5-medium"
-                )}`}
-              >
-                Portfolio
-              </span>
-            )}
-          </NavLink>
-          <NavLink to={isAdmin ? "/admin/news" : "/news"}>
-            {({ isActive }) => (
-              <span
-                className={` cursor-pointer inline-block w-[51px] text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${clsx(
-                  isActive ? "h5-bold text-main" : "h5-medium"
-                )}`}
-              >
-                News
-              </span>
-            )}
-          </NavLink>
-          <span
-            className="cursor-pointer inline-block w-[71px] text-center h5-medium transition-colors duration-250 ease-in-out hover:text-[#b8cce1] "
+    <>
+      {openDialog && (
+        <SideMenuDialog
+          open={openDialog}
+          onClose={() => {
+            setOpenDialog(false);
+          }}
+        />
+      )}
+      <nav
+        className="flex justify-start px-[5.59796437659033%] 2xl:pxx-0 2xl:justify-center items-center relative h-[70px] w-screen z-10 "
+        style={{ boxShadow: "0px 2px 3.5px 0px var(--Main, #2E3092)" }}
+      >
+        <div className="flex justify-between items-center w-full 2xl:w-[64%] 2xl:min-w-[1228px] ">
+          <img
+            src={logo}
+            alt="회사 로고"
+            onClick={() => navigate(isAdmin ? "/admin" : "/")}
+            className="cursor-pointer"
+          ></img>
+          <button
+            className="block 2xl:hidden"
             onClick={() => {
-              if (pathname !== (isAdmin ? "/admin" : "/")) {
-                sessionStorage.setItem("scrollToContact", "true");
-                window.location.href = isAdmin ? "/admin" : "/";
-              } else {
-                window.scrollToContact?.();
-              }
+              setOpenDialog(true);
             }}
           >
-            Contact
-          </span>
+            <img src={hamburgerBtn} alt="≡" />
+          </button>
+
+          <div className="hidden 2xl:flex gap-[64px]">
+            <NavBarBtn isAdmin={isAdmin} path="about">
+              About
+            </NavBarBtn>
+            <NavBarBtn isAdmin={isAdmin} path="program">
+              Program
+            </NavBarBtn>
+            <NavBarBtn isAdmin={isAdmin} path="portfolio">
+              Portfolio
+            </NavBarBtn>
+            <NavBarBtn isAdmin={isAdmin} path="news">
+              News
+            </NavBarBtn>
+            <span
+              className="cursor-pointer inline-block w-[71px] text-center h5-medium transition-colors duration-250 ease-in-out hover:text-[#b8cce1] "
+              onClick={() => {
+                if (pathname !== (isAdmin ? "/admin" : "/")) {
+                  sessionStorage.setItem("scrollToContact", "true");
+                  window.location.href = isAdmin ? "/admin" : "/";
+                } else {
+                  window.scrollToContact?.();
+                }
+              }}
+            >
+              Contact
+            </span>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 
