@@ -27,6 +27,7 @@ type FormValues = {
   shortcut?: string;
   link?: string;
   visible: boolean;
+  keepImages: string[];
 };
 
 const NewsEdit = () => {
@@ -119,6 +120,10 @@ const NewsEdit = () => {
     }
   }, [isOutside]);
 
+  useEffect(() => {
+    setValue("keepImages", existingImages);
+  }, [existingImages, setValue]);
+
   const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
     formData.append("category", data.category);
@@ -137,6 +142,9 @@ const NewsEdit = () => {
       formData.append("link", data.link);
     }
     formData.append("visible", String(data.visible));
+    if (data.keepImages) {
+      formData.append("keepImages", JSON.stringify(data.keepImages));
+    }
 
     try {
       if (isEditing && id) {
