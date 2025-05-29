@@ -329,20 +329,40 @@ const Main = () => {
             <TitleLine>CONTACT</TitleLine>
             <div className="  h-[244px] flex flex-col gap-[60px]">
               <section className=" flex flex-col gap-[4px]">
-                <h2 className="h4-bold">SEOUL OFFICE</h2>
-                <p className="p-large-bold text-[var(--grey6)]">
+                <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
+                  SEOUL OFFICE
+                </h2>
+                <p
+                  className={` text-[var(--grey6)] ${
+                    isMobile ? "p-small-bold " : "p-large-bold "
+                  }`}
+                >
                   서울특별시 노원구 광운로 000 00길 00층
                 </p>
               </section>
               <section className=" flex-col gap-[4px]">
-                <h2 className="h4-bold">SEOUL OFFICE</h2>
-                <p className="p-large-bold text-[var(--grey6)]">
+                <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
+                  SEOUL OFFICE
+                </h2>
+                <p
+                  className={` text-[var(--grey6)] ${
+                    isMobile ? "p-small-bold " : "p-large-bold "
+                  }`}
+                >
                   투자 관련 문의 : 0000@00000
                 </p>
-                <p className="p-large-bold text-[var(--grey6)]">
+                <p
+                  className={` text-[var(--grey6)] ${
+                    isMobile ? "p-small-bold " : "p-large-bold "
+                  }`}
+                >
                   기업 협업 문의 : 0000@00000{" "}
                 </p>
-                <p className="p-large-bold text-[var(--grey6)]">
+                <p
+                  className={` text-[var(--grey6)] ${
+                    isMobile ? "p-small-bold " : "p-large-bold "
+                  }`}
+                >
                   기타 문의 : 0000@00000
                 </p>
               </section>
