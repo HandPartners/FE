@@ -4,11 +4,27 @@ import type React from "react";
 type NewsEditFileInputProps = {
   multiple?: boolean;
   onChange?: (files: File[]) => void;
+  existFileName?: string | string[] | File[];
+  onRemoveExisting?: (index: number) => void;
 };
 
+/**
+ * 파일 입력 component
+ * @param {boolean} [multiple] 파일 여러 개 선택 가능 여부
+ * @param {function} [onChange] 파일이 변경 시 호출
+ * @param {string | string[] | File[]} [existFileName] API로부터 받아온 기존 파일
+ * @param {function} [onRemoveExisting] 기존 파일을 삭제 시 호출
+ * @returns {JSX.Element}
+ */
 const NewsEditFileInput: React.FC<
   PropsWithChildren<NewsEditFileInputProps>
-> = ({ children, multiple = false, onChange }) => {
+> = ({
+  children,
+  multiple = false,
+  onChange,
+  existFileName,
+  onRemoveExisting,
+}) => {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -35,22 +51,41 @@ const NewsEditFileInput: React.FC<
   };
 
   const renderSummary = () => {
-    if (files.length === 0) {
+    const hasExisting =
+      Array.isArray(existFileName) && existFileName.length > 0;
+    const hasNew = files.length > 0;
+
+    if (!hasExisting && !hasNew) {
       return <span className="text-[#9E9E9E]">파일을 선택해 주세요</span>;
     }
+    // single
     if (!multiple) {
       return (
         <span className="w-[306px] text-[#9E9E9E] truncate">
-          {files[0].name}
+          {files.length > 0
+            ? files[0].name
+            : typeof existFileName === "string" &&
+              existFileName.split("/").pop()}
         </span>
       );
     }
+
     // multi: comma-join
-    const names = files.map((f) => f.name).join(", ");
-    const display = names.length > 40 ? names.slice(0, 40) + "..." : names;
+    if (hasNew) {
+      const names = files.map((f) => f.name).join(", ");
+      const display = names.length > 40 ? names.slice(0, 40) + "..." : names;
+      return (
+        <span className="text-[#9E9E9E] overflow-hidden whitespace-nowrap">
+          {display}
+        </span>
+      );
+    }
     return (
       <span className="text-[#9E9E9E] overflow-hidden whitespace-nowrap">
-        {display}
+        {Array.isArray(existFileName) &&
+          existFileName
+            .map((f) => (typeof f === "string" ? f.split("/").pop() : f.name))
+            .join(", ")}
       </span>
     );
   };
@@ -77,17 +112,40 @@ const NewsEditFileInput: React.FC<
         />
       </div>
 
-      {/* multiple */}
-      {multiple && files.length > 0 && (
+      {multiple && (
         <ul className="mt-[2px] flex flex-col gap-[3px]">
+          {/* 기존 file part */}
+          {Array.isArray(existFileName) &&
+            existFileName.map((file, index) => {
+              const name =
+                typeof file === "string" ? file.split("/").pop() : file.name;
+              return (
+                <li
+                  key={`exist-${index}`}
+                  className="flex items-center justify-between w-full text-[#9E9E9E]"
+                >
+                  <span className="truncate">{name}</span>
+                  <button
+                    type="button"
+                    className="text-[#9E9E9E] cursor-pointer"
+                    onClick={() => onRemoveExisting?.(index)}
+                  >
+                    X
+                  </button>
+                </li>
+              );
+            })}
+
+          {/* 새로 선택된 file part */}
           {files.map((file, index) => (
             <li
-              key={index}
+              key={`new-${index}`}
               className="flex items-center justify-between w-full text-[#9E9E9E]"
             >
               <span className="truncate">{file.name}</span>
               <button
-                className="text-[#9E9E9E]"
+                type="button"
+                className="text-[#9E9E9E] cursor-pointer"
                 onClick={() => handleRemove(index)}
               >
                 X

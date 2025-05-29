@@ -9,6 +9,7 @@ import { toastAlert } from "../../utils/toastAlert";
 import api from "../../api/api";
 
 import ic_back from "../../assets/images/ic_back.svg";
+import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
 
 interface NewsItem {
   id: number;
@@ -16,7 +17,7 @@ interface NewsItem {
   title: string;
   content: string;
   thumbnail: string;
-  image: string[];
+  image: string | string[];
   shortcut: string;
   link: string;
   visible: boolean;
@@ -44,6 +45,7 @@ const NewsDetail = () => {
     const fetchNewsDetail = async () => {
       const { data } = await api.get<NewsDetailResponse>(`/news/${id}`);
 
+      data.newsDetail.image = parseImgArrayJson(data.newsDetail.image);
       setData(data.newsDetail);
     };
     try {
@@ -121,13 +123,20 @@ const NewsDetail = () => {
         <article className="mt-[60px]">
           <p className="p-large-bold text-[#777]">{data?.content}</p>
         </article>
-
-        <section className="flex justify-center mt-[80px] mb-[40px] w-full">
-          <div
-            className="w-[630px] h-[429px] border-[1px] border-[#E2E2E2] bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url(${data?.thumbnail})` }}
-          ></div>
-        </section>
+        {Array.isArray(data?.image) &&
+          data?.image.map((img) => (
+            <section className="flex justify-center mt-[80px] mb-[40px] w-full">
+              <div
+                key={img}
+                className="w-[630px] h-[429px] border-[1px] border-[#E2E2E2] bg-contain bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: `url(${
+                    import.meta.env.VITE_API_URL
+                  }/uploads/${img})`,
+                }}
+              ></div>
+            </section>
+          ))}
 
         <section className="flex justify-center pb-[70px] w-full">
           {data?.visible && (

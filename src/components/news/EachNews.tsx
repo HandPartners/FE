@@ -20,7 +20,11 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
     >
       <div
         className="w-[238px] h-[162px] border-[1px] border-[#E2E2E2] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${item.thumbnail})` }}
+        style={{
+          backgroundImage: `url(${import.meta.env.VITE_API_URL}/uploads/${
+            item.thumbnail
+          })`,
+        }}
       ></div>
 
       <div className="flex flex-col justify-between flex-1">
