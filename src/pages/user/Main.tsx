@@ -16,7 +16,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../styles/swiper.css"; // ← 이렇게 따로 불러와!
+import "../../styles/swiper.css";
+import { parseDate } from "../../utils/parseDate";
+
 declare global {
   interface Window {
     scrollToContact?: () => void;
@@ -302,7 +304,7 @@ const Main = () => {
                           isMobile ? "p-xs-bold " : "p-small-bold"
                         }`}
                       >
-                        {item.createdAt}
+                        {parseDate(item.createdAt)}
                       </p>
                     </section>
                   </div>
