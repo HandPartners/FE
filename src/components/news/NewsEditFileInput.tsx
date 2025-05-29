@@ -52,7 +52,8 @@ const NewsEditFileInput: React.FC<
 
   const renderSummary = () => {
     const hasExisting =
-      Array.isArray(existFileName) && existFileName.length > 0;
+      typeof existFileName === "string" ||
+      (Array.isArray(existFileName) && existFileName.length > 0);
     const hasNew = files.length > 0;
 
     if (!hasExisting && !hasNew) {
