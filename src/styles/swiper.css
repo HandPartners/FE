@@ -1,0 +1,23 @@
+.swiper-pagination {
+  bottom: 0px !important; /* 위치 조절 */
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.swiper-pagination-bullet {
+  width: 7px !important;
+  height: 7px !important;
+  background-color: var(--grey4) !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 7px !important;
+  height: 7px !important;
+  border: 1px solid var(--grey4) !important; /* 테두리만 색 있고 */
+  border-radius: 50% !important; /* 완전한 원 */
+  background-color: #fff !important;
+
+  opacity: 1 !important;
+}

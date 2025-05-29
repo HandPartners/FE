@@ -11,11 +11,41 @@ import { useRef } from "react"; // 추가
 import FadeInItem from "../../components/main/FadeInItem";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "../../styles/swiper.css"; // ← 이렇게 따로 불러와!
 declare global {
   interface Window {
     scrollToContact?: () => void;
   }
 }
+
+const programData = [
+  {
+    img: ProgramImg,
+    title: "Phase 1. Consulting",
+    contents:
+      "창업자들을 대상으로 컨설팅 진행\n창업자들을 대상으로 컨설팅 진행",
+  },
+  {
+    img: ProgramImg,
+    title: "Phase 2. Investment",
+    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+  },
+  {
+    img: ProgramImg,
+    title: "Phase 3. Education",
+    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+  },
+  {
+    img: ProgramImg,
+    title: "Phase 4. Networking",
+    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+  },
+];
 
 const Main = () => {
   const [portfolioList, setPortfolioList] = useState<portfolioList[]>([]);
@@ -116,68 +146,63 @@ const Main = () => {
             </span>
           </div>
         </FadeInItem>
-        <div className="flex flex-col gap-[200px] mt-[50px] ">
+        <div className="flex flex-col md:gap-[200px] gap-[100px] mt-[50px] ">
           {/* 프로그램 */}
-          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[50px]">
+          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
             <TitleLine>PROGRAM</TitleLine>
             <FadeInItem>
-              <div className="flex flex-row gap-[20px]  ">
-                <div className=" w-full h-[400px] border-[var(--grey3)]">
-                  <img
-                    className="h-[290px] w-full object-cover"
-                    src={ProgramImg}
-                  ></img>
-                  <div className=" h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
-                    <h3 className="p-large-bold">Phase 1. Consulting</h3>
-                    <p className="p-medium-medium">
-                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                      진행
-                    </p>
-                  </div>
+              {isMobile ? (
+                <Swiper
+                  spaceBetween={20}
+                  slidesPerView={1}
+                  pagination={{ clickable: true }}
+                  modules={[Pagination]}
+                >
+                  {programData.map((item, idx) => (
+                    <SwiperSlide key={idx}>
+                      <div className="h-[427px] w-[303px] mx-auto  ">
+                        <div className="border border-[var(--grey3)] h-[402px] ">
+                          <img
+                            className="h-[290px] w-full object-cover"
+                            src={item.img}
+                          />
+                          <div className="h-[110px] text-center px-[47px] py-[17px] bg-[var(--grey1)] ">
+                            <h3 className="p-large-bold">{item.title}</h3>
+                            <p className="whitespace-pre-wrap p-medium-medium">
+                              {item.contents}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              ) : (
+                <div className="flex flex-row gap-[20px] ">
+                  {programData.map((item, idx) => (
+                    <>
+                      <div
+                        key={idx}
+                        className=" w-full h-[400px] border-[var(--grey3)]"
+                      >
+                        <img
+                          className="h-[290px] w-full object-cover"
+                          src={item.img}
+                        ></img>
+                        <div className=" h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
+                          <h3 className="p-large-bold">{item.title}</h3>
+                          <p className="p-medium-medium">{item.contents}</p>
+                        </div>
+                      </div>
+                    </>
+                  ))}
                 </div>
-                <div className="  w-full h-[400px] ">
-                  <img
-                    className=" h-[290px] w-full object-cover"
-                    src={ProgramImg}
-                  ></img>
-                  <div className="border-[var(--grey3)] border h-[110px] flex flex-col text-center px-[48px] py-[17px] bg-[var(--grey1)]">
-                    <h3 className="p-large-bold">Phase 2. Investment</h3>
-                    <p className="p-medium-medium">
-                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                      진행
-                    </p>
-                  </div>
-                </div>
-                <div className=" w-full  h-[400px] ">
-                  <img
-                    className=" h-[290px] w-full object-cover"
-                    src={ProgramImg}
-                  ></img>
-                  <div className=" border-[var(--grey3)] border h-[110px] flex flex-col text-center px-[48px] py-[17px] bg-[var(--grey1)]">
-                    <h3 className="p-large-bold">Phase 3. Education</h3>
-                    <p className="p-medium-medium">
-                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                      진행
-                    </p>
-                  </div>
-                </div>
-                <div className=" w-full h-[400px] ">
-                  <img
-                    className=" h-[290px] w-full object-cover"
-                    src={ProgramImg}
-                  ></img>
-                  <div className=" h-[110px] border-[var(--grey3)] border flex flex-col text-center px-[48px] py-[17px] bg-[var(--grey1)]">
-                    <h3 className="p-large-bold">Phase 4. Networking</h3>
-                    <p className="p-medium-medium">
-                      창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅
-                      진행
-                    </p>
-                  </div>
-                </div>
-              </div>
+              )}
             </FadeInItem>
             <span
-              className="flex justify-end cursor-pointer p-large-bold transition-colors duration-250 ease-in-out hover:text-[#b8cce1]"
+              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
+                isMobile ? "p-medium-bold" : " p-large-bold"
+              }`}
               onClick={() => navigate("program", { relative: "path" })}
             >
               프로그램 전체보기 →
@@ -185,7 +210,7 @@ const Main = () => {
           </section>
 
           {/* 포트폴리오 */}
-          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[50px]">
+          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
             <TitleLine>PORTFOLIO</TitleLine>
             <div className=" grid h-[408px] grid-cols-5 grid-rows-3 gap-x-[24px] gap-y-[30px] px-[40px]">
               {items.map((item) => {
@@ -220,7 +245,7 @@ const Main = () => {
           </section>
 
           {/* 뉴스 */}
-          <section className="flex flex-col gap-[44px] md:w-[1280px] w-[84.7svw] mx-auto ">
+          <section className="flex flex-col  md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]">
             <TitleLine>NEWS</TitleLine>
             <div>
               {newsList.map((item) => (
@@ -271,7 +296,7 @@ const Main = () => {
           </section>
           {/* 콘택트 */}
           <section
-            className=" flex flex-col gap-[44px] mb-[99px] md:w-[1280px] w-[84.7svw] mx-auto "
+            className=" flex flex-col mb-[99px] md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]"
             ref={contactRef}
           >
             <TitleLine>CONTACT</TitleLine>
