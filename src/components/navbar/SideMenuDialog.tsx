@@ -100,7 +100,7 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
 
           <div className="flex flex-col justify-between pl-[6px] h-[68px] ">
             <span
-              className="cursor-pointer flex items-center w-[71px] h-full text-center h5-medium transition-colors duration-250 ease-in-out hover:text-[#b8cce1] "
+              className="cursor-pointer flex items-center w-[71px] h-full text-center h5-medium transition-colors duration-250 ease-in-out  hover:text-[#252676]"
               onClick={() => {
                 onClose();
                 if (pathname !== (isAdmin ? "/admin" : "/")) {

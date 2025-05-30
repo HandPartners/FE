@@ -16,7 +16,7 @@ const NavBarBtn: React.FC<PropsWithChildren<NavBarBtnProps>> = ({
     <NavLink to={isAdmin ? `/admin/${path}` : path}>
       {({ isActive }) => (
         <span
-          className={` cursor-pointer inline-block text-center transition-colors duration-250 ease-in-out hover:text-[#b8cce1]
+          className={` cursor-pointer inline-block text-center transition-colors duration-250 ease-in-out hover:text-[#252676]
       ${clsx(isActive ? "h5-bold text-main" : "h5-medium")}`}
         >
           {children}

@@ -60,7 +60,7 @@ const NavBar = () => {
               News
             </NavBarBtn>
             <span
-              className="cursor-pointer inline-block w-[71px] text-center h5-medium transition-colors duration-250 ease-in-out hover:text-[#b8cce1] "
+              className="cursor-pointer inline-block w-[71px] text-center h5-medium transition-colors duration-250 ease-in-out  hover:text-[#252676] "
               onClick={() => {
                 if (pathname !== (isAdmin ? "/admin" : "/")) {
                   sessionStorage.setItem("scrollToContact", "true");
