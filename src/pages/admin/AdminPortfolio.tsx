@@ -18,6 +18,7 @@ import type {
   ResponsePortfolioList,
 } from "../../api/PortfolioApi";
 import { toastAlert } from "../../utils/toastAlert";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
 const AdminPortfolio = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -28,6 +29,9 @@ const AdminPortfolio = () => {
   const [name, setName] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [portfolioList, setPortfolioList] = useState<ResponsePortfolioList>();
+
+  const windowWidth = useWindowWidth();
+  const isMobile = !windowWidth.md;
 
   const [formData, setFormData] = useState<AddPortfolioBody>({
     category: "ICT",
@@ -140,16 +144,16 @@ const AdminPortfolio = () => {
   return (
     <main className=" flex flex-col items-center w-[1280px] max-w-full mx-auto relative h-[100vw] ">
       {/* 배너 */}
-      <div className="absolute top-[99px] left-[85px] z-10 flex flex-col  gap-[36px] w-fit">
-        <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
-          Portfolio
-        </h1>
-        <h3 className="h3-medium">한줄 소개</h3>
+      <div className="absolute top-[54px] left-[60px] md:top-[99px] md:left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
+        <h1 className={` ${isMobile ? "h4-bold" : "md-banner"}`}>Portfolio</h1>
+        <h3 className={` ${isMobile ? "p-small-medium" : "h3-medium"}`}>
+          한줄 소개
+        </h3>
       </div>
       <BGTop testBenner={bannerImg} />
 
       {/* 포트폴리오 추가 버튼 */}
-      <div className="flex justify-end w-full">
+      <div className="flex justify-end w-[92.9svw] md:w-full">
         <AdminAddButton
           handleClick={() => setAddModalOpen(true)}
           title={"포트폴리오 추가"}
@@ -157,20 +161,19 @@ const AdminPortfolio = () => {
       </div>
 
       {/* 포트폴리오 리스트 */}
-      <section className="flex flex-col  gap-[371px] mx-auto w-full h-full  ">
-        <PortfolioSection
-          portfolioList={portfolioList}
-          setIsEditModalOpen={setEditModalOpen}
-          setPortfolioId={setPortfolioId}
-          setFormData={setFormData}
-          category={category}
-          setCategory={setCategory}
-          setName={setName}
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          isAdmin={true}
-        />
-      </section>
+
+      <PortfolioSection
+        portfolioList={portfolioList}
+        setIsEditModalOpen={setEditModalOpen}
+        setPortfolioId={setPortfolioId}
+        setFormData={setFormData}
+        category={category}
+        setCategory={setCategory}
+        setName={setName}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        isAdmin={true}
+      />
 
       {/* 추가 모달 */}
       {isAddModalOpen && (
