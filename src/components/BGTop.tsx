@@ -4,7 +4,7 @@ interface BGTopProps {
 
 const BGTop = ({ testBenner }: BGTopProps) => {
   return (
-    <div className="relative w-screen mt-[40px]  min-w-[1280px]">
+    <div className="relative w-screen mt-[40px] w-[393px]">
       <img
         src={testBenner}
         alt="배너"

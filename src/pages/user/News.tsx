@@ -6,13 +6,20 @@ import {
   type QueryFunctionContext,
 } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
+import { useNavigate } from "react-router-dom";
+
 import BGTop from "../../components/BGTop";
 import EachNews from "../../components/news/EachNews";
 import AdminAddButton from "../../components/adminAddButton";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
+import FadeInItem from "../../components/main/FadeInItem";
+
 import api from "../../api/api";
 
 import ic_search from "../../assets/images/ic_search.svg";
-import { useNavigate } from "react-router-dom";
+import bannerImg from "../../assets/images/banner/NewsBanner.png";
+import useWindowWidth from "../../hooks/useWindowWidth";
+import ScrollableTabs from "../../components/news/ScrollableTabs";
 
 export interface NewsItem {
   id: number;
@@ -28,9 +35,7 @@ interface NewsResponse {
 }
 
 type NewsInfiniteResponse = InfiniteData<NewsResponse>;
-import bannerImg from "../../assets/images/banner/NewsBanner.png";
-import ScrollToTopButton from "../../components/ScrollToTopButton";
-import FadeInItem from "../../components/main/FadeInItem";
+
 const tabs = [
   "ALL",
   "Consulting",
@@ -52,6 +57,8 @@ const News: React.FC = () => {
 
   const navigate = useNavigate();
   const isAdmin = window.location.pathname.includes("admin");
+
+  const { md } = useWindowWidth();
 
   useEffect(() => {
     const savedTab = sessionStorage.getItem("newsTab");
@@ -109,11 +116,17 @@ const News: React.FC = () => {
 
   return (
     <main className="flex flex-col items-center  w-[1280px] max-w-full mx-auto relative">
-      <div className="absolute top-[99px] left-[85px] z-10 flex flex-col gap-[36px] w-fit">
-        <h1 className="text-[48px] font-bold leading-[60px] tracking-[-0.96px]">
+      <div className="absolute top-[99px] left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
+        <h1
+          className={
+            md
+              ? "text-[48px] font-bold leading-[60px] tracking-[-0.96px]"
+              : "h4-bold"
+          }
+        >
           News
         </h1>
-        <h3 className="h3-medium">한줄 소개</h3>
+        <h3 className={md ? "h3-medium" : "p-small-medium"}>한줄 소개</h3>
       </div>
 
       <BGTop testBenner={bannerImg} />
@@ -130,26 +143,30 @@ const News: React.FC = () => {
       </div>
 
       <section className="w-full pb-[200px]">
-        <div className="flex gap-[20px] relative w-full mb-[50px]">
-          <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => {
-                  setActiveTab(tab);
-                }}
-                className={clsx(
-                  "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-[#FFF]",
-                  activeTab === tab && "bg-[#00AEEF] text-white"
-                )}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-          <div className="flex flex-1 relative h-[60px] border border-[#E2E2E2] rounded-[30px]">
+        <div className="flex flex-col md:flex-row gap-[20px] md:gap-[15px] relative w-full mb-[50px]">
+          {md ? (
+            <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => {
+                    setActiveTab(tab);
+                  }}
+                  className={clsx(
+                    "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-[#FFF]",
+                    activeTab === tab && "bg-[#00AEEF] text-white"
+                  )}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <ScrollableTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+          )}
+          <div className="flex flex-1 relative mx-[14px] md:mx-0 h-[60px] border border-[#E2E2E2] rounded-[30px]">
             <input
-              className="flex-1 pl-[25px] pr-[5px] focus:outline-none"
+              className="flex-1 pl-[25px] pr-[5px] h-[60px] focus:outline-none"
               placeholder="검색어를 입력하세요."
               value={inputValue}
               onChange={(event) => {
@@ -168,7 +185,7 @@ const News: React.FC = () => {
           </div>
         </div>
 
-        <section className="px-[3.203125%]">
+        <section className="px-[30px] md:px-[3.203125%]">
           {newsList.map((item) => (
             <FadeInItem>
               <EachNews key={item.id} id={item.id} item={item} />

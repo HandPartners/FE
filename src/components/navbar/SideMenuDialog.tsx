@@ -73,8 +73,14 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
             onClick={() => navigate(isAdmin ? "/admin" : "/")}
             className="cursor-pointer"
           ></img>
-          <button className="cursor-pointer" onClick={onClose}>
-            <img src={ic_close} alt="X" className="w-[32px] h-[32px]" />
+          <button>
+            {" "}
+            <img
+              src={ic_close}
+              alt="X"
+              onClick={onClose}
+              className="w-[32px] h-[32px]"
+            />
           </button>
         </div>
 
