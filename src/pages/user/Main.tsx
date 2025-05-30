@@ -144,7 +144,7 @@ const Main = () => {
             </section>
 
             <span
-              className={`cursor-pointer  transition-colors duration-250 ease-in-out hover:text-[#b8cce1] ${
+              className={`cursor-pointer  transition-colors duration-250 ease-in-out hover:text-[#2E3092] ${
                 isMobile ? "p-small-bold" : " p-large-bold"
               }`}
               onClick={() => navigate("about", { relative: "path" })}
@@ -208,7 +208,7 @@ const Main = () => {
               )}
             </FadeInItem>
             <span
-              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
+              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
                 isMobile ? "p-medium-bold" : " p-large-bold"
               }`}
               onClick={() => navigate("program", { relative: "path" })}
@@ -254,7 +254,7 @@ const Main = () => {
             )}
 
             <span
-              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
+              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
                 isMobile ? "p-medium-bold" : " p-large-bold"
               }`}
               onClick={() => navigate("portfolio", { relative: "path" })}
@@ -332,7 +332,7 @@ const Main = () => {
               </div>
             )}
             <span
-              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#b8cce1]  ${
+              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
                 isMobile ? "p-medium-bold" : " p-large-bold"
               }`}
               onClick={() => navigate("news", { relative: "path" })}

@@ -39,7 +39,7 @@ const ProgramSection: React.FC<ProgramSectionProps> = ({
               </h5>
             </div>
             <span
-              className={`cursor-pointer  text-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-[#8cd2ee] ${
+              className={`cursor-pointer  text-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-[#058BBF] ${
                 isMobile ? "p-medium-bold" : "h4-bold "
               }`}
               onClick={onClick}
