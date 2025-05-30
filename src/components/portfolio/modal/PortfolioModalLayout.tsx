@@ -27,7 +27,7 @@ const PortfolioModalLayout: React.FC<PortfolioModalProps> = ({
       onClick={onClickBG}
     >
       <div
-        className={`${marginTop} bg-white py-[36px] px-[30px] rounded-lg w-[500px] h-fit relative flex flex-col gap-[28px]`}
+        className={`${marginTop} bg-white py-[36px] px-[30px] rounded-lg w-[89.3%] max-w-[500px] md:w-[500px] h-fit relative flex flex-col gap-[28px]`}
         onClick={(e) => e.stopPropagation()}
       >
         {children}
