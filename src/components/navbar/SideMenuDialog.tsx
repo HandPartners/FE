@@ -66,12 +66,12 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
       }}
     >
       <div className="h-full overflow-hidden">
-        <div className="flex justify-between items-center w-full h-[70px]  pl-[22px] pr-[17px] shadow-[0px_2px_3.5px_0px_var(--Main,_#2E3092)]">
+        <div className="flex justify-between items-center w-full h-[70px]  pl-[5.59796437659033%] pr-[4.32569974554707%] shadow-[0px_2px_3.5px_0px_var(--Main,_#2E3092)]">
           <img
             src={logo}
             alt="회사 로고"
             onClick={() => navigate(isAdmin ? "/admin" : "/")}
-            className="cursor-pointer"
+            className="cursor-pointer w-[129.299px] md:w-[197px]"
           ></img>
           <button>
             {" "}
