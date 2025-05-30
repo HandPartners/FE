@@ -85,16 +85,16 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
         </div>
 
         <section className="px-[30px] pt-[10px]">
-          <SideMenuBtn isAdmin={false} path="about" onClose={onClose}>
+          <SideMenuBtn isAdmin={isAdmin} path="about" onClose={onClose}>
             About
           </SideMenuBtn>
-          <SideMenuBtn isAdmin={false} path="program" onClose={onClose}>
+          <SideMenuBtn isAdmin={isAdmin} path="program" onClose={onClose}>
             Program
           </SideMenuBtn>
-          <SideMenuBtn isAdmin={false} path="portfolio" onClose={onClose}>
+          <SideMenuBtn isAdmin={isAdmin} path="portfolio" onClose={onClose}>
             Portfolio
           </SideMenuBtn>
-          <SideMenuBtn isAdmin={false} path="news" onClose={onClose}>
+          <SideMenuBtn isAdmin={isAdmin} path="news" onClose={onClose}>
             News
           </SideMenuBtn>
 
@@ -138,9 +138,7 @@ const SideMenuBtn: React.FC<PropsWithChildren<SideMenuBtnProps>> = ({
   return (
     <div
       className="flex flex-col justify-between pl-[6px] h-[68px]"
-      onClick={() => {
-        onClose();
-      }}
+      onClick={onClose}
     >
       <div></div>
       <NavBarBtn isAdmin={isAdmin} path={path}>

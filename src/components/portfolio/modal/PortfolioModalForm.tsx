@@ -50,7 +50,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">회사명</p>
         <input
-          className="w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px]  px-[20px]  cursor-pointer"
+          className="p-medium-regular w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px]  px-[20px]  cursor-pointer"
           placeholder="회사명을 입력해주세요."
           value={formData.name}
           onChange={(e) => onChange?.("name", e.target.value)}
@@ -60,7 +60,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
         <p className="p-medium-medium text-[var(--grey6)]">회사 소개</p>
         <div className="relative">
           <input
-            className="relative w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px] px-[20px]  cursor-pointer"
+            className="p-medium-regular relative w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px] pl-[20px] pr-[65px] cursor-pointer"
             placeholder="회사 소개를 입력해주세요."
             maxLength={40}
             value={formData.content}
@@ -76,7 +76,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
         <div className="relative">
           <input
             ref={fileInputRef}
-            className="hidden "
+            className="hidden p-medium-regular"
             placeholder="파일을 선택해주세요."
             type="file"
             accept="image/png, image/jpeg"
@@ -84,7 +84,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
           />
           <div className="w-[full] h-[60px] bg-[var(--grey50)] rounded-[5.967px] gap-[10px] px-[10px] flex items-center justify-between  whitespace-nowrap">
             <span
-              className={`w-full ml-[10px]  truncate overflow-hidden ${
+              className={`w-full ml-[10px] "p-medium-regular truncate overflow-hidden ${
                 getLogoText(formData.logo) === "파일을 선택해주세요."
                   ? "text-[var(--grey5)]"
                   : ""
