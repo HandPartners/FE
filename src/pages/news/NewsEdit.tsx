@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
@@ -7,7 +8,9 @@ import NewsEditFileInput from "../../components/news/NewsEditFileInput";
 import NewsEditLinkBtnInput from "../../components/news/NewsEditLinkBtnInput";
 
 import useOutsideClick from "../../hooks/useOutsideClick";
+import useWindowWidth from "../../hooks/useWindowWidth";
 
+import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
 import { getCurrentDate } from "../../utils/getCurrentDate";
 import { toastAlert } from "../../utils/toastAlert";
 
@@ -16,7 +19,6 @@ import api from "../../api/api";
 import ic_check_colored from "../../assets/images/news/ic_check_colored.svg";
 import ic_check_mono from "../../assets/images/news/ic_check_mono.svg";
 import ic_up from "../../assets/images/news/ic_up.svg";
-import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
 
 type FormValues = {
   category: string;
@@ -58,6 +60,7 @@ const NewsEdit = () => {
   ];
 
   const { id } = useParams();
+  const { md } = useWindowWidth();
 
   useEffect(() => {
     if (isEditing && id) {
@@ -176,20 +179,25 @@ const NewsEdit = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full h-[200%] flex flex-col items-center py-[70px] "
     >
-      <section className="flex flex-col relative mx-auto w-[800px] h-full">
+      <section className="flex flex-col relative mx-auto w-[333px] md:w-[800px] h-full">
         <button
           type="button"
           onClick={() => {
             setIsCategoryOpen((prev) => !prev);
           }}
           ref={ref}
-          className="flex items-center gap-[20px] cursor-pointer w-fit"
+          className="flex items-center gap-[10px] md:gap-[20px] cursor-pointer w-fit"
         >
-          <h4 className="h4-bold text-[#2E3093]">
+          <h4
+            className={clsx(md ? "h4-bold" : "p-medium-bold", "text-[#2E3093]")}
+          >
             {selectedCategory || "카테고리 선택"}
           </h4>
           <img
-            className={!isCategoryOpen ? "rotate-180" : ""}
+            className={clsx(
+              !isCategoryOpen ? "rotate-180" : "",
+              "w-[14.545px] md:w-[24px]"
+            )}
             src={ic_up}
             alt="ic_up"
           />
@@ -217,26 +225,39 @@ const NewsEdit = () => {
 
         <input
           {...register("title", { required: true })}
-          className="mt-[10px] p-[20px] h-[84px] bg-[#F4F7F8] text-[#777] h1-bold rounded-[5.957px]"
+          className={clsx(
+            "mt-[10px] p-[20px] h-[44px] md:h-[84px] bg-[#F4F7F8] text-[#777] rounded-[5.957px]",
+            md ? "h1-bold" : "p-large-bold"
+          )}
           type="text"
           placeholder="제목을 작성하세요."
         />
         {errors.title && <p className="text-red-500">제목을 입력해주세요.</p>}
 
-        <p className="mt-[7px] mb-[45px] p-large-bold text-[#777]">
+        <p
+          className={clsx(
+            "mt-[7px] mb-[20px] md:mb-[45px] text-[#777]",
+            md ? "p-large-bold" : "p-small-bold"
+          )}
+        >
           {getCurrentDate()}
         </p>
 
         <textarea
           {...register("content", { required: true })}
-          className="p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] p-large-bold rounded-[5.957px] box-border"
+          className={clsx(
+            "p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] box-border",
+            md ? "p-large-bold" : "p-medium-bold"
+          )}
           placeholder="내용을 작성하세요."
         />
         {errors.content && <p className="text-red-500">내용을 입력해주세요.</p>}
 
         <hr className="mt-[70px] mb-[24px] border-1 border-solid border-[#D9D9D9]" />
 
-        <h4 className="mb-[24px] h4-bold">이미지</h4>
+        <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
+          이미지
+        </h4>
 
         <div className="flex flex-col gap-[24px]">
           <Controller
@@ -280,7 +301,9 @@ const NewsEdit = () => {
 
         <hr className="my-[24px] border-1 border-solid border-[#D9D9D9]" />
 
-        <h4 className="mb-[24px] h4-bold">바로가기 버튼</h4>
+        <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
+          바로가기 버튼
+        </h4>
         <section className="flex flex-col gap-[24px]">
           <Controller
             name="shortcut"

@@ -1,15 +1,19 @@
+import clsx from "clsx";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import DeleteModal from "../../components/portfolio/modal/DeleteModal";
 
+import useWindowWidth from "../../hooks/useWindowWidth";
+
 import { parseDate } from "../../utils/parseDate";
+import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
 import { toastAlert } from "../../utils/toastAlert";
 
 import api from "../../api/api";
 
-import ic_back from "../../assets/images/ic_back.svg";
-import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
+import ic_back from "../../assets/images/news/ic_back.svg";
+import ic_back_sm from "../../assets/images/news/ic_back_sm.svg";
 
 interface NewsItem {
   id: number;
@@ -36,6 +40,8 @@ const NewsDetail = () => {
 
   const { pathname } = useLocation();
   const isAdmin = pathname.startsWith("/admin");
+
+  const { md } = useWindowWidth();
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -67,7 +73,7 @@ const NewsDetail = () => {
 
   return (
     <main className="w-full h-full flex flex-col items-center py-[70px] ">
-      <section className="flex flex-col mx-auto w-[800px] h-full">
+      <section className="flex flex-col mx-auto w-[333px] md:w-[800px] h-full">
         <div className="flex justify-between w-full">
           <button
             onClick={() => {
@@ -79,7 +85,7 @@ const NewsDetail = () => {
             }}
             className="h5-medium flex items-center gap-[10px] cursor-pointer"
           >
-            <img src={ic_back} alt="ic_back" />
+            <img src={md ? ic_back : ic_back_sm} alt="ic_back" />
           </button>
           {isAdmin && (
             <div className="flex gap-[24px]">
@@ -89,7 +95,10 @@ const NewsDetail = () => {
                     navigate(`/admin/news/edit/${id}`);
                   }
                 }}
-                className="flex items-center cursor-pointer h4-bold"
+                className={clsx(
+                  "flex items-center cursor-pointer",
+                  md ? "h4-bold" : "p-medium-bold"
+                )}
               >
                 수정
               </button>
@@ -97,7 +106,10 @@ const NewsDetail = () => {
                 onClick={() => {
                   setShowDeleteModal(true);
                 }}
-                className="flex items-center cursor-pointer h4-bold"
+                className={clsx(
+                  "flex items-center cursor-pointer",
+                  md ? "h4-bold" : "p-medium-bold"
+                )}
               >
                 삭제
               </button>
@@ -110,25 +122,51 @@ const NewsDetail = () => {
             </div>
           )}
         </div>
-        <hr className="mt-[20px] mb-[25px] h-[1px] border-[#2E3092]" />
+        <hr className="mt-[10px] md:mt-[20px] mb-[20px] md:mb-[25px] h-[1px] border-[#2E3092]" />
 
         <div>
-          <h4 className="h4-medium text-[#2E3093]">{data?.category}</h4>
-          <h1 className="mt-[10px] mb-[7px] h1-bold">{data?.title}</h1>
-          <p className="p-large-bold text-[#9E9E9E]">
+          <h4
+            className={clsx(
+              "h4-bold text-[#2E3093]",
+              md ? "h4-bold" : "p-medium-bold"
+            )}
+          >
+            {data?.category}
+          </h4>
+          <h1
+            className={clsx(
+              "mt-[10px] mb-[7px]",
+              md ? "h1-bold" : "p-large-bold"
+            )}
+          >
+            {data?.title}
+          </h1>
+          <p
+            className={clsx(
+              "text-[#9E9E9E]",
+              md ? "p-large-bold" : "p-small-bold"
+            )}
+          >
             {parseDate(data?.createdAt)}
           </p>
         </div>
 
         <article className="mt-[60px]">
-          <p className="p-large-bold text-[#777]">{data?.content}</p>
+          <p
+            className={clsx(
+              "text-[#777]",
+              md ? "p-large-bold" : "p-medium-bold"
+            )}
+          >
+            {data?.content}
+          </p>
         </article>
         {Array.isArray(data?.image) &&
           data?.image.map((img) => (
             <section className="flex justify-center mt-[80px] mb-[40px] w-full">
               <div
                 key={img}
-                className="w-[630px] h-[429px] border-[1px] border-[#E2E2E2] bg-contain bg-center bg-no-repeat"
+                className="w-[313px] md:w-[630px] h-[213px] md:h-[429px] border-[1px] border-[#E2E2E2] bg-contain bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `url(${
                     import.meta.env.VITE_API_URL
