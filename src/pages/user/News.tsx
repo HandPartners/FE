@@ -115,7 +115,7 @@ const News: React.FC = () => {
   };
 
   return (
-    <main className="flex flex-col items-center  w-[1280px] max-w-full mx-auto relative">
+    <main className="flex flex-col items-center w-[84.47837150127226%] md:w-[1280px] max-w-full mx-auto relative pb-[947px]">
       <div className="absolute top-[99px] left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
         <h1
           className={
@@ -142,8 +142,8 @@ const News: React.FC = () => {
         )}
       </div>
 
-      <section className="w-full pb-[200px]">
-        <div className="flex flex-col md:flex-row gap-[20px] md:gap-[15px] relative w-full mb-[50px]">
+      <section className="pb-[200px]">
+        <div className="flex flex-col md:flex-row gap-[20px] md:gap-[15px] relative w-full md:w-[1280px] mb-[50px]">
           {md ? (
             <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
               {tabs.map((tab) => (
