@@ -6,12 +6,15 @@ import FadeInItem from "../../components/main/FadeInItem";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
 
+import { about } from "../../constants/about";
+
 import bannerImg from "../../assets/images/banner/aboutBanner.png";
+
 const About = () => {
   const { md } = useWindowWidth();
 
   return (
-    <main className=" flex flex-col items-center w-[84.47837150127226%] md:w-[1280px] mx-auto relative pb-[947px]">
+    <main className=" flex flex-col items-center w-[84.47837150127226%] md:w-[1280px] max-w-full mx-auto relative pb-[947px]">
       <div className="absolute top-[99px] left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
         <h1
           className={
@@ -26,7 +29,7 @@ const About = () => {
       </div>
       <BGTop testBenner={bannerImg} />
 
-      <section className="flex flex-col gap-[371px] mt-[50px] md:mt-[100px] mx-auto w-full h-full ">
+      <section className="flex flex-col gap-[371px] mt-[50px] md:mt-[100px] w-full md:w-[1280px] h-full ">
         <section className="flex flex-col gap-[50px] md:gap-[100px] w-full">
           <FadeInItem>
             <section className="flex flex-col gap-[50px] w-full">
@@ -54,8 +57,13 @@ const About = () => {
             <section className="flex flex-col gap-[50px] w-full">
               <TitleLine>TEAM</TitleLine>{" "}
               <article className="grid grid-cols-2 md:grid-cols-5 gap-y-[30px] md:gap-y-[100px] justify-items-center w-full">
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <EachTeam key={index} />
+                {about.map((member, index) => (
+                  <EachTeam
+                    key={index}
+                    name={member.name}
+                    position={member.position}
+                    photo={member.photo}
+                  />
                 ))}
               </article>
             </section>
