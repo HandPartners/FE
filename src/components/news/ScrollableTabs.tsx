@@ -66,7 +66,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollLeft && (
           <button
             onClick={() => scrollBy(-stepSize)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10"
+            className="absolute left-[-4px] top-1/2 -translate-y-1/2 z-10"
           >
             <img className="rotate-180" src={ic_right} alt="right" />
           </button>
@@ -95,7 +95,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollRight && (
           <button
             onClick={() => scrollBy(stepSize)}
-            className="absolute right-[-5px] top-1/2 -translate-y-1/2 z-10"
+            className="absolute right-[-4px] top-1/2 -translate-y-1/2 z-10"
           >
             <img src={ic_right} alt="right" />
           </button>
