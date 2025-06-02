@@ -38,12 +38,12 @@ type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
 const tabs = [
   "ALL",
+  "Notice",
+  "Press",
   "Consulting",
   "Investment",
   "Education",
   "Networking",
-  "Notice",
-  "Press",
 ];
 
 const News: React.FC = () => {
