@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import clsx from "clsx";
-import ic_left from "../../assets/icons/ic_left.svg";
-import ic_right from "../../assets/icons/ic_right.svg";
+import ic_right from "../../assets/icons/ic_right.png";
 
 const tabs = [
   "ALL",
@@ -24,7 +23,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const stepSize = 300;
+  const stepSize = 400;
 
   const scrollBy = (offset: number) => {
     if (!scrollRef.current) return;
@@ -67,9 +66,9 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollLeft && (
           <button
             onClick={() => scrollBy(-stepSize)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10"
           >
-            <img src={ic_left} alt="left" />
+            <img className="rotate-180" src={ic_right} alt="right" />
           </button>
         )}
 
@@ -96,7 +95,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollRight && (
           <button
             onClick={() => scrollBy(stepSize)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow"
+            className="absolute right-[-5px] top-1/2 -translate-y-1/2 z-10"
           >
             <img src={ic_right} alt="right" />
           </button>
