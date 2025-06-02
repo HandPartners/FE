@@ -147,7 +147,9 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
               isMobile ? "p-medium-bold" : "h5-bold"
             }`}
           >
-            "{name}"에 대한 검색 결과가 없습니다.
+            {name
+              ? `"${name}"에 대한 검색 결과가 없습니다.`
+              : "게시글이 존재하지 않습니다."}
           </p>
         </div>
       ) : (

@@ -59,12 +59,16 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">회사 소개</p>
         <div className="relative">
-          <input
-            className="p-medium-regular relative w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px] pl-[20px] pr-[65px] cursor-pointer"
+          <textarea
+            className="p-medium-regular relative w-full  h-[60px]  bg-[var(--grey50)] resize-none rounded-[5.967px] flex py-[18px]  pl-[20px] pr-[65px] cursor-pointer "
             placeholder="회사 소개를 입력해주세요."
             maxLength={40}
             value={formData.content}
-            onChange={(e) => onChange?.("content", e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              const sliced = [...value].slice(0, 40).join("");
+              onChange?.("content", sliced);
+            }}
           />
           <div className="absolute p-medium-regular top-[18px] right-[15px] text-[var(--grey4)]">
             {formData.content.length}/40
