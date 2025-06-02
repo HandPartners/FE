@@ -173,6 +173,7 @@ const NewsEdit = () => {
   };
 
   const visible = watch("visible");
+  const isCategoryValid = watch("category") || false;
 
   return (
     <form
@@ -355,7 +356,7 @@ const NewsEdit = () => {
             type="submit"
             className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer transition-colors hover:bg-[#059DD7] active:bg-[#058BBF] disabled:bg-[#B2E6FA] disabled:cursor-default"
             disabled={
-              watch("category") === "" ||
+              !isCategoryValid ||
               watch("title") === "" ||
               watch("content") === ""
             }
