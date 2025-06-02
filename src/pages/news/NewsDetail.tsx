@@ -185,7 +185,7 @@ const NewsDetail = () => {
                   "noopener,noreferrer"
                 );
               }}
-              className="h4-bold w-[196px] h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
+              className="h4-bold px-[30px] min-w-[196px] w-fit min-h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
             >
               {data?.shortcut}
             </button>
