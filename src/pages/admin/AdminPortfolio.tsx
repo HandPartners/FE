@@ -169,6 +169,7 @@ const AdminPortfolio = () => {
         setFormData={setFormData}
         category={category}
         setCategory={setCategory}
+        name={name}
         setName={setName}
         searchInput={searchInput}
         setSearchInput={setSearchInput}
