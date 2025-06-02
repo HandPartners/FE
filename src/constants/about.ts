@@ -20,4 +20,14 @@ export const about: About[] = [
     position: "더미",
     photo: 더미,
   },
+  {
+    name: "더미",
+    position: "더미",
+    photo: 더미,
+  },
+  {
+    name: "더미",
+    position: "더미",
+    photo: 더미,
+  },
 ];
