@@ -23,7 +23,7 @@ const PortfolioModalLayout: React.FC<PortfolioModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 flex justify-center  min-h-screen  overflow-y-auto z-50 bg-[rgba(217,217,217,0.3)] backdrop-blur-sm border"
+      className="fixed inset-0 flex justify-center  min-h-screen  overflow-y-auto z-50 bg-[rgba(217,217,217,0.3)] backdrop-blur-sm"
       onClick={onClickBG}
     >
       <div
