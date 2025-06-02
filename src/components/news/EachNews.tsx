@@ -50,9 +50,11 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
           >
             {item.title}
           </h4>
-          <p className="hidden md:block p-large-bold text-[#9E9E9E] line-clamp-2">
-            {item.content}
-          </p>
+          <div className="hidden md:block">
+            <p className="w-full p-large-bold text-[#9E9E9E] line-clamp-2">
+              {item.content}
+            </p>
+          </div>
         </div>
         <span
           className={clsx(
