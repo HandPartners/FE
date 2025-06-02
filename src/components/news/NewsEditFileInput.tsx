@@ -110,6 +110,7 @@ const NewsEditFileInput: React.FC<
           ref={fileInputRef}
           className="hidden"
           onChange={handleFileChange}
+          accept="image/jpeg, image/png, .jpg, .jpeg, .png"
         />
       </div>
 

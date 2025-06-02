@@ -38,12 +38,12 @@ type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
 const tabs = [
   "ALL",
+  "Notice",
+  "Press",
   "Consulting",
   "Investment",
   "Education",
   "Networking",
-  "Notice",
-  "Press",
 ];
 
 const News: React.FC = () => {
@@ -173,7 +173,9 @@ const News: React.FC = () => {
                 setInputValue(event.target.value);
               }}
               onKeyDown={(event) => {
-                if (event.key === "Enter") handleSearch();
+                if (event.key === "Enter") {
+                  handleSearch();
+                }
               }}
             />
             <button
@@ -186,11 +188,26 @@ const News: React.FC = () => {
         </div>
 
         <section className="px-[30px] md:px-[3.203125%]">
-          {newsList.map((item) => (
-            <FadeInItem>
-              <EachNews key={item.id} id={item.id} item={item} />
-            </FadeInItem>
-          ))}
+          {newsList.length > 0 ? (
+            newsList.map((item) => (
+              <FadeInItem>
+                <EachNews key={item.id} id={item.id} item={item} />
+              </FadeInItem>
+            ))
+          ) : (
+            <div className="flex justify-center w-full">
+              <p className="h5-medium">
+                {!searchTerm ? (
+                  "게시글이 존재하지 않습니다."
+                ) : (
+                  <>
+                    <span className="h5-bold">"{searchTerm || ""}"</span>
+                    {" 에 대한 검색 결과가 없습니다."}
+                  </>
+                )}
+              </p>
+            </div>
+          )}
         </section>
 
         <div ref={loadMoreRef} className="h-[1px]" />

@@ -5,12 +5,12 @@ import ic_right from "../../assets/icons/ic_right.svg";
 
 const tabs = [
   "ALL",
+  "Notice",
+  "Press",
   "Consulting",
   "Investment",
   "Education",
   "Networking",
-  "Notice",
-  "Press",
 ];
 
 interface ScrollableTabsProps {

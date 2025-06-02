@@ -6,6 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import NewsEditDropdownBtn from "../../components/news/NewsEditDropdownBtn";
 import NewsEditFileInput from "../../components/news/NewsEditFileInput";
 import NewsEditLinkBtnInput from "../../components/news/NewsEditLinkBtnInput";
+import OverlapPartialLoading from "../../components/OverlapPartialLoading";
 
 import useOutsideClick from "../../hooks/useOutsideClick";
 import useWindowWidth from "../../hooks/useWindowWidth";
@@ -50,6 +51,7 @@ const NewsEdit = () => {
   const [existingImages, setExistingImages] = useState<string[]>([]);
   const [data, setData] = useState<FormValues | null>(null);
 
+  const [isLoading, setIsLoading] = useState(false);
   const categories = [
     "Consulting",
     "Investment",
@@ -128,6 +130,7 @@ const NewsEdit = () => {
   }, [existingImages, setValue]);
 
   const onSubmit = async (data: FormValues) => {
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("category", data.category);
     formData.append("title", data.title);
@@ -169,202 +172,213 @@ const NewsEdit = () => {
       }
     } catch (error) {
       alert(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const visible = watch("visible");
+  const isCategoryValid = watch("category") || false;
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="w-full h-[200%] flex flex-col items-center py-[70px] "
-    >
-      <section className="flex flex-col relative mx-auto w-[333px] md:w-[800px] h-full">
-        <button
-          type="button"
-          onClick={() => {
-            setIsCategoryOpen((prev) => !prev);
-          }}
-          ref={ref}
-          className="flex items-center gap-[10px] md:gap-[20px] cursor-pointer w-fit"
-        >
-          <h4
-            className={clsx(md ? "h4-bold" : "p-medium-bold", "text-[#2E3093]")}
-          >
-            {selectedCategory || "카테고리 선택"}
-          </h4>
-          <img
-            className={clsx(
-              !isCategoryOpen ? "rotate-180" : "",
-              "w-[14.545px] md:w-[24px]"
-            )}
-            src={ic_up}
-            alt="ic_up"
-          />
-          {isCategoryOpen && (
-            <div className="absolute flex flex-col py-[11px] w-fit bg-white border-[1px] border-[#E2E2E2] rounded-[5px] z-10 top-[40px]">
-              {categories.map((category, index) => (
-                <NewsEditDropdownBtn
-                  key={category}
-                  selected={selectedCategoryIndex === index}
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    setSelectedCategoryIndex(index);
-                    setIsCategoryOpen(false);
-                  }}
-                >
-                  {category}
-                </NewsEditDropdownBtn>
-              ))}
-            </div>
-          )}
-        </button>
-        {errors.category && (
-          <p className="text-red-500">카테고리를 선택해주세요.</p>
-        )}
-
-        <input
-          {...register("title", { required: true })}
-          className={clsx(
-            "mt-[10px] p-[20px] h-[44px] md:h-[84px] bg-[#F4F7F8] text-[#777] rounded-[5.957px]",
-            md ? "h1-bold" : "p-large-bold"
-          )}
-          type="text"
-          placeholder="제목을 작성하세요."
-        />
-        {errors.title && <p className="text-red-500">제목을 입력해주세요.</p>}
-
-        <p
-          className={clsx(
-            "mt-[7px] mb-[20px] md:mb-[45px] text-[#777]",
-            md ? "p-large-bold" : "p-small-bold"
-          )}
-        >
-          {getCurrentDate()}
-        </p>
-
-        <textarea
-          {...register("content", { required: true })}
-          className={clsx(
-            "p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] box-border",
-            md ? "p-large-bold" : "p-medium-bold"
-          )}
-          placeholder="내용을 작성하세요."
-        />
-        {errors.content && <p className="text-red-500">내용을 입력해주세요.</p>}
-
-        <hr className="mt-[70px] mb-[24px] border-1 border-solid border-[#D9D9D9]" />
-
-        <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
-          이미지
-        </h4>
-
-        <div className="flex flex-col gap-[24px]">
-          <Controller
-            name="thumbnail"
-            control={control}
-            render={({ field }) => (
-              <NewsEditFileInput
-                {...field}
-                onChange={(files: File[]) => {
-                  setValue("thumbnail", files);
-                }}
-                existFileName={data?.thumbnail}
-              >
-                표지 이미지
-              </NewsEditFileInput>
-            )}
-          />
-
-          <Controller
-            name="image"
-            control={control}
-            render={({ field }) => (
-              <NewsEditFileInput
-                multiple
-                {...field}
-                onChange={(files: File[]) => {
-                  setValue("image", files);
-                }}
-                existFileName={existingImages}
-                onRemoveExisting={(index) =>
-                  setExistingImages((imgs) =>
-                    imgs.filter((_, i) => i !== index)
-                  )
-                }
-              >
-                본문 이미지
-              </NewsEditFileInput>
-            )}
-          />
-        </div>
-
-        <hr className="my-[24px] border-1 border-solid border-[#D9D9D9]" />
-
-        <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
-          바로가기 버튼
-        </h4>
-        <section className="flex flex-col gap-[24px]">
-          <Controller
-            name="shortcut"
-            control={control}
-            render={({ field }) => (
-              <NewsEditLinkBtnInput
-                {...field}
-                placeholder="'신청하기' 등 버튼 이름을 입력해주세요."
-              >
-                버튼 이름
-              </NewsEditLinkBtnInput>
-            )}
-          />
-
-          <Controller
-            name="link"
-            control={control}
-            render={({ field }) => (
-              <NewsEditLinkBtnInput
-                {...field}
-                placeholder="링크를 삽입해주세요."
-              >
-                버튼 링크
-              </NewsEditLinkBtnInput>
-            )}
-          />
-        </section>
-
-        <button
-          type="button"
-          className="flex items-center gap-[10px] mt-[18px] mb-[100px] p-small-medium cursor-pointer"
-          onClick={() => setValue("visible", !visible)}
-        >
-          <img src={visible ? ic_check_colored : ic_check_mono} alt="" />
-          버튼을 화면에 보여주기
-        </button>
-
-        <div className="flex justify-end gap-[28px] pb-[70px]">
+    <>
+      <OverlapPartialLoading isLoading={isLoading} />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full h-[200%] flex flex-col items-center py-[70px] "
+      >
+        <section className="flex flex-col relative mx-auto w-[333px] md:w-[800px] h-full">
           <button
             type="button"
-            className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#BABABA] cursor-pointer"
             onClick={() => {
-              navigate(-1);
+              setIsCategoryOpen((prev) => !prev);
             }}
+            ref={ref}
+            className="flex items-center gap-[10px] md:gap-[20px] cursor-pointer w-fit"
           >
-            취소
+            <h4
+              className={clsx(
+                md ? "h4-bold" : "p-medium-bold",
+                "text-[#2E3093]"
+              )}
+            >
+              {selectedCategory || "카테고리 선택"}
+            </h4>
+            <img
+              className={clsx(
+                !isCategoryOpen ? "rotate-180" : "",
+                "w-[14.545px] md:w-[24px]"
+              )}
+              src={ic_up}
+              alt="ic_up"
+            />
+            {isCategoryOpen && (
+              <div className="absolute flex flex-col py-[11px] w-fit bg-white border-[1px] border-[#E2E2E2] rounded-[5px] z-10 top-[40px]">
+                {categories.map((category, index) => (
+                  <NewsEditDropdownBtn
+                    key={category}
+                    selected={selectedCategoryIndex === index}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      setSelectedCategoryIndex(index);
+                      setIsCategoryOpen(false);
+                    }}
+                  >
+                    {category}
+                  </NewsEditDropdownBtn>
+                ))}
+              </div>
+            )}
           </button>
+          {errors.category && (
+            <p className="text-red-500">카테고리를 선택해주세요.</p>
+          )}
+
+          <input
+            {...register("title", { required: true })}
+            className={clsx(
+              "mt-[10px] p-[20px] h-[44px] md:h-[84px] bg-[#F4F7F8] text-[#777] rounded-[5.957px]",
+              md ? "h1-bold" : "p-large-bold"
+            )}
+            type="text"
+            placeholder="제목을 작성하세요."
+          />
+          {errors.title && <p className="text-red-500">제목을 입력해주세요.</p>}
+
+          <p
+            className={clsx(
+              "mt-[7px] mb-[20px] md:mb-[45px] text-[#777]",
+              md ? "p-large-bold" : "p-small-bold"
+            )}
+          >
+            {getCurrentDate()}
+          </p>
+
+          <textarea
+            {...register("content", { required: true })}
+            className={clsx(
+              "p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] box-border",
+              md ? "p-large-bold" : "p-medium-bold"
+            )}
+            placeholder="내용을 작성하세요."
+          />
+          {errors.content && (
+            <p className="text-red-500">내용을 입력해주세요.</p>
+          )}
+
+          <hr className="mt-[70px] mb-[24px] border-1 border-solid border-[#D9D9D9]" />
+
+          <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
+            이미지
+          </h4>
+
+          <div className="flex flex-col gap-[24px]">
+            <Controller
+              name="thumbnail"
+              control={control}
+              render={({ field }) => (
+                <NewsEditFileInput
+                  {...field}
+                  onChange={(files: File[]) => {
+                    setValue("thumbnail", files);
+                  }}
+                  existFileName={data?.thumbnail}
+                >
+                  표지 이미지
+                </NewsEditFileInput>
+              )}
+            />
+
+            <Controller
+              name="image"
+              control={control}
+              render={({ field }) => (
+                <NewsEditFileInput
+                  multiple
+                  {...field}
+                  onChange={(files: File[]) => {
+                    setValue("image", files);
+                  }}
+                  existFileName={existingImages}
+                  onRemoveExisting={(index) =>
+                    setExistingImages((imgs) =>
+                      imgs.filter((_, i) => i !== index)
+                    )
+                  }
+                >
+                  본문 이미지
+                </NewsEditFileInput>
+              )}
+            />
+          </div>
+
+          <hr className="my-[24px] border-1 border-solid border-[#D9D9D9]" />
+
+          <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
+            바로가기 버튼
+          </h4>
+          <section className="flex flex-col gap-[24px]">
+            <Controller
+              name="shortcut"
+              control={control}
+              render={({ field }) => (
+                <NewsEditLinkBtnInput
+                  {...field}
+                  placeholder="'신청하기' 등 버튼 이름을 입력해주세요."
+                >
+                  버튼 이름
+                </NewsEditLinkBtnInput>
+              )}
+            />
+
+            <Controller
+              name="link"
+              control={control}
+              render={({ field }) => (
+                <NewsEditLinkBtnInput
+                  {...field}
+                  placeholder="링크를 삽입해주세요."
+                >
+                  버튼 링크
+                </NewsEditLinkBtnInput>
+              )}
+            />
+          </section>
+
           <button
-            type="submit"
-            className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer transition-colors hover:bg-[#059DD7] active:bg-[#058BBF] disabled:bg-[#B2E6FA] disabled:cursor-default"
-            disabled={
-              watch("category") === "" ||
-              watch("title") === "" ||
-              watch("content") === ""
-            }
+            type="button"
+            className="flex items-center gap-[10px] mt-[18px] mb-[100px] p-small-medium cursor-pointer"
+            onClick={() => setValue("visible", !visible)}
           >
-            등록
+            <img src={visible ? ic_check_colored : ic_check_mono} alt="" />
+            버튼을 화면에 보여주기
           </button>
-        </div>
-      </section>
-    </form>
+
+          <div className="flex justify-end gap-[28px] pb-[70px]">
+            <button
+              type="button"
+              className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#BABABA] cursor-pointer"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
+              취소
+            </button>
+            <button
+              type="submit"
+              className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer transition-colors hover:bg-[#059DD7] active:bg-[#058BBF] disabled:bg-[#B2E6FA] disabled:cursor-default"
+              disabled={
+                !isCategoryValid ||
+                watch("title") === "" ||
+                watch("content") === ""
+              }
+            >
+              등록
+            </button>
+          </div>
+        </section>
+      </form>
+    </>
   );
 };
 

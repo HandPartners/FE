@@ -164,15 +164,11 @@ const NewsDetail = () => {
         {Array.isArray(data?.image) &&
           data?.image.map((img) => (
             <section className="flex justify-center mt-[80px] mb-[40px] w-full">
-              <div
-                key={img}
-                className="w-[313px] md:w-[630px] h-[213px] md:h-[429px] border-[1px] border-[#E2E2E2] bg-contain bg-center bg-no-repeat"
-                style={{
-                  backgroundImage: `url(${
-                    import.meta.env.VITE_API_URL
-                  }/uploads/${img})`,
-                }}
-              ></div>
+              <img
+                className="w-[313px] md:w-[630px]"
+                src={import.meta.env.VITE_API_URL + "/uploads/" + img}
+                alt=""
+              />
             </section>
           ))}
 
@@ -189,7 +185,7 @@ const NewsDetail = () => {
                   "noopener,noreferrer"
                 );
               }}
-              className="h4-bold w-[196px] h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
+              className="h4-bold px-[30px] min-w-[196px] w-fit min-h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
             >
               {data?.shortcut}
             </button>
