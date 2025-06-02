@@ -142,11 +142,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
 
       {(portfolioList?.portfolioList?.length ?? 0) === 0 ? (
         <div className="flex flex-col justify-center items-center w-full h-[200px] text-center gap-2">
-          <p
-            className={`text-[var(--grey4)] ${
-              isMobile ? "p-medium-bold" : "h5-bold"
-            }`}
-          >
+          <p className={` ${isMobile ? "p-medium-bold" : "h5-bold"}`}>
             {name
               ? `"${name}"에 대한 검색 결과가 없습니다.`
               : "게시글이 존재하지 않습니다."}
