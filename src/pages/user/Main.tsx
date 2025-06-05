@@ -346,8 +346,8 @@ const Main = () => {
             ref={contactRef}
           >
             <TitleLine>CONTACT</TitleLine>
-            <div className="  h-[244px] flex flex-col gap-[60px]">
-              <section className=" flex flex-col gap-[4px]">
+            <div className="  h-[244px] flex flex-col gap-[60px] ml-[41px]">
+              <section className=" flex flex-col gap-[4px] ">
                 <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
                   SEOUL OFFICE
                 </h2>
@@ -356,12 +356,19 @@ const Main = () => {
                     isMobile ? "p-small-bold " : "p-large-bold "
                   }`}
                 >
-                  서울특별시 노원구 광운로 000 00길 00층
+                  [서울] 서울 구로구 디지털로26길 43, L동 1205호
+                </p>
+                <p
+                  className={` text-[var(--grey6)] ${
+                    isMobile ? "p-small-bold " : "p-large-bold "
+                  }`}
+                >
+                  [충남] 천안시 동남구 은행길9, 430호
                 </p>
               </section>
               <section className=" flex-col gap-[4px]">
                 <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
-                  SEOUL OFFICE
+                  MAIL
                 </h2>
                 <p
                   className={` text-[var(--grey6)] ${
