@@ -300,7 +300,7 @@ const Main = () => {
                             {item.category}
                           </span>
                           <h2
-                            className={`w-[100%]  h-[48px] md:h-fit  overflow-hidden  text-ellipsis line-clamp-2 md:ine-clamp-1 flex  ${
+                            className={`w-[100%]  h-[48px] md:h-fit  overflow-hidden  text-ellipsis line-clamp-2 md:line-clamp-1 flex  ${
                               isMobile ? "p-medium-bold" : "h4-bold"
                             }`}
                           >
