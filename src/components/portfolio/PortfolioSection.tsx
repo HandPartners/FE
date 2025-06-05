@@ -185,14 +185,14 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
                       {item.category}
                     </span>
                     <span
-                      className={`${
+                      className={`truncate overflow-hidden whitespace-nowrap ${
                         isMobile ? "p-medium-bold" : "p-large-bold"
                       }`}
                     >
                       {item.name}
                     </span>
                     <p
-                      className={`${
+                      className={` w-full text-ellipsis overflow-hidden break-words ${
                         isMobile ? "p-xs-regular" : "p-small-regular"
                       }`}
                     >
