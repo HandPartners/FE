@@ -164,7 +164,10 @@ const NewsDetail = () => {
         <div className=" mt-[30px] mb-[50px] md:mt-[80px] md:mb-[40px]">
           {Array.isArray(data?.image) &&
             data?.image.map((img) => (
-              <section className="flex justify-center w-full not-last:mb-[40px]">
+              <section
+                key={img}
+                className="flex justify-center w-full not-last:mb-[40px]"
+              >
                 <img
                   className="w-full md:w-full "
                   src={import.meta.env.VITE_API_URL + "/uploads/" + img}

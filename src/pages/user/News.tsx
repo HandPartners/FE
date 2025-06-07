@@ -190,8 +190,8 @@ const News: React.FC = () => {
         <section className="px-[30px] md:px-[3.203125%]">
           {newsList.length > 0 ? (
             newsList.map((item) => (
-              <FadeInItem>
-                <EachNews key={item.id} id={item.id} item={item} />
+              <FadeInItem key={item.id}>
+                <EachNews id={item.id} item={item} />
               </FadeInItem>
             ))
           ) : (

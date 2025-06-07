@@ -107,6 +107,14 @@ const NewsEdit = () => {
   } = useForm<FormValues>({
     defaultValues: {
       visible: false,
+      shortcut: "",
+      link: "",
+      title: "",
+      content: "",
+      category: "",
+      keepImages: [],
+      thumbnail: undefined,
+      image: [],
     },
   });
 
@@ -171,8 +179,8 @@ const NewsEdit = () => {
         navigate("/news");
       }
     } catch (error) {
-      alert(error);
-    } finally {
+      console.error("Error NewsDetail:", error);
+      toastAlert("게시글이 추가가 실패하였습니다.", "error");
       setIsLoading(false);
     }
   };
