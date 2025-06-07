@@ -161,17 +161,18 @@ const NewsDetail = () => {
             {data?.content}
           </p>
         </article>
-        {Array.isArray(data?.image) &&
-          data?.image.map((img) => (
-            <section className="flex justify-center mt-[80px] mb-[40px] w-full">
-              <img
-                className="w-[313px] md:w-[630px]"
-                src={import.meta.env.VITE_API_URL + "/uploads/" + img}
-                alt=""
-              />
-            </section>
-          ))}
-
+        <div className=" mt-[30px] mb-[50px] md:mt-[80px] md:mb-[40px]">
+          {Array.isArray(data?.image) &&
+            data?.image.map((img) => (
+              <section className="flex justify-center w-full not-last:mb-[40px]">
+                <img
+                  className="w-full md:w-full "
+                  src={import.meta.env.VITE_API_URL + "/uploads/" + img}
+                  alt=""
+                />
+              </section>
+            ))}
+        </div>
         <section className="flex justify-center pb-[70px] w-full">
           {data?.visible && (
             <button
