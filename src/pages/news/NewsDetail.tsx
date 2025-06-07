@@ -154,7 +154,7 @@ const NewsDetail = () => {
         <article className="mt-[60px]">
           <p
             className={clsx(
-              "text-[#777]",
+              "text-[#777] whitespace-pre-wrap break-words",
               md ? "p-large-bold" : "p-medium-bold"
             )}
           >

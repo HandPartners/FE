@@ -257,7 +257,7 @@ const NewsEdit = () => {
           <textarea
             {...register("content", { required: true })}
             className={clsx(
-              "p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] box-border",
+              "p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] box-border  ",
               md ? "p-large-bold" : "p-medium-bold"
             )}
             placeholder="내용을 작성하세요."
