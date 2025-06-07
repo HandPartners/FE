@@ -142,7 +142,7 @@ const News: React.FC = () => {
         )}
       </div>
 
-      <section className="w-full">
+      <section className="w-full md:w-[1280px]">
         <div className="flex flex-col md:flex-row gap-[20px] md:gap-[15px] relative w-full md:w-[1280px] mb-[50px]">
           {md ? (
             <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">

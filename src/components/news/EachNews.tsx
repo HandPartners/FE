@@ -18,13 +18,13 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
   const { md } = useWindowWidth();
   return (
     <button
-      className="flex gap-[20px] md:gap-[36px] py-[20px] md:py-[24px] w-full h-[119px] md:h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer"
+      className=" flex gap-[6%] px-[3%] py-[20px] md:gap-[36px] md:py-[24px] w-full md:w-[1280px] h-[119px] md:h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer"
       onClick={() => {
         navigate(`${id}`, { relative: "path" });
       }}
     >
       <div
-        className="w-[116px] md:w-[238px] h-[79px] md:h-[162px] border-[1px] border-[#E2E2E2] bg-cover bg-center bg-no-repeat"
+        className="w-[34.8%] md:w-[238px] h-[79px] md:h-[162px] border-[1px] border-[#E2E2E2] bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: item.thumbnail
             ? `url(${import.meta.env.VITE_API_URL}/uploads/${item.thumbnail})`
@@ -32,7 +32,7 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
         }}
       ></div>
 
-      <div className="flex flex-col justify-between flex-1">
+      <div className="flex flex-col justify-between w-[60.25%] md:w-[934px] ">
         <div className="flex flex-col md:gap-[7px]">
           <h5
             className={clsx(
