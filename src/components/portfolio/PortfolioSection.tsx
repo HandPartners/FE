@@ -37,7 +37,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
   const isMobile = !windowWidth.md;
 
   return (
-    <section className="flex flex-col gap-[30px] md:gap-[50px]  w-[92.9svw] md:w-[1280px] pb-[346px]">
+    <section className="flex flex-col gap-[30px] md:gap-[50px]  w-[92.9svw] md:w-[1280px] pb-[100px] ">
       <div className="flex flex-col md:flex-row gap-[15px] md:gap-[20px]  min-w-[365px] ">
         <ul
           className={` flex border border-[var(--grey3)]  rounded-[30px] w-full md:w-fit py-[8px] h-[48px] md:h-[60px] items-center md:p-[10px] ${
@@ -154,7 +154,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-5 h-[310px] gap-x-[9px] gap-y-[10px] md:gap-[50px]">
+        <div className="grid grid-cols-2 md:grid-cols-5  gap-x-[9px] gap-y-[10px] md:gap-[50px]">
           {(portfolioList?.portfolioList || [])
             .filter(
               (item) =>
@@ -165,7 +165,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
               <FadeInItem key={index}>
                 <div
                   key={index}
-                  className={`${
+                  className={` ${
                     !isAdmin ? "" : "cursor-pointer"
                   } aspect-[162/260] md:w-[216px] md:h-[310px] flex flex-col border border-[var(--grey3)]`}
                   onClick={() => {
