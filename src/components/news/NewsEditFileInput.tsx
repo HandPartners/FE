@@ -108,7 +108,7 @@ const NewsEditFileInput: React.FC<
           type="file"
           multiple={multiple}
           ref={fileInputRef}
-          className="hidden"
+          className="hidden focus:outline-none focus:ring-0 focus:bg-[#f7f9fa]"
           onChange={handleFileChange}
           accept="image/jpeg, image/png, .jpg, .jpeg, .png"
         />

@@ -74,8 +74,6 @@ const Main = () => {
         const { portfolioList, newsList } = await getMain();
         setPortfolioList(portfolioList);
         setNewsList(newsList);
-        console.log(portfolioList);
-        console.log(newsList);
       } catch (error) {
         console.error(error);
       }
@@ -188,21 +186,19 @@ const Main = () => {
               ) : (
                 <div className="flex flex-row gap-[20px] ">
                   {programData.map((item, idx) => (
-                    <>
-                      <div
-                        key={idx}
-                        className=" w-full h-[400px] border-[var(--grey3)]"
-                      >
-                        <img
-                          className="h-[290px] w-full object-cover"
-                          src={item.img}
-                        ></img>
-                        <div className=" h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
-                          <h3 className="p-large-bold">{item.title}</h3>
-                          <p className="p-medium-medium">{item.contents}</p>
-                        </div>
+                    <div
+                      key={idx}
+                      className=" w-full h-[400px] border-[var(--grey3)]"
+                    >
+                      <img
+                        className="h-[290px] w-full object-cover"
+                        src={item.img}
+                      ></img>
+                      <div className=" h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
+                        <h3 className="p-large-bold">{item.title}</h3>
+                        <p className="p-medium-medium">{item.contents}</p>
                       </div>
-                    </>
+                    </div>
                   ))}
                 </div>
               )}
@@ -263,7 +259,7 @@ const Main = () => {
             </span>
           </section>
 
-          {/* 뉴스 */}
+          {/* NEWS */}
           <section className="flex flex-col  md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]">
             <TitleLine>NEWS</TitleLine>
             {items.length === 0 ? (
@@ -271,7 +267,7 @@ const Main = () => {
                 게시글이 존재하지 않습니다.
               </p>
             ) : (
-              <div>
+              <div className="">
                 {newsList.map((item) => (
                   <FadeInItem key={item.id}>
                     <div
@@ -288,9 +284,10 @@ const Main = () => {
                               }`
                             : default_thumbnail
                         }
-                        className="w-[116px] md:w-[238px] h-full  object-coverm border border-[var(--grey3)]"
+                        className="w-[34.8%] w-max-[116px] md:w-[238px] h-full  object-cover border border-[var(--grey3)]"
                       ></img>
-                      <section className="flex flex-col gap-[3px] md:gap-[12px] h-full w-full   ">
+
+                      <section className="flex flex-col gap-[3px] md:gap-[12px] h-full  w-[57%] md:w-[934px] ">
                         <section className="flex flex-col md:gap-[7px] w-full  h-[62px] md:h-[130px]">
                           <span
                             className={`text-[#2E3093]  h-fit flex items-center ${
@@ -300,7 +297,7 @@ const Main = () => {
                             {item.category}
                           </span>
                           <h2
-                            className={`w-[100%]  h-[48px] md:h-fit  overflow-hidden  text-ellipsis line-clamp-2 md:ine-clamp-1 flex  ${
+                            className={` w-[100%] h-[48px] md:h-fit  overflow-hidden text-ellipsis line-clamp-2 md:line-clamp-1   ${
                               isMobile ? "p-medium-bold" : "h4-bold"
                             }`}
                           >
@@ -310,8 +307,8 @@ const Main = () => {
                             <></>
                           ) : (
                             <p
-                              className={`w-full h-fit text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2  
-                             p-large-bold
+                              className={` w-full h-fit text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2  
+                             p-large-bold  whitespace-pre-wrap break-words
                             `}
                             >
                               {item.content}
@@ -346,8 +343,8 @@ const Main = () => {
             ref={contactRef}
           >
             <TitleLine>CONTACT</TitleLine>
-            <div className="  h-[244px] flex flex-col gap-[60px]">
-              <section className=" flex flex-col gap-[4px]">
+            <div className="  h-[244px] flex flex-col gap-[60px] ml-[41px]">
+              <section className=" flex flex-col gap-[4px] ">
                 <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
                   SEOUL OFFICE
                 </h2>
@@ -356,12 +353,19 @@ const Main = () => {
                     isMobile ? "p-small-bold " : "p-large-bold "
                   }`}
                 >
-                  서울특별시 노원구 광운로 000 00길 00층
+                  [서울] 서울 구로구 디지털로26길 43, L동 1205호
+                </p>
+                <p
+                  className={` text-[var(--grey6)] ${
+                    isMobile ? "p-small-bold " : "p-large-bold "
+                  }`}
+                >
+                  [충남] 천안시 동남구 은행길9, 430호
                 </p>
               </section>
               <section className=" flex-col gap-[4px]">
                 <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
-                  SEOUL OFFICE
+                  MAIL
                 </h2>
                 <p
                   className={` text-[var(--grey6)] ${

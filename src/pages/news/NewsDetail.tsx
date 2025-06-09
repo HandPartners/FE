@@ -72,7 +72,7 @@ const NewsDetail = () => {
   };
 
   return (
-    <main className="w-full h-full flex flex-col items-center py-[70px] ">
+    <main className="w-full h-full flex flex-col items-center py-[30px] md:py-[70px] ">
       <section className="flex flex-col mx-auto w-[333px] md:w-[800px] h-full">
         <div className="flex justify-between w-full">
           <button
@@ -154,24 +154,28 @@ const NewsDetail = () => {
         <article className="mt-[60px]">
           <p
             className={clsx(
-              "text-[#777]",
+              "text-[#777] whitespace-pre-wrap break-words",
               md ? "p-large-bold" : "p-medium-bold"
             )}
           >
             {data?.content}
           </p>
         </article>
-        {Array.isArray(data?.image) &&
-          data?.image.map((img) => (
-            <section className="flex justify-center mt-[80px] mb-[40px] w-full">
-              <img
-                className="w-[313px] md:w-[630px]"
-                src={import.meta.env.VITE_API_URL + "/uploads/" + img}
-                alt=""
-              />
-            </section>
-          ))}
-
+        <div className=" mt-[30px] mb-[50px] md:mt-[80px] md:mb-[40px]">
+          {Array.isArray(data?.image) &&
+            data?.image.map((img) => (
+              <section
+                key={img}
+                className="flex justify-center w-full not-last:mb-[40px]"
+              >
+                <img
+                  className="w-full md:w-full "
+                  src={import.meta.env.VITE_API_URL + "/uploads/" + img}
+                  alt=""
+                />
+              </section>
+            ))}
+        </div>
         <section className="flex justify-center pb-[70px] w-full">
           {data?.visible && (
             <button
@@ -185,7 +189,9 @@ const NewsDetail = () => {
                   "noopener,noreferrer"
                 );
               }}
-              className="h4-bold px-[30px] min-w-[196px] w-fit min-h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
+              className={`${
+                md ? "h4-bole" : "p-medium-bold"
+              }h4-bold px-[30px] w-fit h-[44px] md:min-w-[196px] md:min-h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer`}
             >
               {data?.shortcut}
             </button>

@@ -142,10 +142,15 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
 
       {(portfolioList?.portfolioList?.length ?? 0) === 0 ? (
         <div className="flex flex-col justify-center items-center w-full h-[200px] text-center gap-2">
-          <p className={` ${isMobile ? "p-medium-bold" : "h5-bold"}`}>
-            {name
-              ? `"${name}"에 대한 검색 결과가 없습니다.`
-              : "게시글이 존재하지 않습니다."}
+          <p className={` ${isMobile ? "p-medium-bold" : "h5-medium"}`}>
+            {name ? (
+              <>
+                <span className="h5-bold">"{name}"</span>에 대한 검색 결과가
+                없습니다.
+              </>
+            ) : (
+              "게시글이 존재하지 않습니다."
+            )}
           </p>
         </div>
       ) : (
@@ -185,14 +190,14 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
                       {item.category}
                     </span>
                     <span
-                      className={`${
+                      className={`truncate overflow-hidden whitespace-nowrap ${
                         isMobile ? "p-medium-bold" : "p-large-bold"
                       }`}
                     >
                       {item.name}
                     </span>
                     <p
-                      className={`${
+                      className={` w-full text-ellipsis overflow-hidden break-words ${
                         isMobile ? "p-xs-regular" : "p-small-regular"
                       }`}
                     >
