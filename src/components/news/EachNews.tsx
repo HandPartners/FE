@@ -51,7 +51,7 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
             {item.title}
           </h4>
           <div className="hidden md:block">
-            <p className="w-full p-large-bold text-[#9E9E9E] line-clamp-2">
+            <p className="w-full p-large-bold text-[#9E9E9E] line-clamp-2  whitespace-pre-wrap break-words">
               {item.content}
             </p>
           </div>

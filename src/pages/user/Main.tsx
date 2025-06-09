@@ -259,7 +259,7 @@ const Main = () => {
             </span>
           </section>
 
-          {/* 뉴스 */}
+          {/* NEWS */}
           <section className="flex flex-col  md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]">
             <TitleLine>NEWS</TitleLine>
             {items.length === 0 ? (
@@ -308,7 +308,7 @@ const Main = () => {
                           ) : (
                             <p
                               className={` w-full h-fit text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2  
-                             p-large-bold
+                             p-large-bold  whitespace-pre-wrap break-words
                             `}
                             >
                               {item.content}
