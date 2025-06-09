@@ -45,7 +45,7 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
           <h4
             className={clsx(
               md ? "h4-bold" : "p-medium-bold",
-              "pl-0 line-clamp-2 md:line-clamp-1 "
+              "pl-0 line-clamp-2 md:line-clamp-1 break-all"
             )}
           >
             {item.title}
