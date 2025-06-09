@@ -193,7 +193,7 @@ const NewsEdit = () => {
       <OverlapPartialLoading isLoading={isLoading} />
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full h-[200%] flex flex-col items-center py-[70px] "
+        className="w-full h-[200%] flex flex-col items-center py-[30px] md:py-[70px]"
       >
         <section className="flex flex-col relative mx-auto w-[333px] md:w-[800px] h-full">
           <button
@@ -274,7 +274,7 @@ const NewsEdit = () => {
             <p className="text-red-500">내용을 입력해주세요.</p>
           )}
 
-          <hr className="mt-[70px] mb-[24px] border-1 border-solid border-[#D9D9D9]" />
+          <hr className="mt-[40px] md:mt-[70px] mb-[24px] border-1 border-solid border-[#D9D9D9]" />
 
           <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
             이미지
@@ -355,7 +355,7 @@ const NewsEdit = () => {
 
           <button
             type="button"
-            className="flex items-center gap-[10px] mt-[18px] mb-[100px] p-small-medium cursor-pointer"
+            className="flex items-center gap-[10px] mt-[18px] mb-[80px] md:mb-[100px] p-small-medium cursor-pointer"
             onClick={() => setValue("visible", !visible)}
           >
             <img src={visible ? ic_check_colored : ic_check_mono} alt="" />
