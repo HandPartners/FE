@@ -72,7 +72,7 @@ const NewsDetail = () => {
   };
 
   return (
-    <main className="w-full h-full flex flex-col items-center py-[70px] ">
+    <main className="w-full h-full flex flex-col items-center py-[30px] md:py-[70px] ">
       <section className="flex flex-col mx-auto w-[333px] md:w-[800px] h-full">
         <div className="flex justify-between w-full">
           <button
@@ -189,7 +189,9 @@ const NewsDetail = () => {
                   "noopener,noreferrer"
                 );
               }}
-              className="h4-bold px-[30px] min-w-[196px] w-fit min-h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer"
+              className={`${
+                md ? "h4-bole" : "p-medium-bold"
+              }h4-bold px-[30px] w-fit h-[44px] md:min-w-[196px] md:min-h-[56px] rounded-[30px] bg-[#00AEEF] text-white cursor-pointer`}
             >
               {data?.shortcut}
             </button>
