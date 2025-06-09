@@ -38,12 +38,12 @@ type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
 const tabs = [
   "ALL",
-  "Notice",
-  "Press",
   "Consulting",
   "Investment",
   "Education",
   "Networking",
+  "Notice",
+  "Press",
 ];
 
 const News: React.FC = () => {
@@ -138,14 +138,14 @@ const News: React.FC = () => {
             title={"글 작성"}
           />
         ) : (
-          <div className="h-[100px]"></div>
+          <div className=" h-[50px] md:h-[100px]"></div>
         )}
       </div>
 
       <section className="w-full md:w-[1280px]">
-        <div className="flex flex-col md:flex-row gap-[20px] md:gap-[15px] relative w-full md:w-[1280px] mb-[50px]">
+        <div className="flex flex-col md:flex-row gap-[15px] md:gap-[20px] relative w-[92.6svw] md:w-[1280px] mb-[10px] md:mb-[26px]">
           {md ? (
-            <div className="flex gap-[20px] px-[10px] py-[10px] h-[60px] border border-[#E2E2E2] rounded-[30px]">
+            <div className="flex gap-[20px] px-[10px] py-[10px]  md:h-[60px] border border-[#E2E2E2] rounded-[30px]">
               {tabs.map((tab) => (
                 <button
                   key={tab}
@@ -164,9 +164,11 @@ const News: React.FC = () => {
           ) : (
             <ScrollableTabs activeTab={activeTab} setActiveTab={setActiveTab} />
           )}
-          <div className="flex flex-1 relative mx-[14px] md:mx-0 h-[60px] border border-[#E2E2E2] rounded-[30px]">
+          <div className="flex flex-1 relative md:mx-0 h-[60px] border border-[#E2E2E2] rounded-[30px]">
             <input
-              className="flex-1 pl-[25px] pr-[5px] h-[60px] focus:outline-none"
+              className={`${
+                md ? "h5-regular" : "p-medium-regular"
+              } flex-1 pl-[25px] pr-[5px] h-[48px] md:h-[60px] focus:outline-none`}
               placeholder="검색어를 입력하세요."
               value={inputValue}
               onChange={(event) => {
@@ -187,7 +189,7 @@ const News: React.FC = () => {
           </div>
         </div>
 
-        <section className="px-[30px] md:px-[3.203125%]">
+        <section className=" px-[4.4%] md:p-0">
           {newsList.length > 0 ? (
             newsList.map((item) => (
               <FadeInItem key={item.id}>
@@ -195,13 +197,15 @@ const News: React.FC = () => {
               </FadeInItem>
             ))
           ) : (
-            <div className="flex justify-center w-full">
-              <p className="h5-medium">
+            <div className="flex justify-center w-full mt-[50px] md:mt-[100px]">
+              <p className={md ? "h5-medium" : "p-medium-medium"}>
                 {!searchTerm ? (
                   "게시글이 존재하지 않습니다."
                 ) : (
                   <>
-                    <span className="h5-bold">"{searchTerm || ""}"</span>
+                    <span className={md ? "h5-bold" : "p-medium-bold"}>
+                      "{searchTerm || ""}"
+                    </span>
                     {" 에 대한 검색 결과가 없습니다."}
                   </>
                 )}

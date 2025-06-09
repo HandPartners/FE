@@ -4,12 +4,12 @@ import ic_right from "../../assets/icons/ic_right.png";
 
 const tabs = [
   "ALL",
-  "Notice",
-  "Press",
   "Consulting",
   "Investment",
   "Education",
   "Networking",
+  "Notice",
+  "Press",
 ];
 
 interface ScrollableTabsProps {
@@ -61,8 +61,8 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
   }, []);
 
   return (
-    <div className="md:hidden flex justify-center w-full">
-      <div className="relative w-[92.87531806615776%]">
+    <div className="flex justify-center w-full md:hidden">
+      <div className="relative w-[92.6svw]">
         {canScrollLeft && (
           <button
             onClick={() => scrollBy(-stepSize)}
@@ -76,14 +76,14 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
           ref={scrollRef}
           onScroll={checkScroll}
           onWheel={() => setTimeout(checkScroll, 0)}
-          className="flex gap-[20px] px-[10px] py-[10px] h-[60px] overflow-x-auto scroll-smooth scrollbar-none rounded-[30px] border border-[#E2E2E2]"
+          className="flex gap-[1.78svw] px-[10px] py-[10px] h-[48px] overflow-x-auto scroll-smooth scrollbar-none rounded-[30px] border border-[#E2E2E2]"
         >
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={clsx(
-                "flex items-center justify-center h-full px-[20px] py-[6px] rounded-[30px] h5-bold cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-white",
+                "p-medium-bold flex items-center justify-center h-full  px-[10px] py-[4px] rounded-[30px] h5-bold cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-white",
                 activeTab === tab && "bg-[#00AEEF] text-white"
               )}
             >

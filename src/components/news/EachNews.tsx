@@ -18,7 +18,7 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
   const { md } = useWindowWidth();
   return (
     <button
-      className=" flex gap-[6%] px-[3%] py-[20px] md:gap-[36px] md:py-[24px] w-full md:w-[1280px] h-[119px] md:h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer"
+      className=" flex gap-[6%] px-[2.5%] md:px-[41px] py-[20px] md:gap-[36px] md:py-[24px] w-full  h-[119px] md:h-[210px] border-b-[1px] border-[#E2E2E2] text-start cursor-pointer "
       onClick={() => {
         navigate(`${id}`, { relative: "path" });
       }}
@@ -32,12 +32,12 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
         }}
       ></div>
 
-      <div className="flex flex-col justify-between w-[60.25%] md:w-[934px] ">
-        <div className="flex flex-col md:gap-[7px]">
+      <div className="flex flex-col justify-between w-[60.25%] md:w-[934px] md:gap-[12px]">
+        <div className="flex flex-col  md:gap-[7px]">
           <h5
             className={clsx(
               md ? "h5-bold" : "p-xs-bold",
-              "text-[#2E3093] line-clamp-1"
+              "text-[#2E3093] line-clamp-1 "
             )}
           >
             {item.category}
@@ -45,20 +45,20 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
           <h4
             className={clsx(
               md ? "h4-bold" : "p-medium-bold",
-              "pl-[10px] md:pl-0 line-clamp-2 md:line-clamp-1"
+              "pl-0 line-clamp-2 md:line-clamp-1 "
             )}
           >
             {item.title}
           </h4>
-          <div className="hidden md:block">
-            <p className="w-full p-large-bold text-[#9E9E9E] line-clamp-2  whitespace-pre-wrap break-words">
+          <div className="hidden md:block md:h-[28px]">
+            <p className="w-full p-large-bold text-[#9E9E9E] line-clamp-2  whitespace-pre-wrap break-words ">
               {item.content}
             </p>
           </div>
         </div>
         <span
           className={clsx(
-            "md:mb-[24px] text-[#9E9E9E]",
+            "text-[#9E9E9E] mt-[3px] md:mt-[12px] ",
             md ? "p-small-bold" : "p-xs-bold"
           )}
         >
