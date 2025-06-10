@@ -15,7 +15,7 @@ const DeleteModal: React.FC<ProtfolioAddModalProps> = ({
   const isMobile = !windowWidth.md;
 
   return (
-    <PortfolioModalLayout marginTop="mt-[340px]" onClickBG={onClose}>
+    <PortfolioModalLayout marginTop="mt-[340px]">
       <section className="flex flex-col gap-[8px]">
         <h2 className={`text-center ${isMobile ? "h4-bold" : "h2-bold"}`}>
           삭제하시겠습니까?

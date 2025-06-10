@@ -26,7 +26,7 @@ const ProtfolioAddModal: React.FC<ProtfolioAddModalProps> = ({
     (formData.logo instanceof File && formData.logo.size === 0);
 
   return (
-    <PortfolioModalLayout marginTop="my-auto" onClickBG={onClose}>
+    <PortfolioModalLayout marginTop="my-auto" >
       <h2 className="text-center h2-bold">포트폴리오</h2>
       <PortfolioModalForm
         formData={formData}

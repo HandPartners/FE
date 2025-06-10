@@ -4,13 +4,11 @@ import { useEffect } from "react";
 interface PortfolioModalProps {
   children: React.ReactNode;
   marginTop: string;
-  onClickBG?: () => void;
 }
 
 const PortfolioModalLayout: React.FC<PortfolioModalProps> = ({
   children,
   marginTop,
-  onClickBG,
 }) => {
   useEffect(() => {
     // 현재 스크롤 위치를 저장
@@ -37,7 +35,7 @@ const PortfolioModalLayout: React.FC<PortfolioModalProps> = ({
   return (
     <div
       className="fixed inset-0 flex justify-center  min-h-screen  z-50 bg-[rgba(217,217,217,0.3)] backdrop-blur-sm overflow-y-auto"
-      onClick={onClickBG}
+     
     >
       <div
         className={`${marginTop} bg-white py-[36px] px-[30px] rounded-lg w-[89.3%] max-w-[500px] md:w-[500px] h-fit relative flex flex-col gap-[28px]`}
