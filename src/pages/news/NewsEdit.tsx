@@ -305,6 +305,13 @@ const NewsEdit = () => {
                   multiple
                   {...field}
                   onChange={(files: File[]) => {
+                    if (files.length + existingImages.length > 10) {
+                      toastAlert(
+                        "이미지는 최대 10개까지만 등록할 수 있습니다.",
+                        "error"
+                      );
+                      return;
+                    }
                     setValue("image", files);
                   }}
                   existFileName={existingImages}
