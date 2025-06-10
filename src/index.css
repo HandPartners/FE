@@ -18,8 +18,9 @@
   textarea,
   hr {
     margin: 0;
-    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-      Roboto, "Noto Sans KR", "Malgun Gothic", sans-serif;
+    font-family: "Pretendard Variable", Pretendard, -apple-system,
+      BlinkMacSystemFont, system-ui, Roboto, "Noto Sans KR", "Malgun Gothic",
+      sans-serif;
   }
 }
 
@@ -37,4 +38,12 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+/* 스크롤바 숨기는 유틸 클래스 */
+.scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
