@@ -23,6 +23,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
   setActiveTab,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null); // 스크롤 가능한 영역을 참조
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({}); // 각 탭 버튼에 대한 참조
 
   const stepSize = 400; // 버튼 클릭 시 좌우 스크롤 이동 거리
 
@@ -47,6 +48,36 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
     setCanScrollRight(
       el.scrollLeft + el.clientWidth < el.scrollWidth - epsilon
     );
+  };
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+
+    const tabButton = tabRefs.current[tab];
+    const scrollContainer = scrollRef.current;
+
+    if (tabButton && scrollContainer) {
+      const offsetLeft = tabButton.offsetLeft;
+      const scrollLeft = scrollContainer.scrollLeft;
+      const tabWidth = tabButton.offsetWidth;
+      const containerWidth = scrollContainer.clientWidth;
+
+      // 1) 왼쪽으로 가려진 경우
+      if (offsetLeft < scrollLeft) {
+        scrollContainer.scrollTo({
+          left: offsetLeft - 28, 
+          behavior: "smooth",
+        });
+      }
+      // 2) 오른쪽으로 가려진 경우
+      else if (offsetLeft + tabWidth > scrollLeft + containerWidth) {
+        scrollContainer.scrollTo({
+          left: offsetLeft - 28,
+          behavior: "smooth",
+        });
+      }
+      // 3) 이미 완전히 보이는 경우는 이동하지 않음
+    }
   };
 
   // activeTab이 바뀔 때마다 스크롤 상태 재확인
@@ -89,7 +120,10 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
           {tabs.map((tab) => (
             <button
               key={tab}
-              onClick={() => setActiveTab(tab)}
+              ref={(el) => {
+                tabRefs.current[tab] = el;
+              }}
+              onClick={() => handleTabClick(tab)}
               className={clsx(
                 "p-medium-bold flex items-center justify-center h-full px-[10px] py-[4px] rounded-[30px] h5-bold cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-white",
                 activeTab === tab && "bg-[#00AEEF] text-white" // 활성 탭 스타일
