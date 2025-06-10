@@ -24,7 +24,7 @@ const EachNews: React.FC<EachNewsProps> = ({ id, item }) => {
       }}
     >
       <div
-        className="w-[34.8%] md:w-[238px] h-[79px] md:h-[162px] border-[1px] border-[#E2E2E2] bg-cover bg-center bg-no-repeat"
+        className="w-[34.8%] md:w-[238px] h-[79px] md:h-[162px] border-[1px] border-[#E2E2E2] bg-contain bg-center bg-no-repeat"
         style={{
           backgroundImage: item.thumbnail
             ? `url(${import.meta.env.VITE_API_URL}/uploads/${item.thumbnail})`
