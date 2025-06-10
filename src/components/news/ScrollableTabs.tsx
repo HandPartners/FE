@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import clsx from "clsx";
-import ic_right from "../../assets/icons/ic_right.png";
+import ic_right from "../../assets/icons/ic_right.svg";
 
 // 탭 목록 정의
 const tabs = [
@@ -73,7 +73,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollLeft && (
           <button
             onClick={() => scrollBy(-stepSize)}
-            className="absolute left-[-4px] top-1/2 -translate-y-1/2 z-10"
+            className="absolute left-[-4px] top-1/2 -translate-y-1/2 "
           >
             <img className="rotate-180" src={ic_right} alt="left" />
           </button>
@@ -104,7 +104,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollRight && (
           <button
             onClick={() => scrollBy(stepSize)}
-            className="absolute right-[-4px] top-1/2 -translate-y-1/2 z-10"
+            className="absolute right-[-4px] top-1/2 -translate-y-1/2"
           >
             <img src={ic_right} alt="right" />
           </button>
