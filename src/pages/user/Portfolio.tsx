@@ -23,7 +23,6 @@ const Portfolio = () => {
         name,
       });
       setPortfolioList(portfolio);
-      console.log(portfolio);
     } catch (error) {
       console.error("Error getPortfolio:", error);
     }
@@ -34,9 +33,7 @@ const Portfolio = () => {
   }, [fetchPortfolioList]);
 
   return (
-
     <main className=" flex flex-col items-center w-[1280px] max-w-full mx-auto relative pb-[100px]">
-
       <div className=" absolute top-[54px] left-[60px] md:top-[99px] md:left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
         <h1 className={` ${isMobile ? "h4-bold" : "md-banner"}`}>Portfolio</h1>
         <h3 className={` ${isMobile ? "p-small-medium" : "h3-medium"}`}>

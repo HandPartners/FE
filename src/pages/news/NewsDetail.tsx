@@ -135,7 +135,7 @@ const NewsDetail = () => {
           </h4>
           <h1
             className={clsx(
-              "mt-[10px] mb-[7px]",
+              "mt-[10px] mb-[7px] break-all",
               md ? "h1-bold" : "p-large-bold"
             )}
           >

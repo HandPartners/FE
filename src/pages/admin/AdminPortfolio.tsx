@@ -55,7 +55,6 @@ const AdminPortfolio = () => {
         name,
       });
       setPortfolioList(portfolio);
-      console.log(portfolio);
     } catch (error) {
       console.error("Error getPortfolio:", error);
     }
@@ -68,9 +67,6 @@ const AdminPortfolio = () => {
   // 포트폴리오 추가 API 연결
   const handleSubmit = async () => {
     try {
-      console.log("formData 상태:", formData);
-      console.log("File 타입 확인:", formData.logo instanceof File);
-
       // 입력값 유효성 검사
       if (
         !formData.category.trim() ||
@@ -106,10 +102,6 @@ const AdminPortfolio = () => {
     if (formData.logo) {
       data.append("logo", formData.logo);
     }
-
-    data.forEach((value, key) => {
-      console.log(`${key}:`, value);
-    });
 
     try {
       const result = await editPortfolio({ id: portfolioId, formData: data });

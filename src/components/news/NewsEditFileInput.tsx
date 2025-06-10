@@ -37,8 +37,9 @@ const NewsEditFileInput: React.FC<
     const selected = Array.from(event.target.files);
 
     if (multiple) {
-      setFiles((prev) => [...prev, ...selected]);
-      onChange?.(selected);
+      const updatedFiles = [...files, ...selected]; // 누적 반영
+      setFiles(updatedFiles);
+      onChange?.(updatedFiles); // ✅ 전체 전달
     } else {
       setFiles(selected.length > 0 ? [selected[0]] : []);
       onChange?.(selected);
