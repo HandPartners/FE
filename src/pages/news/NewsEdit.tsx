@@ -245,7 +245,7 @@ const NewsEdit = () => {
           <input
             {...register("title", { required: true })}
             className={clsx(
-              "mt-[10px] p-[20px] h-[44px] md:h-[84px] bg-[#F4F7F8] text-[#777] rounded-[5.957px]",
+              "mt-[10px] p-[20px] h-[44px] md:h-[84px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] focus:outline-[2px] focus:outline-[#3b82f6]",
               md ? "h1-bold" : "p-large-bold"
             )}
             type="text"
@@ -265,7 +265,7 @@ const NewsEdit = () => {
           <textarea
             {...register("content", { required: true })}
             className={clsx(
-              "p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] box-border  ",
+              "p-[20px] h-[750px] bg-[#F4F7F8] text-[#777] rounded-[5.957px] box-border focus:outline-[2px] focus:outline-[#3b82f6]",
               md ? "p-large-bold" : "p-medium-bold"
             )}
             placeholder="내용을 작성하세요."
