@@ -32,22 +32,26 @@ declare global {
 
 const programData = [
   {
+    id: "consulting",
     img: ProgramImg,
     title: "Phase 1. Consulting",
     contents:
       "창업자들을 대상으로 컨설팅 진행\n창업자들을 대상으로 컨설팅 진행",
   },
   {
+    id: "investment",
     img: ProgramImg,
     title: "Phase 2. Investment",
     contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
   },
   {
+    id: "education",
     img: ProgramImg,
     title: "Phase 3. Education",
     contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
   },
   {
+    id: "networking",
     img: ProgramImg,
     title: "Phase 4. Networking",
     contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
@@ -188,13 +192,17 @@ const Main = () => {
                   {programData.map((item, idx) => (
                     <div
                       key={idx}
-                      className=" w-full h-[400px] border-[var(--grey3)]"
+                      className="w-full h-[400px] border-[var(--grey3)] cursor-pointer"
+                      onClick={() =>
+                        navigate(`program?scrollTo=${item.id.toLowerCase()}`)
+                      }
                     >
                       <img
                         className="h-[290px] w-full object-cover"
                         src={item.img}
-                      ></img>
-                      <div className=" h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
+                        alt={item.title}
+                      />
+                      <div className="h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
                         <h3 className="p-large-bold">{item.title}</h3>
                         <p className="p-medium-medium">{item.contents}</p>
                       </div>
