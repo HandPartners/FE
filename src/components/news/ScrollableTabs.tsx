@@ -65,7 +65,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
       // 1) 왼쪽으로 가려진 경우
       if (offsetLeft < scrollLeft) {
         scrollContainer.scrollTo({
-          left: offsetLeft - 28, 
+          left: offsetLeft - 28,
           behavior: "smooth",
         });
       }
@@ -104,7 +104,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollLeft && (
           <button
             onClick={() => scrollBy(-stepSize)}
-            className="absolute left-[-4px] top-1/2 -translate-y-1/2 "
+            className="absolute left-[1px] top-1/2 -translate-y-1/2 "
           >
             <img className="rotate-180" src={ic_right} alt="left" />
           </button>
@@ -138,7 +138,7 @@ const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
         {canScrollRight && (
           <button
             onClick={() => scrollBy(stepSize)}
-            className="absolute right-[-4px] top-1/2 -translate-y-1/2"
+            className="absolute right-[1px] top-1/2 -translate-y-1/2"
           >
             <img src={ic_right} alt="right" />
           </button>
