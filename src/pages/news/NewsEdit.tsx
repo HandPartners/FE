@@ -180,7 +180,7 @@ const NewsEdit = () => {
       }
     } catch (error) {
       console.error("Error NewsDetail:", error);
-      toastAlert("게시글이 추가가 실패하였습니다.", "error");
+      toastAlert("게시글 추가가 실패하였습니다.", "error");
       setIsLoading(false);
     }
   };
