@@ -106,14 +106,15 @@ const Main = () => {
                   isMobile ? "p-medium-bold" : " slogan-h "
                 }`}
               >
-                회사 슬로건 슬로건 슬로건
+                핸드파트너스는 진성성으로 함께 고민하고, 스케일업을 위한 길을
+                만듭니다.
               </h2>
               <p
                 className={`text-[var(--grey5)]  ${
                   isMobile ? "p-small-bold" : " slogan-p "
                 }`}
               >
-                회사 슬로건 슬로건 슬로건
+                핸드파트너스와 함께 'Have A Nice Day'
               </p>
             </section>
 
@@ -216,21 +217,19 @@ const Main = () => {
                     isMobile ? "p-small-bold " : "p-large-bold "
                   }`}
                 >
-                  투자 관련 문의 : 0000@00000
+                  admin@handpartners.co.kr
                 </p>
+              </section>
+              <section className=" flex-col gap-[4px]">
+                <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
+                  TEL
+                </h2>
                 <p
                   className={` text-[var(--grey6)] ${
                     isMobile ? "p-small-bold " : "p-large-bold "
                   }`}
                 >
-                  기업 협업 문의 : 0000@00000{" "}
-                </p>
-                <p
-                  className={` text-[var(--grey6)] ${
-                    isMobile ? "p-small-bold " : "p-large-bold "
-                  }`}
-                >
-                  기타 문의 : 0000@00000
+                  02-941-4339
                 </p>
               </section>
             </div>
