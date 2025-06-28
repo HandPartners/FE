@@ -151,7 +151,11 @@ const ProgramV2: React.FC = () => {
               ))}
             </div>
           ) : (
-            <ScrollableTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+            <ScrollableTabs
+              type="program"
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
           )}
           <div className="flex flex-1 relative md:mx-0 h-[60px] border border-[#E2E2E2] rounded-[30px]">
             <input
