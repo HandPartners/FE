@@ -156,12 +156,12 @@ const ProgramV2Edit = () => {
 
     try {
       if (isEditing && id) {
-        await api.patch(`/news/${id}`, formData, {
+        await api.patch(`/program/${id}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toastAlert("게시글이 수정되었습니다.", "success");
       } else {
-        await api.post("/news/new", formData, {
+        await api.post("/program/new", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toastAlert("게시글이 추가되었습니다.", "success");

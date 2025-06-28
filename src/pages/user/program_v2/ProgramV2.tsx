@@ -29,12 +29,12 @@ export interface NewsItem {
   content: string;
   createdAt: string;
 }
-interface NewsResponse {
+interface ProgramV2Response {
   success: boolean;
-  newsList: NewsItem[];
+  programList: NewsItem[];
 }
 
-type NewsInfiniteResponse = InfiniteData<NewsResponse>;
+type NewsInfiniteResponse = InfiniteData<ProgramV2Response>;
 
 // Program: Consulting, Investment, Education, Networking
 const tabs = ["ALL", "Consulting", "Investment", "Education", "Networking"];
@@ -66,14 +66,14 @@ const ProgramV2: React.FC = () => {
     queryKey,
   }: QueryFunctionContext<[string, string, string], number>) => {
     const [, activeTab, searchTerm] = queryKey;
-    const { data } = await api.get<NewsResponse>("/news", {
+    const { data } = await api.get<ProgramV2Response>("/program", {
       params: {
         pageNum: pageParam,
         ...(activeTab !== "ALL" ? { category: activeTab } : {}),
         ...(searchTerm ? { title: searchTerm } : {}),
       },
     });
-    if (!data.success) {
+    if (!data?.success) {
       throw new Error("카테고리 조회에 실패했습니다.");
     }
     return data;
@@ -81,20 +81,20 @@ const ProgramV2: React.FC = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery<
-      NewsResponse,
+      ProgramV2Response,
       Error,
       NewsInfiniteResponse,
       [string, string, string],
       number
     >({
-      queryKey: ["news", activeTab, searchTerm],
+      queryKey: ["program", activeTab, searchTerm],
       queryFn: fetchNews,
       getNextPageParam: (lastPage, allPages) =>
-        lastPage.newsList.length > 0 ? allPages.length + 1 : undefined,
+        lastPage?.programList?.length > 0 ? allPages.length + 1 : undefined,
       initialPageParam: 1,
     });
 
-  const newsList = data?.pages.flatMap((p) => p.newsList) ?? [];
+  const newsList = data?.pages.flatMap((p) => p.programList) ?? [];
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {

@@ -49,7 +49,7 @@ const ProgramV2Detail = () => {
 
   useEffect(() => {
     const fetchNewsDetail = async () => {
-      const { data } = await api.get<NewsDetailResponse>(`/news/${id}`);
+      const { data } = await api.get<NewsDetailResponse>(`/program/${id}`);
 
       data.newsDetail.image = parseImgArrayJson(data.newsDetail.image);
       setData(data.newsDetail);
@@ -63,7 +63,7 @@ const ProgramV2Detail = () => {
 
   const onDeleteNews = async () => {
     try {
-      await api.delete(`/news/${id}`);
+      await api.delete(`/program/${id}`);
       toastAlert("게시글이 삭제되었습니다.", "success");
       navigate("/admin/program");
     } catch (error) {
