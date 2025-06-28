@@ -16,8 +16,6 @@ import TitleLine from "../../components/TitleLine";
 import FadeInItem from "../../components/main/FadeInItem";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 
-import ProgramImg from "../../../public/programMain.png";
-
 import { getMain } from "../../api/MainApi";
 
 import type { portfolioList, newsItem } from "../../api/MainApi";
@@ -28,34 +26,6 @@ declare global {
     scrollToContact?: () => void;
   }
 }
-
-const programData = [
-  {
-    id: "consulting",
-    img: ProgramImg,
-    title: "Phase 1. Consulting",
-    contents:
-      "창업자들을 대상으로 컨설팅 진행\n창업자들을 대상으로 컨설팅 진행",
-  },
-  {
-    id: "investment",
-    img: ProgramImg,
-    title: "Phase 2. Investment",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
-  },
-  {
-    id: "education",
-    img: ProgramImg,
-    title: "Phase 3. Education",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
-  },
-  {
-    id: "networking",
-    img: ProgramImg,
-    title: "Phase 4. Networking",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
-  },
-];
 
 const Main = () => {
   const [programList, setProgramList] = useState<newsItem[]>([]);
@@ -160,68 +130,7 @@ const Main = () => {
 
         <div className="flex flex-col md:gap-[200px] gap-[100px] mt-[50px] ">
           {/* 프로그램 */}
-          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
-            <TitleLine>PROGRAM</TitleLine>
-            <FadeInItem>
-              {isMobile ? (
-                <Swiper
-                  spaceBetween={20}
-                  slidesPerView={1}
-                  pagination={{ clickable: true }}
-                  modules={[Pagination]}
-                >
-                  {programData.map((item, idx) => (
-                    <SwiperSlide key={idx}>
-                      <div className="h-[427px] w-[303px] mx-auto  ">
-                        <div className="border border-[var(--grey3)] h-[402px] ">
-                          <img
-                            className="h-[290px] w-full object-cover"
-                            src={item.img}
-                          />
-                          <div className="h-[110px] text-center px-[47px] py-[17px] bg-[var(--grey1)] ">
-                            <h3 className="p-large-bold">{item.title}</h3>
-                            <p className="whitespace-pre-wrap p-medium-medium">
-                              {item.contents}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              ) : (
-                <div className="flex flex-row gap-[20px] ">
-                  {programData.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="w-full h-[400px] border-[var(--grey3)] cursor-pointer"
-                      onClick={() =>
-                        navigate(`program?scrollTo=${item.id.toLowerCase()}`)
-                      }
-                    >
-                      <img
-                        className="h-[290px] w-full object-cover"
-                        src={item.img}
-                        alt={item.title}
-                      />
-                      <div className="h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
-                        <h3 className="p-large-bold">{item.title}</h3>
-                        <p className="p-medium-medium">{item.contents}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </FadeInItem>
-            <span
-              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
-                isMobile ? "p-medium-bold" : " p-large-bold"
-              }`}
-              onClick={() => navigate("program", { relative: "path" })}
-            >
-              프로그램 전체보기 →
-            </span>
-          </section>
+          <NewsMain title="PROGRAM" newsList={programList} />
 
           {/* 포트폴리오 */}
           <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">

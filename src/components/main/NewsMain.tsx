@@ -13,17 +13,18 @@ import type { NewsItem } from "../../types/news";
 import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
 
 interface NewsMainProps {
+  title?: string;
   newsList: NewsItem[];
 }
 
-const NewsMain: React.FC<NewsMainProps> = ({ newsList }) => {
+const NewsMain: React.FC<NewsMainProps> = ({ title = "NEWS", newsList }) => {
   const navigate = useNavigate();
   const windowWidth = useWindowWidth();
   const isMobile = !windowWidth.md;
 
   return (
     <section className="flex flex-col  md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]">
-      <TitleLine>NEWS</TitleLine>
+      <TitleLine>{title}</TitleLine>
       {newsList.length === 0 ? (
         <p className="text-center text-[var(--grey5)] p-large-bold">
           게시글이 존재하지 않습니다.
