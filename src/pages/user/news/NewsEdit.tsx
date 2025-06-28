@@ -52,11 +52,8 @@ const NewsEdit = () => {
   const [data, setData] = useState<FormValues | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
+  // News: Notice, Press
   const categories = [
-    "Consulting",
-    "Investment",
-    "Education",
-    "Networking",
     "Notice",
     "Press",
   ];

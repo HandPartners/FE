@@ -52,14 +52,8 @@ const ProgramV2Edit = () => {
   const [data, setData] = useState<FormValues | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const categories = [
-    "Consulting",
-    "Investment",
-    "Education",
-    "Networking",
-    "Notice",
-    "Press",
-  ];
+  // Program: Consulting, Investment, Education, Networking
+  const categories = ["Consulting", "Investment", "Education", "Networking"];
 
   const { id } = useParams();
   const { md } = useWindowWidth();

@@ -37,15 +37,7 @@ interface NewsResponse {
 type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
 // Program: Consulting, Investment, Education, Networking
-const tabs = [
-  "ALL",
-  "Notice",
-  "Press",
-  "Consulting",
-  "Investment",
-  "Education",
-  "Networking",
-];
+const tabs = ["ALL", "Consulting", "Investment", "Education", "Networking"];
 
 const ProgramV2: React.FC = () => {
   const [activeTab, setActiveTab] = useState("ALL");
@@ -82,7 +74,7 @@ const ProgramV2: React.FC = () => {
       },
     });
     if (!data.success) {
-      throw new Error("뉴스 조회에 실패했습니다.");
+      throw new Error("카테고리 조회에 실패했습니다.");
     }
     return data;
   };
@@ -126,7 +118,7 @@ const ProgramV2: React.FC = () => {
               : "h4-bold"
           }
         >
-          News
+          Program
         </h1>
         <h3 className={md ? "h3-medium" : "p-small-medium"}>한줄 소개</h3>
       </div>

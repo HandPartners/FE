@@ -36,14 +36,11 @@ interface NewsResponse {
 
 type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
+// News: Notice, Press
 const tabs = [
   "ALL",
   "Notice",
   "Press",
-  "Consulting",
-  "Investment",
-  "Education",
-  "Networking",
 ];
 
 const News: React.FC = () => {
