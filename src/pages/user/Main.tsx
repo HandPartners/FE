@@ -78,7 +78,7 @@ const Main = () => {
     <>
       <main className=" flex flex-col items-center w-[1280px] max-w-full h-full mx-auto relative ">
         {/* 배너 */}
-        <div className="absolute  top-[54px] md:top-[100px] left-[85px] z-100 flex flex-col  md:gap-[3px] w-fit">
+        <div className="absolute top-[54px] md:top-[119px] left-[15.267175572519083969465648854962%] md:left-[10%] z-100 flex flex-col md:gap-[36px] w-fit text-white">
           <h1
             className={` ${
               isMobile
@@ -89,7 +89,7 @@ const Main = () => {
             HAND PARTNERS
           </h1>
           <h3 className={`${isMobile ? "p-small-medium" : "h3-medium"}`}>
-            Have A Nice Day
+            함께 고민하고, 스케일업을 돕는 진정성 있는 파트너
           </h3>
         </div>
         <MainBanner />
@@ -106,14 +106,15 @@ const Main = () => {
                   isMobile ? "p-medium-bold" : " slogan-h "
                 }`}
               >
-                회사 슬로건 슬로건 슬로건
+                핸드파트너스는 진성성으로 함께 고민하고, 스케일업을 위한 길을
+                만듭니다.
               </h2>
               <p
                 className={`text-[var(--grey5)]  ${
                   isMobile ? "p-small-bold" : " slogan-p "
                 }`}
               >
-                회사 슬로건 슬로건 슬로건
+                핸드파트너스와 함께 'Have A Nice Day'
               </p>
             </section>
 
@@ -216,21 +217,19 @@ const Main = () => {
                     isMobile ? "p-small-bold " : "p-large-bold "
                   }`}
                 >
-                  투자 관련 문의 : 0000@00000
+                  admin@handpartners.co.kr
                 </p>
+              </section>
+              <section className=" flex-col gap-[4px]">
+                <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
+                  TEL
+                </h2>
                 <p
                   className={` text-[var(--grey6)] ${
                     isMobile ? "p-small-bold " : "p-large-bold "
                   }`}
                 >
-                  기업 협업 문의 : 0000@00000{" "}
-                </p>
-                <p
-                  className={` text-[var(--grey6)] ${
-                    isMobile ? "p-small-bold " : "p-large-bold "
-                  }`}
-                >
-                  기타 문의 : 0000@00000
+                  02-941-4339
                 </p>
               </section>
             </div>

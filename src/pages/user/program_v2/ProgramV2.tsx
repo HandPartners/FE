@@ -105,7 +105,7 @@ const ProgramV2: React.FC = () => {
   return (
     <main className="flex flex-col items-center w-[92.87531806615776%] md:w-[1280px] max-w-full mx-auto relative pb-[100px]">
       <ScrollToTopButton />
-      <div className="absolute top-[60px] md:top-[99px] left-[34px] md:left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
+      <div className="absolute top-[54px] md:top-[119px] left-[15.267175572519083969465648854962%] md:left-[10%] z-100 flex flex-col md:gap-[36px] w-fit text-white">
         <h1
           className={
             md
@@ -115,7 +115,7 @@ const ProgramV2: React.FC = () => {
         >
           Program
         </h1>
-        <h3 className={md ? "h3-medium" : "p-small-medium"}>한줄 소개</h3>
+        <h3 className={md ? "h3-medium" : "p-small-medium"}>Hand Partners</h3>
       </div>
 
       <BGTop testBenner={bannerImg} />
@@ -151,7 +151,11 @@ const ProgramV2: React.FC = () => {
               ))}
             </div>
           ) : (
-            <ScrollableTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+            <ScrollableTabs
+              type="program"
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
           )}
           <div className="flex flex-1 relative md:mx-0 h-[60px] border border-[#E2E2E2] rounded-[30px]">
             <input

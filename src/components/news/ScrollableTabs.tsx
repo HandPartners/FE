@@ -2,26 +2,26 @@ import React, { useRef, useState, useEffect } from "react";
 import clsx from "clsx";
 import ic_right from "../../assets/icons/ic_right.svg";
 
-// 탭 목록 정의
-const tabs = [
-  "ALL",
-  "Notice",
-  "Press",
-  "Consulting",
-  "Investment",
-  "Education",
-  "Networking",
-];
-
 interface ScrollableTabsProps {
+  type?: string;
   activeTab: string;
   setActiveTab: (tab: string) => void;
 }
 
 const ScrollableTabs: React.FC<ScrollableTabsProps> = ({
+  type = "news",
   activeTab,
   setActiveTab,
 }) => {
+  let tabs;
+  if (type === "news") {
+    tabs = ["ALL", "Notice", "Press"];
+  } else if (type === "program") {
+    tabs = ["ALL", "Consulting", "Investment", "Education", "Networking"];
+  } else {
+    tabs = ["ALL"];
+  }
+
   const scrollRef = useRef<HTMLDivElement>(null); // 스크롤 가능한 영역을 참조
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({}); // 각 탭 버튼에 대한 참조
 
