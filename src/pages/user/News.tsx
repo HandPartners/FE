@@ -116,6 +116,7 @@ const News: React.FC = () => {
 
   return (
     <main className="flex flex-col items-center w-[92.87531806615776%] md:w-[1280px] max-w-full mx-auto relative pb-[100px]">
+      <ScrollToTopButton />
       <div className="absolute top-[60px] md:top-[99px] left-[34px] md:left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
         <h1
           className={

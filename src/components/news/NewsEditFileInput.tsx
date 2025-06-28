@@ -1,5 +1,6 @@
-import { useRef, useState, type PropsWithChildren } from "react";
+import { useEffect, useRef, useState, type PropsWithChildren } from "react";
 import type React from "react";
+import { newsEditStore } from "../../store/NewsEditStore";
 
 type NewsEditFileInputProps = {
   multiple?: boolean;
@@ -7,6 +8,8 @@ type NewsEditFileInputProps = {
   existFileName?: string | string[] | File[];
   onRemoveExisting?: (index: number) => void;
 };
+
+const MAX_FILES = 10;
 
 /**
  * 파일 입력 component
@@ -28,6 +31,19 @@ const NewsEditFileInput: React.FC<
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // 기존 파일 개수 계산 (string일 땐 1개, 배열일 땐 배열 길이)
+  const existingFileArray = Array.isArray(existFileName)
+    ? existFileName
+    : existFileName
+    ? [existFileName]
+    : [];
+  const existingFileCount = existingFileArray.length;
+  const totalSelectedCount = existingFileCount + files.length;
+
+  useEffect(() => {
+    newsEditStore.setHasReachedLimit(totalSelectedCount >= MAX_FILES);
+  }, [totalSelectedCount]);
+
   const handleButtonClick = () => {
     fileInputRef.current?.click();
   };
@@ -36,13 +52,23 @@ const NewsEditFileInput: React.FC<
     if (!event.target.files) return;
     const selected = Array.from(event.target.files);
 
+    // 남은 슬롯만큼만 잘라서 추가
+    const availableSlots = MAX_FILES - existingFileCount - files.length;
+    if (availableSlots <= 0) {
+      // 제한에 도달했으면 아무 것도 안 함
+      event.target.value = "";
+      alert("사진 추가는 10개까지만 가능합니다.");
+      return;
+    }
+    const toAdd = selected.slice(0, availableSlots);
+
     if (multiple) {
-      const updatedFiles = [...files, ...selected]; // 누적 반영
+      const updatedFiles = [...files, ...toAdd]; // 누적 반영
       setFiles(updatedFiles);
       onChange?.(updatedFiles); // ✅ 전체 전달
     } else {
-      setFiles(selected.length > 0 ? [selected[0]] : []);
-      onChange?.(selected);
+      setFiles(toAdd.length > 0 ? [toAdd[0]] : []);
+      onChange?.(toAdd);
     }
     event.target.value = "";
   };
@@ -52,26 +78,22 @@ const NewsEditFileInput: React.FC<
   };
 
   const renderSummary = () => {
-    const hasExisting =
-      typeof existFileName === "string" ||
-      (Array.isArray(existFileName) && existFileName.length > 0);
+    const hasExisting = existingFileCount > 0;
     const hasNew = files.length > 0;
 
     if (!hasExisting && !hasNew) {
       return <span className="text-[#9E9E9E]">파일을 선택해 주세요</span>;
     }
-    // single
     if (!multiple) {
       return (
         <span className="w-[306px] text-[#9E9E9E] truncate">
-          {files.length > 0
+          {hasNew
             ? files[0].name
             : typeof existFileName === "string" &&
               existFileName.split("/").pop()}
         </span>
       );
     }
-
     // multi: comma-join
     if (hasNew) {
       const names = files.map((f) => f.name).join(", ");
@@ -84,10 +106,9 @@ const NewsEditFileInput: React.FC<
     }
     return (
       <span className="text-[#9E9E9E] overflow-hidden whitespace-nowrap">
-        {Array.isArray(existFileName) &&
-          existFileName
-            .map((f) => (typeof f === "string" ? f.split("/").pop() : f.name))
-            .join(", ")}
+        {existingFileArray
+          .map((f) => (typeof f === "string" ? f.split("/").pop() : f.name))
+          .join(", ")}
       </span>
     );
   };

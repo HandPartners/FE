@@ -44,7 +44,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             isMobile ? "p-medium-bold" : "h5-bold"
           }`}
         >
-          <div className="flex flex-row md:gap-[20px] w-fit  ml-[10px] md:mx-auto  gap-[2vw]">
+          <div className="flex flex-row md:gap-[20px] justify-center md:justify-start w-full ml-[10px] mr-[10px] md:mr-0 md:mx-auto gap-[2vw] md:w-fit">
             <li
               className={`cursor-pointer hover:bg-[var(--sub)] transition-colors duration-250 ease-in-out hover:text-[#FFF] py-[6px] px-[10px]  md:px-[20px] rounded-[30px] ${
                 category === "" ? `bg-[var(--sub)] text-[#FFF]` : ``

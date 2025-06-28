@@ -50,7 +50,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
       <div className="flex flex-col gap-[8px]">
         <p className="p-medium-medium text-[var(--grey6)]">회사명</p>
         <input
-          className="p-medium-regular w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px]  px-[20px]  cursor-pointer"
+          className="p-medium-regular w-full h-[60px] bg-[var(--grey50)] rounded-[5.967px]  px-[20px]  cursor-pointer focus:outline-[2px] focus:outline-[#3b82f6]"
           placeholder="회사명을 입력해주세요."
           value={formData.name}
           onChange={(e) => onChange?.("name", e.target.value)}
@@ -60,7 +60,7 @@ const PortfolioModalForm: React.FC<PortfolioModalFormProps> = ({
         <p className="p-medium-medium text-[var(--grey6)]">회사 소개</p>
         <div className="relative">
           <textarea
-            className="p-medium-regular relative w-full  h-[60px]  bg-[var(--grey50)] resize-none rounded-[5.967px] flex py-[18px]  pl-[20px] pr-[65px] cursor-pointer "
+            className="p-medium-regular relative w-full  h-[60px]  bg-[var(--grey50)] resize-none rounded-[5.967px] flex py-[18px]  pl-[20px] pr-[65px] cursor-pointer focus:outline-[2px] focus:outline-[#3b82f6]"
             placeholder="회사 소개를 입력해주세요."
             maxLength={40}
             value={formData.content}
