@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-import type { NewsItem } from "../../pages/user/news/News";
+import useWindowWidth from "../../hooks/useWindowWidth";
+
+import type { NewsItem } from "../../types/news";
 
 import { parseDate } from "../../utils/parseDate";
 
 import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
-import useWindowWidth from "../../hooks/useWindowWidth";
 import clsx from "clsx";
 
 interface EachNewsProps {

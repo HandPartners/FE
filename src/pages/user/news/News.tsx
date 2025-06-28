@@ -8,27 +8,22 @@ import {
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 
+import AdminAddButton from "../../../components/adminAddButton";
 import BGTop from "../../../components/BGTop";
 import EachNews from "../../../components/news/EachNews";
-import AdminAddButton from "../../../components/adminAddButton";
+import ScrollableTabs from "../../../components/news/ScrollableTabs";
 import ScrollToTopButton from "../../../components/ScrollToTopButton";
 import FadeInItem from "../../../components/main/FadeInItem";
 
+import useWindowWidth from "../../../hooks/useWindowWidth";
+
 import api from "../../../api/api";
+
+import type { NewsItem } from "../../../types/news";
 
 import ic_search from "../../../assets/images/ic_search.svg";
 import bannerImg from "../../../assets/images/banner/NewsBanner.png";
-import useWindowWidth from "../../../hooks/useWindowWidth";
-import ScrollableTabs from "../../../components/news/ScrollableTabs";
 
-export interface NewsItem {
-  id: number;
-  category: string;
-  thumbnail: string;
-  title: string;
-  content: string;
-  createdAt: string;
-}
 interface NewsResponse {
   success: boolean;
   newsList: NewsItem[];
@@ -37,11 +32,7 @@ interface NewsResponse {
 type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
 // News: Notice, Press
-const tabs = [
-  "ALL",
-  "Notice",
-  "Press",
-];
+const tabs = ["ALL", "Notice", "Press"];
 
 const News: React.FC = () => {
   const [activeTab, setActiveTab] = useState("ALL");
