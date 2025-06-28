@@ -36,7 +36,7 @@ interface NewsResponse {
 
 type NewsInfiniteResponse = InfiniteData<NewsResponse>;
 
-// Portfolio: ㄴ
+// Program: Consulting, Investment, Education, Networking
 const tabs = [
   "ALL",
   "Notice",
@@ -136,7 +136,7 @@ const ProgramV2: React.FC = () => {
       <div className="flex justify-end w-full">
         {isAdmin ? (
           <AdminAddButton
-            handleClick={() => navigate("/admin/news/new")}
+            handleClick={() => navigate("/admin/program/new")}
             title={"글 작성"}
           />
         ) : (

@@ -65,7 +65,7 @@ const ProgramV2Detail = () => {
     try {
       await api.delete(`/news/${id}`);
       toastAlert("게시글이 삭제되었습니다.", "success");
-      navigate("/admin/news");
+      navigate("/admin/program");
     } catch (error) {
       alert(error);
     }
@@ -78,9 +78,9 @@ const ProgramV2Detail = () => {
           <button
             onClick={() => {
               if (isAdmin) {
-                navigate("/admin/news");
+                navigate("/admin/program");
               } else {
-                navigate("/news");
+                navigate("/program");
               }
             }}
             className="h5-medium flex items-center gap-[10px] cursor-pointer"
@@ -92,7 +92,7 @@ const ProgramV2Detail = () => {
               <button
                 onClick={() => {
                   if (isAdmin && id) {
-                    navigate(`/admin/news/edit/${id}`);
+                    navigate(`/admin/program/edit/${id}`);
                   }
                 }}
                 className={clsx(

@@ -174,9 +174,9 @@ const ProgramV2Edit = () => {
       }
 
       if (isAdmin) {
-        navigate("/admin/news");
+        navigate("/admin/program");
       } else {
-        navigate("/news");
+        navigate("/program");
       }
     } catch (error) {
       console.error("Error NewsDetail:", error);
