@@ -16,13 +16,10 @@ import TitleLine from "../../components/TitleLine";
 import FadeInItem from "../../components/main/FadeInItem";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 
-import ProgramImg from "../../../public/programMain.png";
-import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
-
 import { getMain } from "../../api/MainApi";
-import type { portfolioList, newsItem } from "../../api/MainApi";
 
-import { parseDate } from "../../utils/parseDate";
+import type { portfolioList, newsItem } from "../../api/MainApi";
+import NewsMain from "../../components/main/NewsMain";
 
 declare global {
   interface Window {
@@ -30,35 +27,8 @@ declare global {
   }
 }
 
-const programData = [
-  {
-    id: "consulting",
-    img: ProgramImg,
-    title: "Phase 1. Consulting",
-    contents:
-      "창업자들을 대상으로 컨설팅 진행\n창업자들을 대상으로 컨설팅 진행",
-  },
-  {
-    id: "investment",
-    img: ProgramImg,
-    title: "Phase 2. Investment",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
-  },
-  {
-    id: "education",
-    img: ProgramImg,
-    title: "Phase 3. Education",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
-  },
-  {
-    id: "networking",
-    img: ProgramImg,
-    title: "Phase 4. Networking",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
-  },
-];
-
 const Main = () => {
+  const [programList, setProgramList] = useState<newsItem[]>([]);
   const [portfolioList, setPortfolioList] = useState<portfolioList[]>([]);
   const [newsList, setNewsList] = useState<newsItem[]>([]);
 
@@ -75,9 +45,11 @@ const Main = () => {
   useEffect(() => {
     const fetchMainData = async () => {
       try {
-        const { portfolioList, newsList } = await getMain();
-        setPortfolioList(portfolioList);
-        setNewsList(newsList);
+        const response = await getMain();
+        setProgramList(response.programList);
+        setPortfolioList(response.portfolioList);
+        setNewsList(response.newsList);
+        console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -158,68 +130,7 @@ const Main = () => {
 
         <div className="flex flex-col md:gap-[200px] gap-[100px] mt-[50px] ">
           {/* 프로그램 */}
-          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
-            <TitleLine>PROGRAM</TitleLine>
-            <FadeInItem>
-              {isMobile ? (
-                <Swiper
-                  spaceBetween={20}
-                  slidesPerView={1}
-                  pagination={{ clickable: true }}
-                  modules={[Pagination]}
-                >
-                  {programData.map((item, idx) => (
-                    <SwiperSlide key={idx}>
-                      <div className="h-[427px] w-[303px] mx-auto  ">
-                        <div className="border border-[var(--grey3)] h-[402px] ">
-                          <img
-                            className="h-[290px] w-full object-cover"
-                            src={item.img}
-                          />
-                          <div className="h-[110px] text-center px-[47px] py-[17px] bg-[var(--grey1)] ">
-                            <h3 className="p-large-bold">{item.title}</h3>
-                            <p className="whitespace-pre-wrap p-medium-medium">
-                              {item.contents}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              ) : (
-                <div className="flex flex-row gap-[20px] ">
-                  {programData.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="w-full h-[400px] border-[var(--grey3)] cursor-pointer"
-                      onClick={() =>
-                        navigate(`program?scrollTo=${item.id.toLowerCase()}`)
-                      }
-                    >
-                      <img
-                        className="h-[290px] w-full object-cover"
-                        src={item.img}
-                        alt={item.title}
-                      />
-                      <div className="h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
-                        <h3 className="p-large-bold">{item.title}</h3>
-                        <p className="p-medium-medium">{item.contents}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </FadeInItem>
-            <span
-              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
-                isMobile ? "p-medium-bold" : " p-large-bold"
-              }`}
-              onClick={() => navigate("program", { relative: "path" })}
-            >
-              프로그램 전체보기 →
-            </span>
-          </section>
+          <NewsMain title="PROGRAM" newsList={programList} />
 
           {/* 포트폴리오 */}
           <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
@@ -268,83 +179,8 @@ const Main = () => {
           </section>
 
           {/* NEWS */}
-          <section className="flex flex-col  md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]">
-            <TitleLine>NEWS</TitleLine>
-            {items.length === 0 ? (
-              <p className="text-center text-[var(--grey5)] p-large-bold">
-                게시글이 존재하지 않습니다.
-              </p>
-            ) : (
-              <div className="">
-                {newsList.map((item) => (
-                  <FadeInItem key={item.id}>
-                    <div
-                      className="border-b h-[119px]  py-[20px] px-[10px] md:h-[210px] md:py-[24px] md:px-[41px] border-[var(--grey3)] flex flex-row gap-[20px] md:gap-[36px] cursor-pointer "
-                      onClick={() =>
-                        navigate(`news/${item.id}`, { relative: "path" })
-                      }
-                    >
-                      <img
-                        src={
-                          item.thumbnail
-                            ? `${import.meta.env.VITE_API_URL}/uploads/${
-                                item.thumbnail
-                              }`
-                            : default_thumbnail
-                        }
-                        className="w-[34.8%] w-max-[116px] md:w-[238px] h-full  object-cover border border-[var(--grey3)]"
-                      ></img>
+          <NewsMain newsList={newsList} />
 
-                      <section className="flex flex-col gap-[3px] md:gap-[12px] h-full  w-[57%] md:w-[934px] ">
-                        <section className="flex flex-col md:gap-[7px] w-full  h-[62px] md:h-[130px]">
-                          <span
-                            className={`text-[#2E3093]  h-fit flex items-center ${
-                              isMobile ? "p-xs-bold" : "h5-bold"
-                            }`}
-                          >
-                            {item.category}
-                          </span>
-                          <h2
-                            className={` w-[100%] h-[48px] md:h-fit  overflow-hidden text-ellipsis line-clamp-2 md:line-clamp-1   ${
-                              isMobile ? "p-medium-bold" : "h4-bold"
-                            }`}
-                          >
-                            {item.title}
-                          </h2>
-                          {isMobile ? (
-                            <></>
-                          ) : (
-                            <p
-                              className={` w-full h-fit text-[var(--grey5)] overflow-hidden text-ellipsis line-clamp-2  
-                             p-large-bold  whitespace-pre-wrap break-words
-                            `}
-                            >
-                              {item.content}
-                            </p>
-                          )}
-                        </section>
-                        <p
-                          className={`text-[var(--grey5)]  h-fit truncate ${
-                            isMobile ? "p-xs-bold " : "p-small-bold"
-                          }`}
-                        >
-                          {parseDate(item.createdAt)}
-                        </p>
-                      </section>
-                    </div>
-                  </FadeInItem>
-                ))}
-              </div>
-            )}
-            <span
-              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
-                isMobile ? "p-medium-bold" : " p-large-bold"
-              }`}
-              onClick={() => navigate("news", { relative: "path" })}
-            >
-              소식 전체보기 →
-            </span>
-          </section>
           {/* 콘택트 */}
           <section
             className=" flex flex-col mb-[99px] md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]"

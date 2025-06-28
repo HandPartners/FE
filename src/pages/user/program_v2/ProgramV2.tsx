@@ -8,45 +8,33 @@ import {
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 
-import BGTop from "../../components/BGTop";
-import EachNews from "../../components/news/EachNews";
-import AdminAddButton from "../../components/adminAddButton";
-import ScrollToTopButton from "../../components/ScrollToTopButton";
-import FadeInItem from "../../components/main/FadeInItem";
+import AdminAddButton from "../../../components/adminAddButton";
+import BGTop from "../../../components/BGTop";
+import EachNews from "../../../components/news/EachNews";
+import ScrollableTabs from "../../../components/news/ScrollableTabs";
+import ScrollToTopButton from "../../../components/ScrollToTopButton";
+import FadeInItem from "../../../components/main/FadeInItem";
 
-import api from "../../api/api";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import ic_search from "../../assets/images/ic_search.svg";
-import bannerImg from "../../assets/images/banner/NewsBanner.png";
-import useWindowWidth from "../../hooks/useWindowWidth";
-import ScrollableTabs from "../../components/news/ScrollableTabs";
+import api from "../../../api/api";
 
-export interface NewsItem {
-  id: number;
-  category: string;
-  thumbnail: string;
-  title: string;
-  content: string;
-  createdAt: string;
-}
-interface NewsResponse {
+import type { NewsItem } from "../../../types/news";
+
+import ic_search from "../../../assets/images/ic_search.svg";
+import bannerImg from "../../../assets/images/banner/NewsBanner.png";
+
+interface ProgramV2Response {
   success: boolean;
-  newsList: NewsItem[];
+  programList: NewsItem[];
 }
 
-type NewsInfiniteResponse = InfiniteData<NewsResponse>;
+type NewsInfiniteResponse = InfiniteData<ProgramV2Response>;
 
-const tabs = [
-  "ALL",
-  "Notice",
-  "Press",
-  "Consulting",
-  "Investment",
-  "Education",
-  "Networking",
-];
+// Program: Consulting, Investment, Education, Networking
+const tabs = ["ALL", "Consulting", "Investment", "Education", "Networking"];
 
-const News: React.FC = () => {
+const ProgramV2: React.FC = () => {
   const [activeTab, setActiveTab] = useState("ALL");
   const [inputValue, setInputValue] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -73,35 +61,35 @@ const News: React.FC = () => {
     queryKey,
   }: QueryFunctionContext<[string, string, string], number>) => {
     const [, activeTab, searchTerm] = queryKey;
-    const { data } = await api.get<NewsResponse>("/news", {
+    const { data } = await api.get<ProgramV2Response>("/program", {
       params: {
         pageNum: pageParam,
         ...(activeTab !== "ALL" ? { category: activeTab } : {}),
         ...(searchTerm ? { title: searchTerm } : {}),
       },
     });
-    if (!data.success) {
-      throw new Error("뉴스 조회에 실패했습니다.");
+    if (!data?.success) {
+      throw new Error("카테고리 조회에 실패했습니다.");
     }
     return data;
   };
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery<
-      NewsResponse,
+      ProgramV2Response,
       Error,
       NewsInfiniteResponse,
       [string, string, string],
       number
     >({
-      queryKey: ["news", activeTab, searchTerm],
+      queryKey: ["program", activeTab, searchTerm],
       queryFn: fetchNews,
       getNextPageParam: (lastPage, allPages) =>
-        lastPage.newsList.length > 0 ? allPages.length + 1 : undefined,
+        lastPage?.programList?.length > 0 ? allPages.length + 1 : undefined,
       initialPageParam: 1,
     });
 
-  const newsList = data?.pages.flatMap((p) => p.newsList) ?? [];
+  const newsList = data?.pages.flatMap((p) => p.programList) ?? [];
 
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
@@ -125,7 +113,7 @@ const News: React.FC = () => {
               : "h4-bold"
           }
         >
-          News
+          Program
         </h1>
         <h3 className={md ? "h3-medium" : "p-small-medium"}>한줄 소개</h3>
       </div>
@@ -135,7 +123,7 @@ const News: React.FC = () => {
       <div className="flex justify-end w-full">
         {isAdmin ? (
           <AdminAddButton
-            handleClick={() => navigate("/admin/news/new")}
+            handleClick={() => navigate("/admin/program/new")}
             title={"글 작성"}
           />
         ) : (
@@ -223,4 +211,4 @@ const News: React.FC = () => {
   );
 };
 
-export default News;
+export default ProgramV2;

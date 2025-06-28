@@ -2,18 +2,18 @@ import clsx from "clsx";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import DeleteModal from "../../components/portfolio/modal/DeleteModal";
+import DeleteModal from "../../../components/portfolio/modal/DeleteModal";
 
-import useWindowWidth from "../../hooks/useWindowWidth";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import { parseDate } from "../../utils/parseDate";
-import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
-import { toastAlert } from "../../utils/toastAlert";
+import { parseDate } from "../../../utils/parseDate";
+import { parseImgArrayJson } from "../../../utils/parseImgArrayJson";
+import { toastAlert } from "../../../utils/toastAlert";
 
-import api from "../../api/api";
+import api from "../../../api/api";
 
-import ic_back from "../../assets/images/news/ic_back.svg";
-import ic_back_sm from "../../assets/images/news/ic_back_sm.svg";
+import ic_back from "../../../assets/images/news/ic_back.svg";
+import ic_back_sm from "../../../assets/images/news/ic_back_sm.svg";
 
 interface NewsItem {
   id: number;
@@ -33,7 +33,7 @@ interface NewsDetailResponse {
   newsDetail: NewsItem;
 }
 
-const NewsDetail = () => {
+const ProgramV2Detail = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ const NewsDetail = () => {
 
   useEffect(() => {
     const fetchNewsDetail = async () => {
-      const { data } = await api.get<NewsDetailResponse>(`/news/${id}`);
+      const { data } = await api.get<NewsDetailResponse>(`/program/${id}`);
 
       data.newsDetail.image = parseImgArrayJson(data.newsDetail.image);
       setData(data.newsDetail);
@@ -63,9 +63,9 @@ const NewsDetail = () => {
 
   const onDeleteNews = async () => {
     try {
-      await api.delete(`/news/${id}`);
+      await api.delete(`/program/${id}`);
       toastAlert("게시글이 삭제되었습니다.", "success");
-      navigate("/admin/news");
+      navigate("/admin/program");
     } catch (error) {
       alert(error);
     }
@@ -78,9 +78,9 @@ const NewsDetail = () => {
           <button
             onClick={() => {
               if (isAdmin) {
-                navigate("/admin/news");
+                navigate("/admin/program");
               } else {
-                navigate("/news");
+                navigate("/program");
               }
             }}
             className="h5-medium flex items-center gap-[10px] cursor-pointer"
@@ -92,7 +92,7 @@ const NewsDetail = () => {
               <button
                 onClick={() => {
                   if (isAdmin && id) {
-                    navigate(`/admin/news/edit/${id}`);
+                    navigate(`/admin/program/edit/${id}`);
                   }
                 }}
                 className={clsx(
@@ -201,4 +201,4 @@ const NewsDetail = () => {
     </main>
   );
 };
-export default NewsDetail;
+export default ProgramV2Detail;

@@ -3,23 +3,23 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 
-import NewsEditDropdownBtn from "../../components/news/NewsEditDropdownBtn";
-import NewsEditFileInput from "../../components/news/NewsEditFileInput";
-import NewsEditLinkBtnInput from "../../components/news/NewsEditLinkBtnInput";
-import OverlapPartialLoading from "../../components/OverlapPartialLoading";
+import NewsEditDropdownBtn from "../../../components/news/NewsEditDropdownBtn";
+import NewsEditFileInput from "../../../components/news/NewsEditFileInput";
+import NewsEditLinkBtnInput from "../../../components/news/NewsEditLinkBtnInput";
+import OverlapPartialLoading from "../../../components/OverlapPartialLoading";
 
-import useOutsideClick from "../../hooks/useOutsideClick";
-import useWindowWidth from "../../hooks/useWindowWidth";
+import useOutsideClick from "../../../hooks/useOutsideClick";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
-import { getCurrentDate } from "../../utils/getCurrentDate";
-import { toastAlert } from "../../utils/toastAlert";
+import { parseImgArrayJson } from "../../../utils/parseImgArrayJson";
+import { getCurrentDate } from "../../../utils/getCurrentDate";
+import { toastAlert } from "../../../utils/toastAlert";
 
-import api from "../../api/api";
+import api from "../../../api/api";
 
-import ic_check_colored from "../../assets/images/news/ic_check_colored.svg";
-import ic_check_mono from "../../assets/images/news/ic_check_mono.svg";
-import ic_up from "../../assets/images/news/ic_up.svg";
+import ic_check_colored from "../../../assets/images/news/ic_check_colored.svg";
+import ic_check_mono from "../../../assets/images/news/ic_check_mono.svg";
+import ic_up from "../../../assets/images/news/ic_up.svg";
 
 type FormValues = {
   category: string;
@@ -33,7 +33,7 @@ type FormValues = {
   keepImages: string[];
 };
 
-const NewsEdit = () => {
+const ProgramV2Edit = () => {
   const ref = useRef<HTMLButtonElement>(null);
   const { isOutside } = useOutsideClick({ ref });
 
@@ -52,14 +52,8 @@ const NewsEdit = () => {
   const [data, setData] = useState<FormValues | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
-  const categories = [
-    "Consulting",
-    "Investment",
-    "Education",
-    "Networking",
-    "Notice",
-    "Press",
-  ];
+  // Program: Consulting, Investment, Education, Networking
+  const categories = ["Consulting", "Investment", "Education", "Networking"];
 
   const { id } = useParams();
   const { md } = useWindowWidth();
@@ -162,21 +156,21 @@ const NewsEdit = () => {
 
     try {
       if (isEditing && id) {
-        await api.patch(`/news/${id}`, formData, {
+        await api.patch(`/program/${id}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toastAlert("게시글이 수정되었습니다.", "success");
       } else {
-        await api.post("/news/new", formData, {
+        await api.post("/program/new", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toastAlert("게시글이 추가되었습니다.", "success");
       }
 
       if (isAdmin) {
-        navigate("/admin/news");
+        navigate("/admin/program");
       } else {
-        navigate("/news");
+        navigate("/program");
       }
     } catch (error) {
       console.error("Error NewsDetail:", error);
@@ -397,4 +391,4 @@ const NewsEdit = () => {
   );
 };
 
-export default NewsEdit;
+export default ProgramV2Edit;

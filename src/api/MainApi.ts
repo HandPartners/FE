@@ -23,6 +23,7 @@ export interface newsItem {
 }
 interface MainItem {
   sucess: boolean;
+  programList: newsItem[];
   portfolioList: portfolioList[];
   newsList: newsItem[];
 }
@@ -36,5 +37,3 @@ export const getMain = async (): Promise<MainItem> => {
     throw new Error(`메인 정보 가져오기 실패: ${(error as Error).message}`);
   }
 };
-
-
