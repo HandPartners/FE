@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
 import hamburgerBtn from "../../assets/images/hamburgerBtn.svg";
 import { useState } from "react";
 import NavBarBtn from "./NavBarBtn";
@@ -32,7 +32,8 @@ const NavBar = () => {
             src={logo}
             alt="회사 로고"
             onClick={() => navigate(isAdmin ? "/admin" : "/")}
-            className="cursor-pointer w-[129.299px] md:w-[197px]"
+            // 원래 가로 * 0.85
+            className="cursor-pointer w-[110.49915px] md:w-[167.45px]"
           ></img>
 
           {/* 햄버거 버튼 (768px 미만) */}

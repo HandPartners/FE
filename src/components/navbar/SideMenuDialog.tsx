@@ -4,7 +4,7 @@ import type { TransitionProps } from "@mui/material/transitions";
 import React, { type PropsWithChildren } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import NavBarBtn from "./NavBarBtn";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
 import ic_close from "../../assets/images/ic_close.svg";
 
 // 왼쪽에서 슬라이드하는 애니메이션
@@ -71,7 +71,8 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
             src={logo}
             alt="회사 로고"
             onClick={() => navigate(isAdmin ? "/admin" : "/")}
-            className="cursor-pointer w-[129.299px] md:w-[197px]"
+            // 원래 가로 * 0.85
+            className="cursor-pointer w-[110.49915px] md:w-[167.45px]"
           ></img>
           <button>
             {" "}
