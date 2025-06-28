@@ -78,7 +78,7 @@ const Main = () => {
     <>
       <main className=" flex flex-col items-center w-[1280px] max-w-full h-full mx-auto relative ">
         {/* 배너 */}
-        <div className="absolute  top-[54px] md:top-[100px] left-[85px] z-100 flex flex-col  md:gap-[3px] w-fit">
+        <div className="absolute top-[54px] md:top-[119px] left-[15.267175572519083969465648854962%] md:left-[10%] z-100 flex flex-col md:gap-[36px] w-fit text-white">
           <h1
             className={` ${
               isMobile
@@ -89,7 +89,7 @@ const Main = () => {
             HAND PARTNERS
           </h1>
           <h3 className={`${isMobile ? "p-small-medium" : "h3-medium"}`}>
-            Have A Nice Day
+            함께 고민하고, 스케일업을 돕는 진정성 있는 파트너
           </h3>
         </div>
         <MainBanner />
