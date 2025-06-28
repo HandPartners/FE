@@ -3,23 +3,23 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 
-import NewsEditDropdownBtn from "../../components/news/NewsEditDropdownBtn";
-import NewsEditFileInput from "../../components/news/NewsEditFileInput";
-import NewsEditLinkBtnInput from "../../components/news/NewsEditLinkBtnInput";
-import OverlapPartialLoading from "../../components/OverlapPartialLoading";
+import NewsEditDropdownBtn from "../../../components/news/NewsEditDropdownBtn";
+import NewsEditFileInput from "../../../components/news/NewsEditFileInput";
+import NewsEditLinkBtnInput from "../../../components/news/NewsEditLinkBtnInput";
+import OverlapPartialLoading from "../../../components/OverlapPartialLoading";
 
-import useOutsideClick from "../../hooks/useOutsideClick";
-import useWindowWidth from "../../hooks/useWindowWidth";
+import useOutsideClick from "../../../hooks/useOutsideClick";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
-import { getCurrentDate } from "../../utils/getCurrentDate";
-import { toastAlert } from "../../utils/toastAlert";
+import { parseImgArrayJson } from "../../../utils/parseImgArrayJson";
+import { getCurrentDate } from "../../../utils/getCurrentDate";
+import { toastAlert } from "../../../utils/toastAlert";
 
-import api from "../../api/api";
+import api from "../../../api/api";
 
-import ic_check_colored from "../../assets/images/news/ic_check_colored.svg";
-import ic_check_mono from "../../assets/images/news/ic_check_mono.svg";
-import ic_up from "../../assets/images/news/ic_up.svg";
+import ic_check_colored from "../../../assets/images/news/ic_check_colored.svg";
+import ic_check_mono from "../../../assets/images/news/ic_check_mono.svg";
+import ic_up from "../../../assets/images/news/ic_up.svg";
 
 type FormValues = {
   category: string;

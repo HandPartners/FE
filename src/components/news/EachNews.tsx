@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import type { NewsItem } from "../../pages/user/News";
+import type { NewsItem } from "../../pages/user/news/News";
 
 import { parseDate } from "../../utils/parseDate";
 

@@ -2,18 +2,18 @@ import clsx from "clsx";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import DeleteModal from "../../components/portfolio/modal/DeleteModal";
+import DeleteModal from "../../../components/portfolio/modal/DeleteModal";
 
-import useWindowWidth from "../../hooks/useWindowWidth";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
-import { parseDate } from "../../utils/parseDate";
-import { parseImgArrayJson } from "../../utils/parseImgArrayJson";
-import { toastAlert } from "../../utils/toastAlert";
+import { parseDate } from "../../../utils/parseDate";
+import { parseImgArrayJson } from "../../../utils/parseImgArrayJson";
+import { toastAlert } from "../../../utils/toastAlert";
 
-import api from "../../api/api";
+import api from "../../../api/api";
 
-import ic_back from "../../assets/images/news/ic_back.svg";
-import ic_back_sm from "../../assets/images/news/ic_back_sm.svg";
+import ic_back from "../../../assets/images/news/ic_back.svg";
+import ic_back_sm from "../../../assets/images/news/ic_back_sm.svg";
 
 interface NewsItem {
   id: number;

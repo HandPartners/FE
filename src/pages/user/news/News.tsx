@@ -8,18 +8,18 @@ import {
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
 
-import BGTop from "../../components/BGTop";
-import EachNews from "../../components/news/EachNews";
-import AdminAddButton from "../../components/adminAddButton";
-import ScrollToTopButton from "../../components/ScrollToTopButton";
-import FadeInItem from "../../components/main/FadeInItem";
+import BGTop from "../../../components/BGTop";
+import EachNews from "../../../components/news/EachNews";
+import AdminAddButton from "../../../components/adminAddButton";
+import ScrollToTopButton from "../../../components/ScrollToTopButton";
+import FadeInItem from "../../../components/main/FadeInItem";
 
-import api from "../../api/api";
+import api from "../../../api/api";
 
-import ic_search from "../../assets/images/ic_search.svg";
-import bannerImg from "../../assets/images/banner/NewsBanner.png";
-import useWindowWidth from "../../hooks/useWindowWidth";
-import ScrollableTabs from "../../components/news/ScrollableTabs";
+import ic_search from "../../../assets/images/ic_search.svg";
+import bannerImg from "../../../assets/images/banner/NewsBanner.png";
+import useWindowWidth from "../../../hooks/useWindowWidth";
+import ScrollableTabs from "../../../components/news/ScrollableTabs";
 
 export interface NewsItem {
   id: number;
