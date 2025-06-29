@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-// @ts-expect-error: Swiper CSS에는 타입 선언 파일이 없음
-import "swiper/css";
-// @ts-expect-error: Swiper pagination CSS는 타입 정의가 존재하지 않음
-import "swiper/css/pagination";
-import "../../styles/swiper.css";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Pagination } from "swiper/modules";
+// // @ts-expect-error: Swiper CSS에는 타입 선언 파일이 없음
+// import "swiper/css";
+// // @ts-expect-error: Swiper pagination CSS는 타입 정의가 존재하지 않음
+// import "swiper/css/pagination";
+// import "../../styles/swiper.css";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
 
