@@ -103,7 +103,7 @@ const Main = () => {
             <section className="flex flex-col items-center">
               <h2
                 className={`text-[#2E3093] ${
-                  isMobile ? "p-medium-bold" : " slogan-h "
+                  isMobile ? "p-medium-bold text-center" : " slogan-h "
                 }`}
               >
                 핸드파트너스는 진성성으로 함께 고민하고,{" "}
@@ -225,7 +225,7 @@ const Main = () => {
                   TEL
                 </h2>
                 <p
-                  className={` text-[var(--grey6)] ${
+                  className={` text-[var(--grey6)] mb-[100px] ${
                     isMobile ? "p-small-bold " : "p-large-bold "
                   }`}
                 >
