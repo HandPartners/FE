@@ -106,8 +106,8 @@ const Main = () => {
                   isMobile ? "p-medium-bold" : " slogan-h "
                 }`}
               >
-                핸드파트너스는 진성성으로 함께 고민하고, 스케일업을 위한 길을
-                만듭니다.
+                핸드파트너스는 진성성으로 함께 고민하고,{" "}
+                {isMobile ? <br /> : ""}스케일업을 위한 길을 만듭니다.
               </h2>
               <p
                 className={`text-[var(--grey5)]  ${
@@ -188,7 +188,7 @@ const Main = () => {
             ref={contactRef}
           >
             <TitleLine>CONTACT</TitleLine>
-            <div className="  h-[244px] flex flex-col gap-[60px] ml-[41px]">
+            <div className="  h-[244px] flex flex-col gap-[60px] md:ml-[41px]">
               <section className=" flex flex-col gap-[4px] ">
                 <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
                   SEOUL OFFICE
