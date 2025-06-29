@@ -22,7 +22,7 @@ import api from "../../../api/api";
 import type { NewsItem } from "../../../types/news";
 
 import ic_search from "../../../assets/images/ic_search.svg";
-import bannerImg from "../../../assets/images/banner/NewsBanner.png";
+import bannerImg from "../../../assets/images/banner/ProgramBanner.png";
 
 interface ProgramV2Response {
   success: boolean;

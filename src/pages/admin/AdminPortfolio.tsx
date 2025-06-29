@@ -136,10 +136,10 @@ const AdminPortfolio = () => {
   return (
     <main className=" flex flex-col items-center w-[1280px] max-w-full mx-auto relative  pb-[100px]">
       {/* 배너 */}
-      <div className="absolute top-[54px] left-[60px] md:top-[99px] md:left-[85px] z-10 flex flex-col gap-[3px] md:gap-[36px] w-fit">
+      <div className="absolute top-[54px] md:top-[119px] left-[15.267175572519083969465648854962%] md:left-[10%] z-100 flex flex-col md:gap-[36px] w-fit text-white">
         <h1 className={` ${isMobile ? "h4-bold" : "md-banner"}`}>Portfolio</h1>
         <h3 className={` ${isMobile ? "p-small-medium" : "h3-medium"}`}>
-          한줄 소개
+          Hand Partners
         </h3>
       </div>
       <BGTop testBenner={bannerImg} />
