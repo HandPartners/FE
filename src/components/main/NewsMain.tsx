@@ -15,9 +15,14 @@ import default_thumbnail from "../../assets/images/news/default_thumbnail.png";
 interface NewsMainProps {
   title?: string;
   newsList: NewsItem[];
+  nav: string;
 }
 
-const NewsMain: React.FC<NewsMainProps> = ({ title = "NEWS", newsList }) => {
+const NewsMain: React.FC<NewsMainProps> = ({
+  title = "NEWS",
+  newsList,
+  nav,
+}) => {
   const navigate = useNavigate();
   const windowWidth = useWindowWidth();
   const isMobile = !windowWidth.md;
@@ -95,7 +100,7 @@ const NewsMain: React.FC<NewsMainProps> = ({ title = "NEWS", newsList }) => {
         className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
           isMobile ? "p-medium-bold" : " p-large-bold"
         }`}
-        onClick={() => navigate("news", { relative: "path" })}
+        onClick={() => navigate(`${nav}`, { relative: "path" })}
       >
         소식 전체보기 →
       </span>
