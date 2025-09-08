@@ -131,7 +131,7 @@ const Main = () => {
 
         <div className="flex flex-col md:gap-[200px] gap-[100px] mt-[50px] ">
           {/* 프로그램 */}
-          <NewsMain title="PROGRAM" newsList={programList} />
+          <NewsMain title="PROGRAM" newsList={programList} nav="program" />
 
           {/* 포트폴리오 */}
           <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
@@ -180,7 +180,7 @@ const Main = () => {
           </section>
 
           {/* NEWS */}
-          <NewsMain newsList={newsList} />
+          <NewsMain newsList={newsList} nav="news" />
 
           {/* 콘택트 */}
           <section
