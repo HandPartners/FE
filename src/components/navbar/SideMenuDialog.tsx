@@ -89,8 +89,22 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
           <SideMenuBtn isAdmin={isAdmin} path="about" onClose={onClose}>
             About
           </SideMenuBtn>
+          {/* Program 버튼: 홈으로 이동 */}
+          <button
+            className="flex flex-col justify-between items-start pl-[6px] w-full h-[68px] cursor-pointer"
+            onClick={() => {
+              navigate(isAdmin ? "/admin" : "/");
+              onClose();
+            }}
+          >
+            <div></div>
+            <span className="h5-medium cursor-pointer hover:text-[#252676]">
+              Program
+            </span>
+            <hr className="w-full h-[1px] border-[#E2E2E2]" />
+          </button>
           <SideMenuBtn isAdmin={isAdmin} path="program" onClose={onClose}>
-            Program
+            Reference
           </SideMenuBtn>
           <SideMenuBtn isAdmin={isAdmin} path="portfolio" onClose={onClose}>
             Portfolio

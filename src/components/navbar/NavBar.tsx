@@ -5,6 +5,7 @@ import hamburgerBtn from "../../assets/images/hamburgerBtn.svg";
 import { useState } from "react";
 import NavBarBtn from "./NavBarBtn";
 import SideMenuDialog from "./SideMenuDialog";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -51,8 +52,14 @@ const NavBar = () => {
             <NavBarBtn isAdmin={isAdmin} path="about">
               About
             </NavBarBtn>
+            {/* Program 버튼: 홈으로 이동 */}
+            <NavLink to={isAdmin ? "/admin/" : "/"}>
+              <span className="h5-medium cursor-pointer hover:text-[#252676]">
+                Program
+              </span>
+            </NavLink>
             <NavBarBtn isAdmin={isAdmin} path="program">
-              Program
+              Reference
             </NavBarBtn>
             <NavBarBtn isAdmin={isAdmin} path="portfolio">
               Portfolio
