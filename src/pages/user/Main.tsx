@@ -25,6 +25,7 @@ import ProgramImg from "../../../public/programMain.png";
 declare global {
   interface Window {
     scrollToContact?: () => void;
+    scrollToProgram?: () => void;
   }
 }
 
@@ -64,6 +65,7 @@ const Main = () => {
   const items = portfolioList.slice(0, 15);
 
   const contactRef = useRef<HTMLDivElement | null>(null); // CONTACT 섹션 참조
+  const programRef = useRef<HTMLDivElement | null>(null); // PROGRAM 섹션 참조
   const navigate = useNavigate();
 
   const windowWidth = useWindowWidth();
@@ -93,12 +95,21 @@ const Main = () => {
     window.scrollToContact = () => {
       contactRef.current?.scrollIntoView({ behavior: "smooth" });
     };
+    window.scrollToProgram = () => {
+      programRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
     // 최초 진입 시 sessionStorage에 flag 있으면 실행
     if (sessionStorage.getItem("scrollToContact") === "true") {
       sessionStorage.removeItem("scrollToContact");
       setTimeout(() => {
         window.scrollToContact?.();
+      }, 300); // 렌더링 후 실행
+    }
+    if (sessionStorage.getItem("scrollToProgram") === "true") {
+      sessionStorage.removeItem("scrollToProgram");
+      setTimeout(() => {
+        window.scrollToProgram?.();
       }, 300); // 렌더링 후 실행
     }
   }, []);
@@ -160,7 +171,10 @@ const Main = () => {
 
         <div className="flex flex-col md:gap-[200px] gap-[100px] mt-[50px] ">
           {/* 프로그램 */}
-          <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
+          <section
+            className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]"
+            ref={programRef}
+          >
             <TitleLine>PROGRAM</TitleLine>
             <FadeInItem>
               {isMobile ? (

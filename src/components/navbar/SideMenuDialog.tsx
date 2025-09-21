@@ -89,12 +89,17 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
           <SideMenuBtn isAdmin={isAdmin} path="about" onClose={onClose}>
             About
           </SideMenuBtn>
-          {/* Program 버튼: 홈으로 이동 */}
+          {/* Program: 홈에서는 스크롤, 타 페이지에서는 홈으로 이동 후 스크롤 */}
           <button
             className="flex flex-col justify-between items-start pl-[6px] w-full h-[68px] cursor-pointer"
             onClick={() => {
-              navigate(isAdmin ? "/admin" : "/");
               onClose();
+              if (pathname !== (isAdmin ? "/admin" : "/")) {
+                sessionStorage.setItem("scrollToProgram", "true");
+                window.location.href = isAdmin ? "/admin" : "/";
+              } else {
+                window.scrollToProgram?.();
+              }
             }}
           >
             <div></div>

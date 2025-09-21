@@ -5,7 +5,7 @@ import hamburgerBtn from "../../assets/images/hamburgerBtn.svg";
 import { useState } from "react";
 import NavBarBtn from "./NavBarBtn";
 import SideMenuDialog from "./SideMenuDialog";
-import { NavLink } from "react-router-dom";
+ 
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -52,12 +52,20 @@ const NavBar = () => {
             <NavBarBtn isAdmin={isAdmin} path="about">
               About
             </NavBarBtn>
-            {/* Program 버튼: 홈으로 이동 */}
-            <NavLink to={isAdmin ? "/admin/" : "/"}>
-              <span className="h5-medium cursor-pointer hover:text-[#252676]">
-                Program
-              </span>
-            </NavLink>
+            {/* Program: 홈에서는 스크롤, 타 페이지에서는 홈으로 이동 후 스크롤 */}
+            <span
+              className="h5-medium cursor-pointer hover:text-[#252676]"
+              onClick={() => {
+                if (pathname !== (isAdmin ? "/admin" : "/")) {
+                  sessionStorage.setItem("scrollToProgram", "true");
+                  window.location.href = isAdmin ? "/admin" : "/";
+                } else {
+                  window.scrollToProgram?.();
+                }
+              }}
+            >
+              Program
+            </span>
             <NavBarBtn isAdmin={isAdmin} path="program">
               Reference
             </NavBarBtn>
