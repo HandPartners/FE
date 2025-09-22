@@ -5,6 +5,7 @@ import React, { type PropsWithChildren } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import NavBarBtn from "./NavBarBtn";
 import logo from "../../assets/logo.png";
+import logo2 from "../../assets/logo2.png";
 import ic_close from "../../assets/images/ic_close.svg";
 
 // 왼쪽에서 슬라이드하는 애니메이션
@@ -67,13 +68,22 @@ const SideMenuDialog: React.FC<SideMenuDialogProps> = ({ open, onClose }) => {
     >
       <div className="h-full overflow-hidden">
         <div className="flex justify-between items-center w-full h-[70px]  pl-[5.59796437659033%] pr-[4.32569974554707%] shadow-[0px_2px_3.5px_0px_var(--Main,_#2E3092)]">
-          <img
-            src={logo}
-            alt="회사 로고"
-            onClick={() => navigate(isAdmin ? "/admin" : "/")}
-            // 원래 가로 * 0.85
-            className="cursor-pointer w-[110.49915px] md:w-[167.45px]"
-          ></img>
+          <div className="flex items-center gap-[20px]">
+            <img
+              src={logo}
+              alt="회사 로고"
+              className="cursor-pointer w-[111px] md:w-[197px]"
+              onClick={() => navigate(isAdmin ? "/admin" : "/")}
+            ></img>
+            <img
+              src={logo2}
+              alt="회사 로고"
+              className="w-[92px] h-[44px] md:w-[140px] md:h-[68px] cursor-pointer"
+              onClick={() => {
+                window.location.href = "https://startuppartners.co.kr";
+              }}
+            ></img>
+          </div>
           <button>
             {" "}
             <img
