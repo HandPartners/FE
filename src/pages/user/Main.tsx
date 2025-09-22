@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { Pagination } from "swiper/modules";
-// // @ts-expect-error: Swiper CSS에는 타입 선언 파일이 없음
-// import "swiper/css";
-// // @ts-expect-error: Swiper pagination CSS는 타입 정의가 존재하지 않음
-// import "swiper/css/pagination";
-// import "../../styles/swiper.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+// @ts-expect-error: Swiper CSS에는 타입 선언 파일이 없음
+import "swiper/css";
+// @ts-expect-error: Swiper pagination CSS는 타입 정의가 존재하지 않음
+import "swiper/css/pagination";
+import "../../styles/swiper.css";
 
 import useWindowWidth from "../../hooks/useWindowWidth";
 
@@ -20,21 +20,52 @@ import { getMain } from "../../api/MainApi";
 
 import type { portfolioList, newsItem } from "../../api/MainApi";
 import NewsMain from "../../components/main/NewsMain";
+import ProgramImg from "../../../public/programMain.png";
 
 declare global {
   interface Window {
     scrollToContact?: () => void;
+    scrollToProgram?: () => void;
   }
 }
 
+const programData = [
+  {
+    id: "consulting",
+    img: ProgramImg,
+    title: "Phase 1. Consulting",
+    contents:
+      "창업자들을 대상으로 컨설팅 진행\n창업자들을 대상으로 컨설팅 진행",
+  },
+  {
+    id: "investment",
+    img: ProgramImg,
+    title: "Phase 2. Investment",
+    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+  },
+  {
+    id: "education",
+    img: ProgramImg,
+    title: "Phase 3. Education",
+    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+  },
+  {
+    id: "networking",
+    img: ProgramImg,
+    title: "Phase 4. Networking",
+    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+  },
+];
+
 const Main = () => {
-  const [programList, setProgramList] = useState<newsItem[]>([]);
+  const [referenceList, setReferenceList] = useState<newsItem[]>([]);
   const [portfolioList, setPortfolioList] = useState<portfolioList[]>([]);
   const [newsList, setNewsList] = useState<newsItem[]>([]);
 
   const items = portfolioList.slice(0, 15);
 
   const contactRef = useRef<HTMLDivElement | null>(null); // CONTACT 섹션 참조
+  const programRef = useRef<HTMLDivElement | null>(null); // PROGRAM 섹션 참조
   const navigate = useNavigate();
 
   const windowWidth = useWindowWidth();
@@ -46,7 +77,7 @@ const Main = () => {
     const fetchMainData = async () => {
       try {
         const response = await getMain();
-        setProgramList(response.programList);
+        setReferenceList(response.programList);
         setPortfolioList(response.portfolioList);
         setNewsList(response.newsList);
         console.log(response);
@@ -64,12 +95,21 @@ const Main = () => {
     window.scrollToContact = () => {
       contactRef.current?.scrollIntoView({ behavior: "smooth" });
     };
+    window.scrollToProgram = () => {
+      programRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
 
     // 최초 진입 시 sessionStorage에 flag 있으면 실행
     if (sessionStorage.getItem("scrollToContact") === "true") {
       sessionStorage.removeItem("scrollToContact");
       setTimeout(() => {
         window.scrollToContact?.();
+      }, 300); // 렌더링 후 실행
+    }
+    if (sessionStorage.getItem("scrollToProgram") === "true") {
+      sessionStorage.removeItem("scrollToProgram");
+      setTimeout(() => {
+        window.scrollToProgram?.();
       }, 300); // 렌더링 후 실행
     }
   }, []);
@@ -131,7 +171,74 @@ const Main = () => {
 
         <div className="flex flex-col md:gap-[200px] gap-[100px] mt-[50px] ">
           {/* 프로그램 */}
-          <NewsMain title="PROGRAM" newsList={programList} nav="program" />
+          <section
+            className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]"
+            ref={programRef}
+          >
+            <TitleLine>PROGRAM</TitleLine>
+            <FadeInItem>
+              {isMobile ? (
+                <Swiper
+                  spaceBetween={20}
+                  slidesPerView={1}
+                  pagination={{ clickable: true }}
+                  modules={[Pagination]}
+                >
+                  {programData.map((item, idx) => (
+                    <SwiperSlide key={idx}>
+                      <div className="h-[427px] w-[303px] mx-auto  ">
+                        <div className="border border-[var(--grey3)] h-[402px] ">
+                          <img
+                            className="h-[290px] w-full object-cover"
+                            src={item.img}
+                          />
+                          <div className="h-[110px] text-center px-[47px] py-[17px] bg-[var(--grey1)] ">
+                            <h3 className="p-large-bold">{item.title}</h3>
+                            <p className="whitespace-pre-wrap p-medium-medium">
+                              {item.contents}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              ) : (
+                <div className="flex flex-row gap-[20px] ">
+                  {programData.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="w-full h-[400px] border-[var(--grey3)]"
+                      // onClick={() =>
+                      //   navigate(`program?scrollTo=${item.id.toLowerCase()}`)
+                      // }
+                    >
+                      <img
+                        className="h-[290px] w-full object-cover"
+                        src={item.img}
+                        alt={item.title}
+                      />
+                      <div className="h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
+                        <h3 className="p-large-bold">{item.title}</h3>
+                        <p className="p-medium-medium">{item.contents}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </FadeInItem>
+            {/* <span
+              className={`flex justify-end cursor-pointer transition-colors duration-250 ease-in-out hover:text-[#2E3092]  ${
+                isMobile ? "p-medium-bold" : " p-large-bold"
+              }`}
+              onClick={() => navigate("program", { relative: "path" })}
+            >
+              프로그램 전체보기 →
+            </span> */}
+          </section>
+
+          {/* 레퍼런스 */}
+          <NewsMain title="REFERENCE" newsList={referenceList} nav="program" />
 
           {/* 포트폴리오 */}
           <section className="flex flex-col md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[50px]">
