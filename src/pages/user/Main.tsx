@@ -319,7 +319,7 @@ const Main = () => {
             <div className="  h-[244px] flex flex-col gap-[60px] md:ml-[41px]">
               <section className=" flex flex-col gap-[4px] ">
                 <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
-                  SEOUL OFFICE
+                  OFFICE
                 </h2>
                 <p
                   className={` text-[var(--grey6)] ${
