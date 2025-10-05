@@ -33,27 +33,47 @@ const programData = [
   {
     id: "consulting",
     img: ProgramImg,
-    title: "Phase 1. Consulting",
-    contents:
-      "창업자들을 대상으로 컨설팅 진행\n창업자들을 대상으로 컨설팅 진행",
+    title: "Phase 1. 스타트업 액셀러레이팅",
+    contents: (
+      <>
+        <p>초기 스타트업의 빠른 성장을 위한 자금,</p>
+        <p>멘토링, 네트워크 등 집중 지원 프로그램</p>
+      </>
+    ),
   },
   {
     id: "investment",
     img: ProgramImg,
-    title: "Phase 2. Investment",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+    title: "Phase 2. 글로벌 액셀러레이팅",
+    contents: (
+      <>
+        <p>스타트업의 해외 진출을 돕는 시장 분석,</p>
+        <p>현지 파트너 연결, 글로벌 확장 지원 프로그램</p>
+      </>
+    ),
   },
   {
     id: "education",
     img: ProgramImg,
-    title: "Phase 3. Education",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+    title: "Phase 3. 오픈 이노베이션(OI)",
+    contents: (
+      <>
+        <p>외부 기술·아이디어와 협업하여 기업의</p>
+        <p>혁신을 촉진하는 개방형 협력 지원 프로그램</p>
+      </>
+    ),
   },
   {
     id: "networking",
     img: ProgramImg,
-    title: "Phase 4. Networking",
-    contents: "창업자들을 대상으로 컨설팅 진행 창업자들을 대상으로 컨설팅 진행",
+    title: "Phase 4. End-to-End 프로그램",
+    contents: (
+      <>
+        <p>아이디어부터 제품 개발, 양산, 마케팅,</p>
+        <p>글로벌 진출까지 전 과정을</p>
+        <p>통합 지원하는 성장 프로그램</p>
+      </>
+    ),
   },
 ];
 
@@ -179,6 +199,7 @@ const Main = () => {
             <FadeInItem>
               {isMobile ? (
                 <Swiper
+                  className="program-swiper"
                   spaceBetween={20}
                   slidesPerView={1}
                   pagination={{ clickable: true }}
@@ -186,13 +207,13 @@ const Main = () => {
                 >
                   {programData.map((item, idx) => (
                     <SwiperSlide key={idx}>
-                      <div className="h-[427px] w-[303px] mx-auto  ">
-                        <div className="border border-[var(--grey3)] h-[402px] ">
+                      <div className="w-[303px] mx-auto">
+                        <div className="border border-[var(--grey3)]">
                           <img
                             className="h-[290px] w-full object-cover"
                             src={item.img}
                           />
-                          <div className="h-[110px] text-center px-[47px] py-[17px] bg-[var(--grey1)] ">
+                          <div className="flex flex-col justify-center items-center gap-[9px] h-[145px] text-center bg-[var(--grey1)]">
                             <h3 className="p-large-bold">{item.title}</h3>
                             <p className="whitespace-pre-wrap p-medium-medium">
                               {item.contents}
@@ -208,7 +229,7 @@ const Main = () => {
                   {programData.map((item, idx) => (
                     <div
                       key={idx}
-                      className="w-full h-[400px] border-[var(--grey3)]"
+                      className="w-full border-[var(--grey3)]"
                       // onClick={() =>
                       //   navigate(`program?scrollTo=${item.id.toLowerCase()}`)
                       // }
@@ -218,7 +239,7 @@ const Main = () => {
                         src={item.img}
                         alt={item.title}
                       />
-                      <div className="h-[110px] flex flex-col text-center px-[48px] py-[17px] border-[var(--grey3)] border bg-[var(--grey1)]">
+                      <div className="flex flex-col justify-center items-center gap-[9px] h-[145px] text-center border-[var(--grey3)] border bg-[var(--grey1)]">
                         <h3 className="p-large-bold">{item.title}</h3>
                         <p className="p-medium-medium">{item.contents}</p>
                       </div>
@@ -298,7 +319,7 @@ const Main = () => {
             <div className="  h-[244px] flex flex-col gap-[60px] md:ml-[41px]">
               <section className=" flex flex-col gap-[4px] ">
                 <h2 className={`${isMobile ? "p-large-bold " : "h4-bold"}`}>
-                  SEOUL OFFICE
+                  OFFICE
                 </h2>
                 <p
                   className={` text-[var(--grey6)] ${

@@ -5,6 +5,10 @@
   gap: 8px;
 }
 
+.program-swiper .swiper-pagination {
+  bottom: 8px !important;
+}
+
 .swiper-pagination-bullet {
   width: 7px !important;
   height: 7px !important;
