@@ -20,7 +20,12 @@ import { getMain } from "../../api/MainApi";
 
 import type { portfolioList, newsItem } from "../../api/MainApi";
 import NewsMain from "../../components/main/NewsMain";
-import ProgramImg from "../../../public/programMain.png";
+import {
+  program1,
+  program2,
+  program3,
+  program4,
+} from "../../assets/images/main";
 
 declare global {
   interface Window {
@@ -32,7 +37,7 @@ declare global {
 const programData = [
   {
     id: "consulting",
-    img: ProgramImg,
+    img: program1,
     title: "Phase 1. 스타트업 액셀러레이팅",
     contents: (
       <>
@@ -43,7 +48,7 @@ const programData = [
   },
   {
     id: "investment",
-    img: ProgramImg,
+    img: program2,
     title: "Phase 2. 글로벌 액셀러레이팅",
     contents: (
       <>
@@ -54,7 +59,7 @@ const programData = [
   },
   {
     id: "education",
-    img: ProgramImg,
+    img: program3,
     title: "Phase 3. 오픈 이노베이션(OI)",
     contents: (
       <>
@@ -65,7 +70,7 @@ const programData = [
   },
   {
     id: "networking",
-    img: ProgramImg,
+    img: program4,
     title: "Phase 4. End-to-End 프로그램",
     contents: (
       <>
@@ -210,7 +215,7 @@ const Main = () => {
                       <div className="w-[303px] mx-auto">
                         <div className="border border-[var(--grey3)]">
                           <img
-                            className="h-[290px] w-full object-cover"
+                            className="h-[290px] w-full object-cover object-top"
                             src={item.img}
                           />
                           <div className="flex flex-col justify-center items-center gap-[9px] h-[145px] text-center bg-[var(--grey1)]">
@@ -235,7 +240,7 @@ const Main = () => {
                       // }
                     >
                       <img
-                        className="h-[290px] w-full object-cover"
+                        className="h-[290px] w-full object-cover object-top"
                         src={item.img}
                         alt={item.title}
                       />
