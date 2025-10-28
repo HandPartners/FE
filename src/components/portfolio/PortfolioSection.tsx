@@ -141,7 +141,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
       </div>
 
       {(portfolioList?.portfolioList?.length ?? 0) === 0 ? (
-        <div className="flex flex-col justify-center items-center w-full h-[200px] text-center gap-2">
+        <div className="flex flex-col justify-center items-center mt-[50px] w-full text-center">
           <p className={` ${isMobile ? "p-medium-bold" : "h5-medium"}`}>
             {name ? (
               <>
