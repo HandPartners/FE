@@ -113,7 +113,7 @@ const ProgramV2: React.FC = () => {
               : "h4-bold"
           }
         >
-          Program
+          References
         </h1>
         <h3 className={md ? "h3-medium" : "p-small-medium"}>Hand Partners</h3>
       </div>
