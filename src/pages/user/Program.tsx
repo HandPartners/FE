@@ -6,6 +6,8 @@ import bannerImg from "../../assets/images/banner/ProgramBanner.png";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 import useWindowWidth from "../../hooks/useWindowWidth";
 import { useEffect, useRef } from "react";
+
+/** @deprecated 프로그램 페이지 */
 const Program = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
