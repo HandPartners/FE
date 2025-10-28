@@ -206,7 +206,7 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
                   </div>
                   <img
                     src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`}
-                    className="p-[20px] h-[42.3%] md:h-[120px] object-contain"
+                    className="h-[42.3%] md:h-[120px] object-contain"
                   ></img>
                 </div>
               </FadeInItem>
