@@ -175,9 +175,7 @@ const Main = () => {
                 {isMobile ? <br /> : ""}스케일업을 위한 길을 만듭니다.
               </h2>
               <p
-                className={`text-[var(--grey5)]  ${
-                  isMobile ? "p-small-bold" : " slogan-p "
-                }`}
+                className="text-[var(--grey5)] text-[14px] font-semibold sm:text-[24px]"
               >
                 핸드파트너스와 함께 'Have A Nice Day'
               </p>
