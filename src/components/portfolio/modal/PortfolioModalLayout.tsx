@@ -38,7 +38,7 @@ const PortfolioModalLayout: React.FC<PortfolioModalProps> = ({
   }, []);
 
   return (
-    <div className="fixed inset-0 flex justify-center  min-h-screen  z-50 bg-[rgba(217,217,217,0.3)] backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 flex justify-center  min-h-screen  z-100 bg-[rgba(217,217,217,0.3)] backdrop-blur-sm overflow-y-auto">
       <div
         className={`${marginTop} bg-white py-[36px] px-[30px] rounded-lg w-[89.3%] max-w-[500px] md:w-[500px] h-fit relative flex flex-col gap-[28px]`}
         onClick={(e) => e.stopPropagation()}
