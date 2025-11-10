@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
+import AdminLayout from "./layouts/AdminLayout";
 import About from "./pages/user/About";
 import News from "./pages/user/news/News";
 import NewsDetail from "./pages/user/news/NewsDetail";
@@ -10,6 +11,7 @@ import Main from "./pages/user/Main";
 import ProgramV2 from "./pages/user/program_v2/ProgramV2";
 import ProgramV2Detail from "./pages/user/program_v2/ProgramV2Detail";
 import ProgramV2Edit from "./pages/user/program_v2/ProgramV2Edit";
+import AdminLogin from "./pages/admin/AdminLogin";
 
 const commonRoutes = [
   { index: true, element: <Main /> },
@@ -41,9 +43,14 @@ const router = createBrowserRouter([
     element: <DefaultLayout />,
     children: [...commonRoutes, ...portfolioRoutes],
   },
+  // 관리자 로그인 페이지
+  {
+    path: "/admin/login",
+    element: <AdminLogin />,
+  },
   {
     path: "/admin",
-    element: <DefaultLayout />,
+    element: <AdminLayout />,
     children: [
       ...commonRoutes,
       { path: "news/edit/:id", element: <NewsEdit /> },
