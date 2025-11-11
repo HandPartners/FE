@@ -5,6 +5,7 @@ import type {
 } from "../../api/PortfolioApi";
 import FadeInItem from "../../components/main/FadeInItem";
 import useWindowWidth from "../../hooks/useWindowWidth";
+import PortfolioSectionItem from "./PortfolioSectionItem";
 
 interface PortfolioSection {
   portfolioList?: ResponsePortfolioList;
@@ -163,52 +164,15 @@ const PortfolioSection: React.FC<PortfolioSection> = ({
             )
             .map((item, index) => (
               <FadeInItem key={index}>
-                <div
-                  key={index}
-                  className={` ${
-                    !isAdmin ? "" : "cursor-pointer"
-                  } aspect-[162/260] md:w-[216px] md:h-[310px] flex flex-col border border-[var(--grey3)]`}
-                  onClick={() => {
-                    if (setPortfolioId) setPortfolioId(item.id);
-                    if (setIsEditModalOpen) setIsEditModalOpen(true);
-                    if (setFormData) {
-                      setFormData({
-                        category: item.category,
-                        name: item.name,
-                        content: item.content,
-                        logo: item.logo,
-                      });
-                    }
-                  }}
-                >
-                  <div className="flex flex-col px-[9.25%] py-[9.6%] md:p-[28px] border-b border-b-[var(--grey3)] gap-[4.7%] md:gap-[8px] h-[57.7%] md:h-[190px]">
-                    <span
-                      className={` border border-[var(--main)] w-fit px-[20px] py-[4px] rounded-[30px] text-[var(--main)] justify-center items-center ${
-                        isMobile ? "p-xs-bold" : "p-12-bold"
-                      }`}
-                    >
-                      {item.category}
-                    </span>
-                    <span
-                      className={`truncate overflow-hidden whitespace-nowrap ${
-                        isMobile ? "p-medium-bold" : "p-large-bold"
-                      }`}
-                    >
-                      {item.name}
-                    </span>
-                    <p
-                      className={` w-full text-ellipsis overflow-hidden break-words ${
-                        isMobile ? "p-xs-regular" : "p-small-regular"
-                      }`}
-                    >
-                      {item.content}
-                    </p>
-                  </div>
-                  <img
-                    src={`${import.meta.env.VITE_API_URL}/uploads/${item.logo}`}
-                    className="h-[42.3%] md:h-[120px] object-contain"
-                  ></img>
-                </div>
+                <PortfolioSectionItem
+                  item={item}
+                  isAdmin={isAdmin}
+                  setPortfolioId={setPortfolioId}
+                  setIsEditModalOpen={setIsEditModalOpen}
+                  setFormData={setFormData}
+                  index={index}
+                  isMobile={isMobile}
+                />
               </FadeInItem>
             ))}
         </div>

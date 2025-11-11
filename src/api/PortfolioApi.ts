@@ -11,7 +11,7 @@ interface PortfolioParams {
   category: string;
   name: string;
 }
-interface PortfolioItem {
+export interface PortfolioItem {
   id: number;
   category: string;
   name: string;

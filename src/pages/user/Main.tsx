@@ -19,6 +19,7 @@ import ScrollToTopButton from "../../components/ScrollToTopButton";
 import { getMain } from "../../api/MainApi";
 
 import type { portfolioList, newsItem } from "../../api/MainApi";
+import { getPortfolio, type PortfolioItem } from "../../api/PortfolioApi";
 import NewsMain from "../../components/main/NewsMain";
 import {
   program1,
@@ -26,6 +27,8 @@ import {
   program3,
   program4,
 } from "../../assets/images/main";
+import { Modal } from "@mui/material";
+import PortfolioSectionItem from "../../components/portfolio/PortfolioSectionItem";
 
 declare global {
   interface Window {
@@ -89,14 +92,31 @@ const Main = () => {
 
   const items = portfolioList.slice(0, 15);
 
+  const [openPortfolioModal, setOpenPortfolioModal] = useState(false);
+  const [selectedPortfolio, setSelectedPortfolio] =
+    useState<PortfolioItem | null>(null);
+
   const contactRef = useRef<HTMLDivElement | null>(null); // CONTACT 섹션 참조
   const programRef = useRef<HTMLDivElement | null>(null); // PROGRAM 섹션 참조
   const navigate = useNavigate();
 
   const windowWidth = useWindowWidth();
   const isMobile = !windowWidth.md;
-  const maxPorfolio = isMobile ? 10 : 15;
-  const emptySlots = maxPorfolio - items.length;
+  const maxPortfolio = isMobile ? 10 : 15;
+  const emptySlots = maxPortfolio - items.length;
+
+  const handleOpenPortfolio = async (id: number) => {
+    try {
+      const res = await getPortfolio({ category: "", name: "" });
+      const item = res.portfolioList?.find((p) => p.id === id) ?? null;
+      if (item) {
+        setSelectedPortfolio(item);
+        setOpenPortfolioModal(true);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     const fetchMainData = async () => {
@@ -174,9 +194,7 @@ const Main = () => {
                 핸드파트너스는 진성성으로 함께 고민하고,{" "}
                 {isMobile ? <br /> : ""}스케일업을 위한 길을 만듭니다.
               </h2>
-              <p
-                className="text-[var(--grey5)] text-[14px] font-semibold sm:text-[24px]"
-              >
+              <p className="text-[var(--grey5)] text-[14px] font-semibold sm:text-[24px]">
                 핸드파트너스와 함께 'Have A Nice Day'
               </p>
             </section>
@@ -275,10 +293,15 @@ const Main = () => {
             ) : (
               <>
                 <div className="grid grid-cols-2 grid-rows-5 gap-x-[17.4px] min-w-[312.6px]  gap-y-[31px]  md:h-[408px] md:grid-cols-5 md:grid-rows-3 md:gap-x-[24px] md:gap-y-[30px] md:px-[40px]">
-                  {items.slice(0, maxPorfolio).map((item) => {
+                  {items.slice(0, maxPortfolio).map((item) => {
                     return (
                       <FadeInItem key={item.id}>
-                        <div className="border border-[var(--grey3)] h-[100%] min-h-[80px] min-w-[147.6px] w-[100%] max-w-[216px] max-h-[120px] mx-auto flex justify-center">
+                        <div
+                          className="border border-[var(--grey3)] h-[100%] min-h-[80px] min-w-[147.6px] w-[100%] max-w-[216px] max-h-[120px] mx-auto flex justify-center cursor-pointer"
+                          onClick={() => {
+                            handleOpenPortfolio(item.id);
+                          }}
+                        >
                           <img
                             src={`${import.meta.env.VITE_API_URL}/uploads/${
                               item.logo
@@ -297,6 +320,30 @@ const Main = () => {
                     </FadeInItem>
                   ))}
                 </div>
+                {openPortfolioModal && selectedPortfolio && (
+                  <Modal
+                    open={openPortfolioModal}
+                    onClose={() => {
+                      setOpenPortfolioModal(false);
+                      setSelectedPortfolio(null);
+                    }}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                  >
+                    <div>
+                      <PortfolioSectionItem
+                        item={selectedPortfolio}
+                        isMobile={isMobile}
+                        isMain={true}
+                      />
+                    </div>
+                  </Modal>
+                )}
               </>
             )}
 
