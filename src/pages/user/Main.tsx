@@ -173,9 +173,9 @@ const Main = () => {
           >
             HAND PARTNERS
           </h1>
-          <h3 className={`${isMobile ? "p-small-medium" : "h3-medium"}`}>
+          <h2 className={`${isMobile ? "p-small-medium" : "h3-medium"}`}>
             함께 고민하고, 스케일업을 돕는 진정성 있는 파트너
-          </h3>
+          </h2>
         </div>
         <MainBanner />
 
@@ -233,9 +233,10 @@ const Main = () => {
                           <img
                             className="h-[290px] w-full object-cover object-top"
                             src={item.img}
+                            alt={item.title}
                           />
                           <div className="flex flex-col justify-center items-center gap-[9px] h-[145px] text-center bg-[var(--grey1)]">
-                            <h3 className="p-large-bold">{item.title}</h3>
+                            <p className="p-large-bold">{item.title}</p>
                             <p className="whitespace-pre-wrap p-medium-medium">
                               {item.contents}
                             </p>

@@ -52,6 +52,7 @@ const NewsMain: React.FC<NewsMainProps> = ({
                         }`
                       : default_thumbnail
                   }
+                  alt={item.title}
                   className="w-[34.8%] w-max-[116px] md:w-[238px] h-full  object-cover border border-[var(--grey3)]"
                 ></img>
 
