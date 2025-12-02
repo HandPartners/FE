@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- 메인 페이지 -->
+  <url>
+    <loc>https://handpartners.co.kr/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 어바웃 페이지 -->
+  <url>
+    <loc>https://handpartners.co.kr/about</loc>
+    <priority>0.8</priority>
+  </url>
+
+    <!-- 레퍼런스 페이지 -->
+  <url>
+    <loc>https://handpartners.co.kr/program</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 포트폴리오 페이지 -->
+  <url>
+    <loc>https://handpartners.co.kr/portfolio</loc>
+    <priority>0.8</priority>
+  </url>
+
+    <!-- 뉴스 페이지 -->
+  <url>
+    <loc>https://handpartners.co.kr/news</loc>
+    <priority>0.8</priority>
+  </url>
+
+
+</urlset>
