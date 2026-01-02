@@ -15,22 +15,22 @@ import api from "../../../api/api";
 import ic_back from "../../../assets/images/news/ic_back.svg";
 import ic_back_sm from "../../../assets/images/news/ic_back_sm.svg";
 
-interface NewsItem {
+interface ProgramItem {
   id: number;
   category: string;
   title: string;
   content: string;
-  thumbnail: string;
-  image: string | string[];
-  shortcut: string;
-  link: string;
+  thumbnail: string | null;
+  image: string[];
+  shortcut: string | null;
+  link: string | null;
   visible: boolean;
   createdAt: string;
 }
 
-interface NewsDetailResponse {
+interface ProgramDetailResponse {
   success: boolean;
-  newsDetail: NewsItem;
+  programDetail: ProgramItem;
 }
 
 const ProgramV2Detail = () => {
@@ -45,14 +45,14 @@ const ProgramV2Detail = () => {
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const [data, setData] = useState<NewsItem | null>(null);
+  const [data, setData] = useState<ProgramItem | null>(null);
 
   useEffect(() => {
     const fetchNewsDetail = async () => {
-      const { data } = await api.get<NewsDetailResponse>(`/program/${id}`);
+      const { data } = await api.get<ProgramDetailResponse>(`/program/${id}`);
 
-      data.newsDetail.image = parseImgArrayJson(data.newsDetail.image);
-      setData(data.newsDetail);
+      data.programDetail.image = parseImgArrayJson(data.programDetail.image);
+      setData(data.programDetail);
     };
     try {
       fetchNewsDetail();
@@ -114,10 +114,7 @@ const ProgramV2Detail = () => {
                 삭제
               </button>
               {showDeleteModal && (
-                <DeleteModal
-                  onClose={() => setShowDeleteModal(false)}
-                  onDelete={onDeleteNews}
-                />
+                <DeleteModal onClose={() => setShowDeleteModal(false)} onDelete={onDeleteNews} />
               )}
             </div>
           )}
@@ -125,28 +122,13 @@ const ProgramV2Detail = () => {
         <hr className="mt-[10px] md:mt-[20px] mb-[20px] md:mb-[25px] h-[1px] border-[#2E3092]" />
 
         <div>
-          <h4
-            className={clsx(
-              "h4-bold text-[#2E3093]",
-              md ? "h4-bold" : "p-medium-bold"
-            )}
-          >
+          <h4 className={clsx("h4-bold text-[#2E3093]", md ? "h4-bold" : "p-medium-bold")}>
             {data?.category}
           </h4>
-          <h1
-            className={clsx(
-              "mt-[10px] mb-[7px] break-all",
-              md ? "h1-bold" : "p-large-bold"
-            )}
-          >
+          <h1 className={clsx("mt-[10px] mb-[7px] break-all", md ? "h1-bold" : "p-large-bold")}>
             {data?.title}
           </h1>
-          <p
-            className={clsx(
-              "text-[#9E9E9E]",
-              md ? "p-large-bold" : "p-small-bold"
-            )}
-          >
+          <p className={clsx("text-[#9E9E9E]", md ? "p-large-bold" : "p-small-bold")}>
             {parseDate(data?.createdAt)}
           </p>
         </div>
@@ -164,10 +146,7 @@ const ProgramV2Detail = () => {
         <div className=" mt-[30px] mb-[50px] md:mt-[80px] md:mb-[40px]">
           {Array.isArray(data?.image) &&
             data?.image.map((img) => (
-              <section
-                key={img}
-                className="flex justify-center w-full not-last:mb-[40px]"
-              >
+              <section key={img} className="flex justify-center w-full not-last:mb-[40px]">
                 <img
                   className="w-full md:w-full "
                   src={import.meta.env.VITE_API_URL + "/uploads/" + img}
@@ -182,9 +161,7 @@ const ProgramV2Detail = () => {
               onClick={() => {
                 // 외부 링크 이동
                 window.open(
-                  data?.link?.startsWith("http")
-                    ? data.link
-                    : `https://${data.link}`,
+                  data?.link?.startsWith("http") ? data.link : `https://${data.link}`,
                   "_blank",
                   "noopener,noreferrer"
                 );

@@ -38,9 +38,7 @@ const ProgramV2Edit = () => {
   const { isOutside } = useOutsideClick({ ref });
 
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<
-    number | null
-  >(null);
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const navigate = useNavigate();
@@ -62,30 +60,30 @@ const ProgramV2Edit = () => {
     if (isEditing && id) {
       (async () => {
         try {
-          const { data } = await api.get(`/news/update/${id}`);
+          const { data } = await api.get(`/program/update/${id}`);
 
-          data.news.image = parseImgArrayJson(data.news.image);
-          const newsData = data.news;
+          data.program.image = parseImgArrayJson(data.program.image);
+          const programData = data.program;
 
-          setValue("category", newsData.category);
-          const index = categories.indexOf(newsData.category);
+          setValue("category", programData.category);
+          const index = categories.indexOf(programData.category);
           if (index >= 0) {
             setSelectedCategoryIndex(index);
             setSelectedCategory(categories[index]);
           }
 
-          setValue("title", newsData.title);
-          setValue("content", newsData.content);
-          setValue("shortcut", newsData.shortcut);
-          setValue("link", newsData.link);
-          setValue("visible", newsData.visible);
-          if (newsData.thumbnail) {
-            setValue("thumbnail", newsData.thumbnail);
+          setValue("title", programData.title);
+          setValue("content", programData.content);
+          setValue("shortcut", programData.shortcut);
+          setValue("link", programData.link);
+          setValue("visible", programData.visible);
+          if (programData.thumbnail) {
+            setValue("thumbnail", programData.thumbnail);
           }
-          setData(newsData);
-          setExistingImages(newsData.image);
+          setData(programData);
+          setExistingImages(programData.image);
         } catch (error) {
-          console.error("뉴스 불러오기 실패", error);
+          console.error("프로그램 불러오기 실패", error);
         }
       })();
     }
@@ -198,19 +196,11 @@ const ProgramV2Edit = () => {
             ref={ref}
             className="flex items-center gap-[10px] md:gap-[20px] cursor-pointer w-fit"
           >
-            <h4
-              className={clsx(
-                md ? "h4-bold" : "p-medium-bold",
-                "text-[#2E3093]"
-              )}
-            >
+            <h4 className={clsx(md ? "h4-bold" : "p-medium-bold", "text-[#2E3093]")}>
               {selectedCategory || "카테고리 선택"}
             </h4>
             <img
-              className={clsx(
-                !isCategoryOpen ? "rotate-180" : "",
-                "w-[14.545px] md:w-[24px]"
-              )}
+              className={clsx(!isCategoryOpen ? "rotate-180" : "", "w-[14.545px] md:w-[24px]")}
               src={ic_up}
               alt="ic_up"
             />
@@ -232,9 +222,7 @@ const ProgramV2Edit = () => {
               </div>
             )}
           </button>
-          {errors.category && (
-            <p className="text-red-500">카테고리를 선택해주세요.</p>
-          )}
+          {errors.category && <p className="text-red-500">카테고리를 선택해주세요.</p>}
 
           <input
             {...register("title", { required: true })}
@@ -264,15 +252,11 @@ const ProgramV2Edit = () => {
             )}
             placeholder="내용을 작성하세요."
           />
-          {errors.content && (
-            <p className="text-red-500">내용을 입력해주세요.</p>
-          )}
+          {errors.content && <p className="text-red-500">내용을 입력해주세요.</p>}
 
           <hr className="mt-[40px] md:mt-[70px] mb-[24px] border-1 border-solid border-[#D9D9D9]" />
 
-          <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
-            이미지
-          </h4>
+          <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>이미지</h4>
 
           <div className="flex flex-col gap-[24px]">
             <Controller
@@ -300,19 +284,14 @@ const ProgramV2Edit = () => {
                   {...field}
                   onChange={(files: File[]) => {
                     if (files.length + existingImages.length > 10) {
-                      toastAlert(
-                        "이미지는 최대 10개까지만 등록할 수 있습니다.",
-                        "error"
-                      );
+                      toastAlert("이미지는 최대 10개까지만 등록할 수 있습니다.", "error");
                       return;
                     }
                     setValue("image", files);
                   }}
                   existFileName={existingImages}
                   onRemoveExisting={(index) =>
-                    setExistingImages((imgs) =>
-                      imgs.filter((_, i) => i !== index)
-                    )
+                    setExistingImages((imgs) => imgs.filter((_, i) => i !== index))
                   }
                 >
                   본문 이미지
@@ -323,9 +302,7 @@ const ProgramV2Edit = () => {
 
           <hr className="my-[24px] border-1 border-solid border-[#D9D9D9]" />
 
-          <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>
-            바로가기 버튼
-          </h4>
+          <h4 className={clsx("mb-[24px]", md ? "h4-bold" : "h5-bold")}>바로가기 버튼</h4>
           <section className="flex flex-col gap-[24px]">
             <Controller
               name="shortcut"
@@ -344,10 +321,7 @@ const ProgramV2Edit = () => {
               name="link"
               control={control}
               render={({ field }) => (
-                <NewsEditLinkBtnInput
-                  {...field}
-                  placeholder="링크를 삽입해주세요."
-                >
+                <NewsEditLinkBtnInput {...field} placeholder="링크를 삽입해주세요.">
                   버튼 링크
                 </NewsEditLinkBtnInput>
               )}
@@ -376,11 +350,7 @@ const ProgramV2Edit = () => {
             <button
               type="submit"
               className="w-[164px] h-[48px] p-medium-bold text-white rounded-[5px] bg-[#00AEEF] cursor-pointer transition-colors hover:bg-[#059DD7] active:bg-[#058BBF] disabled:bg-[#B2E6FA] disabled:cursor-default"
-              disabled={
-                !isCategoryValid ||
-                watch("title") === "" ||
-                watch("content") === ""
-              }
+              disabled={!isCategoryValid || watch("title") === "" || watch("content") === ""}
             >
               등록
             </button>
