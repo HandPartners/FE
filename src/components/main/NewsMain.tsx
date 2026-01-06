@@ -18,11 +18,7 @@ interface NewsMainProps {
   nav: string;
 }
 
-const NewsMain: React.FC<NewsMainProps> = ({
-  title = "NEWS",
-  newsList,
-  nav,
-}) => {
+const NewsMain: React.FC<NewsMainProps> = ({ title = "NEWS", newsList, nav }) => {
   const navigate = useNavigate();
   const windowWidth = useWindowWidth();
   const isMobile = !windowWidth.md;
@@ -31,25 +27,19 @@ const NewsMain: React.FC<NewsMainProps> = ({
     <section className="flex flex-col  md:w-[1280px] w-[84.7svw] mx-auto gap-[20px] md:gap-[44px]">
       <TitleLine>{title}</TitleLine>
       {newsList.length === 0 ? (
-        <p className="text-center text-[var(--grey5)] p-large-bold">
-          게시글이 존재하지 않습니다.
-        </p>
+        <p className="text-center text-[var(--grey5)] p-large-bold">게시글이 존재하지 않습니다.</p>
       ) : (
         <div className="">
           {newsList.map((item) => (
             <FadeInItem key={item.id}>
               <div
                 className="border-b h-[119px]  py-[20px] px-[10px] md:h-[210px] md:py-[24px] md:px-[41px] border-[var(--grey3)] flex flex-row gap-[20px] md:gap-[36px] cursor-pointer "
-                onClick={() =>
-                  navigate(`news/${item.id}`, { relative: "path" })
-                }
+                onClick={() => navigate(`${nav}/${item.id}`, { relative: "path" })}
               >
                 <img
                   src={
                     item.thumbnail
-                      ? `${import.meta.env.VITE_API_URL}/uploads/${
-                          item.thumbnail
-                        }`
+                      ? `${import.meta.env.VITE_API_URL}/uploads/${item.thumbnail}`
                       : default_thumbnail
                   }
                   alt={item.title}
